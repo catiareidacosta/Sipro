@@ -1,0 +1,97 @@
+﻿@model PagedList.IPagedList<Sipro_2017.produto_new>
+@using (Html.BeginForm())
+{
+
+    <script>
+        function valida(Id) {
+            codigoProduto_id = document.getElementById(Id).value;
+            var els = document.getElementById("idProdutos" + Id).childElementCount;
+            var exit = false;
+            for (var i = 0; i < els; ++i) {
+                if (codigoProduto_id == document.getElementById("idProdutos" + Id).options.item(i).text) {
+                    document.getElementById("codigoproduto" + Id).value = codigoProduto_id;
+                    document.getElementById("descProdutos" + Id).value = document.getElementById("descProdutos" + Id).options[i + 1].value;
+                    document.getElementById("descProdutos" + Id).options[i + 1].selected = true;
+                    document.getElementById("desproduto" + Id).value = document.getElementById("descProdutos" + Id).options.item(i + 1).text;
+                    document.getElementById("qtdProdut" + Id).value = document.getElementById("qtdProduts" + Id).options.item(i + 1).text;
+                    document.getElementById("qtdProdut" + Id).focus();
+                    exit = true;
+                }
+            }
+            if (!exit) {
+                if (confirm("Inserir novo produto ?")) {
+                    document.location = '@Url.Action("Create", "Produtoes")';
+                }
+                else {
+                    document.getElementById(Id).value = "";
+                    document.getElementById(Id).focus();
+                }
+            }
+            return false;
+        }
+    </script>
+    <div class="form-horizontal">
+        <hr />
+                <fieldset>
+                    <div class="form-group">
+                        <table class="table">
+                            <tr><th>Referencia</th><th>Descrição</th><th>Quantidade Unitária</th><th></th></tr>
+                            <tr>
+                                 @foreach (var item in Model)
+                                 {
+                                     var numindex = Model.Count();
+                                     var i = Model.GetEnumerator();
+                                     var codIndex = "codigoproduto" + 0;
+                                     var descIndex = "descProduto" + 0;
+                                     var qtdIndex = "qtdProduto" + 0;
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    @Html.DropDownList("codigoProduto_id", null, htmlAttributes: new { @class = "hidden", @id = "idProdutos" + i })
+                                                    @Html.EditorFor(modelItem => item.codcomercial, new { htmlAttributes = new { @class = "form-control", @id = i, @onchange = "return valida(" + i + ")" } })
+                                                    @Html.TextBox("codigoproduto" + 0, null, htmlAttributes: new { @class = "hidden" })
+                                            </td>
+                                            <td>
+                                                <input id=@descIndex name="descricao" type="text" disabled="disabled" class="hidden" value=@Html.DisplayFor(modelItem => item.descricao) />
+                                                @Html.EditorFor(modelItem => item.descricao, new { htmlAttributes = new { @class = "form-control", @id = i, @disabled = "disabled" } })
+                                                @Html.TextBox("desproduto" + 0, null, htmlAttributes: new { @class = "hidden", @name = "descCRC", @id = "desproduto" + i })
+                                            </td>
+                                            <td>
+                                                @Html.EditorFor(modelItem => item.qtd, new { htmlAttributes = new { @class = "form-control", @id = "qtdProduts" + i } })
+                                                <input id=@qtdIndex name="qtd" type="text" disabled="disabled" class="hidden" />
+                                                @Html.TextBox("qtdproduto" + 0, null, htmlAttributes: new { @id = "qtdProdut" + i, @class = "hidden" })
+                                            </td>
+                                </tr>
+                                 }
+                                 @for (var i = 0; i < (10 - Model.Count()); i++)
+                                 {
+                                     var codIndex = "codigoproduto" + i;
+                                     var descIndex = "descProduto" + i;
+                                     var qtdIndex = "qtdProduto" + i;
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                @Html.DropDownList("codigoProduto_id", null, htmlAttributes: new { @class = "hidden", @id = "idProdutos" + i })
+                                                @Html.Editor("codigoProd", new { htmlAttributes = new { @class = "form-control", @id = i, @onchange = "return valida(" + i + ")" } })
+                                                @Html.TextBox("codigoproduto" + i, null, htmlAttributes: new { @class = "hidden" })
+                                        </td>
+                                        <td>
+                                            <input id=@descIndex name="descricao" type="text" disabled="disabled" class="hidden" value=@Html.Display("descricao") />
+                                            @Html.DropDownList("codigoProduto_desc", null, " Select One", htmlAttributes: new { @class = "hidden", @name = "desc", @id = "descProdutos" + i, @disabled = "disabled"})
+                                            @Html.TextBox("desproduto" + i, null, htmlAttributes: new { @class = "form-control", @name = "descCRC", @id = "desproduto" + i , @disabled = "disabled" })
+                                        </td>
+                                        <td>
+                                            @Html.Editor("qtdProd", new { htmlAttributes = new { @class = "form-control", @id = "qtdProduts" + i } })
+                                            <input id=@qtdIndex name="qtd" type="text" disabled="disabled" class="hidden" />
+                                            @Html.TextBox("qtdproduto" + i, null, htmlAttributes: new { @id = "qtdProdut" + i, @class = "hidden" })
+                                        </td>
+                                    </tr>
+                                 }
+                        </table>
+                    </div>
+                </fieldset>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

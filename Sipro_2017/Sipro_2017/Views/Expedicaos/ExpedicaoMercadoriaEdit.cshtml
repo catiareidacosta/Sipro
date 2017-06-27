@@ -1,0 +1,117 @@
+﻿@model Sipro_2017.Expedicao
+@{    ViewBag.Title = "ExpedicaoMercadoria"; }
+
+<h2>Expedição Mercadorias</h2>
+@using (Html.BeginForm()){
+    @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <input type='text' id='dataExpedicao' name='dataExpedicao' value=@ViewBag.data style="border:none" readonly="readonly" />
+            <input type='text' id='erros' name='erros' value=@ViewBag.erros class="text-danger" style="border:none" readonly="readonly" />
+            <hr/>@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="center-div">
+                <div>
+                    <input type="submit" value="Gravar" class="btn btn-default" />
+                    <input type="button" value="Cancelar" onclick="forwardMe('index')" />
+                    <script> function forwardMe(url) {document.location = '@Url.Action("Index", "Expedicaos")';} </script>
+                </div>
+            </div>
+            <script>
+                function validaEncomenda() {
+                    var idOrcamento = document.getElementById("id_numeroEncomenda").value;
+                    var els = document.getElementById("encomendas").childElementCount;
+                    var exit = false;
+                    for (var i = 0; i < els; ++i) {
+                        if (idOrcamento == document.getElementById("encomendas").options.item(i).text) {
+                            document.getElementById("encomendas").options[i + 1].selected = true;
+                            exit = true;
+                        }
+                    }
+                    if (!exit) {
+                        alert("Encomenda não existe!");
+                    }
+                    return false;
+                }
+            </script>
+            <div class="form-group">
+                @Html.Label("Nome destinatário (cliente / Fornecedor)")
+                @Html.DropDownList("morada", null, "--Select One--", htmlAttributes: new { @class = "form-control" })   
+                @Html.ValidationMessageFor(model => model.morada, "", new { @class = "text-danger" })
+                
+            </div>
+            <div class="form-group">
+                @Html.Label("Matricula")
+                @Html.EditorFor(model => model.matricula, new { htmlAttributes = new { @class = "form-control", @id = "matricula", @name = "matricula" } })
+                @Html.ValidationMessageFor(model => model.matricula, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("CMR")
+                @Html.EditorFor(model => model.cmr, new { htmlAttributes = new { @class = "form-control", @id = "cmr", @name = "cmr" } })
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Nrº de Guia de transporte")
+                    <input type='text' id='numeroguia' name='numeroguia' value=@ViewBag.numeroGuia readonly="readonly" style="border:none" hidden="hidden">
+                    <input type='text' id='guia' name='guia' value=@ViewBag.guia readonly="readonly" style="border:none">
+                </div>
+            </div>
+            
+      <script>
+            function addSubProdutos(index) {
+                var codigoProduto_id ="";
+                var loteProduto_id="";
+                var validadeProduto_id ="";
+                var url = '@Url.Action("AddSubProduto", "Expedicaos", new { obs = -2 })';
+                var opcoes =  document.getElementById("numeroguia").value + ";" + codigoProduto_id + ";" + loteProduto_id + ";" + validadeProduto_id;
+                var path = url.replace("-2", opcoes);
+                document.location = path;
+            }
+         </script>
+        </div>
+        <input type="button" value="Listagem" onclick="lista()" />
+        <input type="button" value="Regista Produtos" onclick="regista()" />
+        <script>
+                function regista() {
+                    var url = '@Url.Action("AddSubProduto", "Expedicaos", new { obs = -2})';
+                    var opcoes = document.getElementById("numeroguia").value + ";" + document.getElementById("morada").value + ";" + document.getElementById("matricula").value + ";" + document.getElementById("cmr").value;;
+                    var path = url.replace("-2", opcoes);
+                    document.location = path;
+                }
+            function lista() {
+                var url = '@Url.Action("listaprodutosPai", "Expedicaos", new { obs = -2})';
+                var opcoes = document.getElementById("numeroguia").value + ";" + document.getElementById("guia").value;
+                var path = url.replace("-2", opcoes);
+                document.location = path;
+            }
+        </script>
+}
+        <script language="javascript">
+    function checkDt(fld) {
+        var mo, day, yr;
+        var entry = fld.value;
+        var reLong = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/;
+        var reShort = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{2}\b/;
+        var valid = (reLong.test(entry)) || (reShort.test(entry));
+        if (valid) {
+            var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+            var delim1 = entry.indexOf(delimChar);
+            var delim2 = entry.lastIndexOf(delimChar);
+            day = parseInt(entry.substring(0, delim1), 10);
+            mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+            yr = parseInt(entry.substring(delim2 + 1), 10);
+            // handle two-digit year
+            if (yr < 100) {
+                var today = new Date();
+                var currCent = parseInt(today.getFullYear() / 100) * 100;
+                var threshold = (today.getFullYear() + 15) - currCent;
+                if (yr > threshold) { yr += currCent - 100; } else { yr += currCent; }
+            }
+            fld.value = day + "/" + mo + "/" + yr;
+            return true;
+        } else { alert("Invalid date format. Enter as mm/dd/yyyy."); }
+        return false;
+    }
+        </script>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

@@ -1,0 +1,726 @@
+﻿@model Sipro_2017.produtosExpedido
+@{
+    ViewBag.Title = "AddSubProduto";
+}
+@using (Html.BeginForm()) {
+
+    produto produto = new Sipro_2017.produto();
+    <div class="form-horizontal">
+        <input type='text' id='erros' name='erros' value=@ViewBag.erros class="text-danger" style="border:none" readonly="readonly" />
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<script>
+    function pesquisaProdutos(codigoProduto_id) {
+        //caso seja um produto encontra-se testado.
+        var elsProdCodComercial = document.getElementById("produtosDesc").childElementCount;
+        var elsdescricoes = document.getElementById("id_produtosDescricao").childElementCount;
+        for (var i = 0; i < elsProdCodComercial; ++i) {
+            if (codigoProduto_id == document.getElementById("produtosDesc").options.item(i).value) {
+                document.getElementById("codcomercial").value = document.getElementById("produtosDesc").options.item(i).text;
+                document.getElementById("codcProd").value = document.getElementById("produtosDesc").options.item(i).text;
+                for (var desc = 0; desc < elsdescricoes; ++desc) {
+                    if (document.getElementById("codcomercial").value == document.getElementById("id_produtosDescricao").options.item(desc).value) {
+                        document.getElementById("refdescricao").value = document.getElementById("id_produtosDescricao").options.item(desc).text;
+                        document.getElementById("descricao").value = document.getElementById("id_produtosDescricao").options.item(desc).text;
+                        document.getElementById("refdescricao").value = document.getElementById("id_produtosDescricao").options.item(desc).text;
+                    }
+                }
+                if (!exit) {
+                    addMoreRows();
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+            
+    function gtinFabricado(codigoProduto_id) {
+        var elsProdGtinFabricado = document.getElementById("refGtinFabricado").childElementCount;
+        var refComercialproduto;
+        var refIdproduto;
+        for (var i = 0; i < elsProdGtinFabricado; ++i) {
+            var refComercialprodutoCount = document.getElementById("ofFabricado").childElementCount;
+            /*
+                ViewBag.id_OfGtinFabricado = new SelectList(db.gtinFabricados, "id", "ordemFabrico_id");		ofFabricado	
+                ViewBag.id_qtdFabricado = new SelectList(db.OrdemFabricoes, "id", "qtdFabricado");				qtdFabricado
+                ViewBag.id_loteFabricado = new SelectList(db.gtinFabricados, "id", "loteProduzir");     		loteFabricado
+                ViewBag.id_validadeFabricado = new SelectList(db.OrdemFabricoes, "id", "validade");				validadeFabricado
+                ViewBag.id_encomendaFabricado = new SelectList(db.gtinFabricados, "id", "encomenda_id");		encomendaFabricado
+                ViewBag.id_refGtinFabricado = new SelectList(db.OrdemFabricoes, "id", "produto_id");			refGtinFabricado
+                ViewBag.id_OfGtinFabricadoSSCC = new SelectList(db.gtinFabricados, "id", "gtinFabricado");		//of_gtinFabricado
+            */
+            for (var ref = 0; ref < refComercialprodutoCount; ++ref) {
+                var index = "";
+                if (codigoProduto_id == document.getElementById("of_gtinFabricado").options.item(ref).text) {
+                    alert(document.getElementById("of_gtinFabricado").options.item(ref).text + " = " + codigoProduto_id);
+                    document.getElementById("qtd").value = document.getElementById("of_QtdProduzida").options.item(ref).text;
+                    alert(document.getElementById("qtd").value);
+                    document.getElementById("lote").value = document.getElementById("of_LOTE").options.item(ref).text;
+                    alert(document.getElementById("lote").value);
+                    document.getElementById("validade").value = DtFormt(document.getElementById("of_Validade").options.item(ref).text);
+                    alert(document.getElementById("validade").value);
+                    document.getElementById("encomenda").value = document.getElementById("encomendaFabricado").options.item(ref).text;
+                    alert(document.getElementById("encomenda").value);
+                    document.getElementById("refGtinFabricado").value = document.getElementById("refGtinFabricado").options[ref].value;
+                    alert(document.getElementById("refGtinFabricado").value);
+                    document.getElementById("refGtinFabricado").options[i].selected = true;
+                    alert(" *** gtinFabricado 10");
+                    document.getElementById("lote").value = document.getElementById("loteFabricado").options.item(ref).text;
+                    var Of = document.getElementById("ofFabricado").options.item(ref).text;
+                    alert("OF = " + of);
+                    var ofs = document.getElementById("refGtinFabricado").childElementCount;
+                    for (var ref1 = 0; ref1 < ofs; ++ref1) {
+                        alert("value = " + document.getElementById("refGtinFabricado").options.item(ref).value + " Text  = " + document.getElementById("refGtinFabricado").options.item(ref).value);
+                        if (of == document.getElementById("refGtinFabricado").options.item(ref).value) {
+                            document.getElementById("lote").value = document.getElementById("gtinfabricado").options.item(ref1).text;
+                        }
+                    }
+                    if (!exit) {
+                        addMoreRows();
+                    }
+                    return true;
+                }
+                /*if (codigoProduto_id == document.getElementById("qtdFabricado").options.item(ref).text) {
+                    refComercialproduto = document.getElementById("id_produtos").options.item(ref).text;
+                    refIdproduto = document.getElementById("id_produtos").options[ref].value;
+                    document.getElementById("codcomercial").value = document.getElementById("id_produtos").options.item(ref).text;
+                    document.getElementById("refdescricao").value = document.getElementById("id_produtosDescricao").options[ref].value;
+                    document.getElementById("id_produtosDescricao").value = document.getElementById("id_produtosDescricao").options[ref].value;
+                   document.getElementById("id_produtosDescricao").options[ref].selected = true;
+                }
+            }
+            alert(" *** gtinFabricado 5");
+            if (refIdproduto == document.getElementById("of_Produto").options.item(i).text) {
+                alert(" *** gtinFabricado 6");
+                document.getElementById("qtd").value = document.getElementById("of_QtdProduzida").options.item(i).text;
+                document.getElementById("lote").value = document.getElementById("of_LOTE").options.item(i).text;
+                document.getElementById("validade").value = DtFormt(document.getElementById("of_Validade").options.item(i).text);
+                document.getElementById("encomenda").value = document.getElementById("encomendaFabricado").options.item(i).text;
+                document.getElementById("refGtinFabricado").value = document.getElementById("refGtinFabricado").options[i].value;
+                document.getElementById("refGtinFabricado").options[i].selected = true;
+                document.getElementById("lote").value = document.getElementById("loteFabricado").options.item(i).text;
+                if (!exit) {
+                    addMoreRows();
+                }
+                return true;*/
+            }
+        }
+        return false;
+    }
+            
+    function gtinRecebido(codigoProduto_id) {
+        alert(" *** gtinRecebido 1");
+        var elsProdGtinRecebido = document.getElementById("produtosGtinRecebido").childElementCount;
+        for (var i = 0; i < elsProdGtinRecebido; ++i) {
+            if (codigoProduto_id == document.getElementById("produtosGtinRecebido").options.item(i).text) {
+                alert(" *** gtinRecebido 2");
+                document.getElementById("descricao").value = document.getElementById("descricaoGtinRecebido").options[i].text;
+                alert(" *** gtinRecebido 3");
+                document.getElementById("descricaoGtinRecebido").options[i].selected = true;
+                alert(" *** gtinRecebido 4");
+                document.getElementById("codcomercial").value = document.getElementById("refGtinRecebido").options.item(i).text;
+                alert(" *** gtinRecebido 5");
+                document.getElementById("qtd").value = document.getElementById("qtdGtinRecebido").options.item(i).text;
+                alert(" *** gtinRecebido 6");
+                document.getElementById("lote").value = document.getElementById("loteGtinRecebido").options.item(i).text;
+                alert(" *** gtinRecebido 7");
+                document.getElementById("validade").value = DtFormt(document.getElementById("validadeGtinRecebido").options.item(i).text);
+                if (!exit) {
+                    addMoreRows();
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function idProduto(codigoProduto_id) {
+        alert(" *** idProduto 1");
+        var produtos = document.getElementById("id_produtos").childElementCount;
+        for (var i = 0; i < produtos; ++i) {
+            if (codigoProduto_id == document.getElementById("id_produtos").options.item(i).value) {
+                alert(" *** idProduto 2");
+                document.getElementById("id_produtos").value = document.getElementById("id_produtos").options[i].value;
+                document.getElementById("id_produtos").options[i].selected = true;
+                document.getElementById("codcomercial").value = document.getElementById("id_produtos").options[i].value;
+                exit = true;
+            }
+        }
+        alert(" *** idProduto 3");
+        for (var i = 0; i < elsProdCodComercial; ++i) {
+            if (codigoProduto_id == document.getElementById("produtosDesc").options.item(i).value) {
+                alert(" *** idProduto 4");
+                document.getElementById("produtosDesc").value = document.getElementById("produtosDesc").options[i].value;
+                document.getElementById("refdescricao").value = document.getElementById("produtosDesc").options[i].value;
+                document.getElementById("produtosDesc").options[i].selected = true;
+                return true;
+            }
+        }
+        return false;
+    }
+            
+
+    function idProdGtinRecebido(codigoProduto_id) {
+        alert(" *** idProdGtinRecebido 1");
+        var elsProdGtinRecebido = document.getElementById("produtosGtinRecebido").childElementCount;
+        for (var i = 0; i < elsProdGtinRecebido; ++i) {
+            if (codigoProduto_id == document.getElementById("produtosGtinRecebido").options.item(i).value) {
+                alert(" *** idProdGtinRecebido 2");
+                var referencia = document.getElementById("refGtinRecebido").options[i].value;
+                document.getElementById("codcomercial").value = referencia;
+                if (referencia == document.getElementById("produtosDesc").options.item(i).value) {
+                    alert(" *** idProdGtinRecebido 3");
+                    document.getElementById("produtosDesc").value = document.getElementById("produtosDesc").options[i].value;
+                    document.getElementById("codcomercial").value = referencia;
+                    document.getElementById("refdescricao").value = document.getElementById("produtosDesc").options[i].value;
+                }
+                alert(" *** idProdGtinRecebido 4");
+                document.getElementById("descricao").value = document.getElementById("produtosDesc").value;
+                alert(" *** idProdGtinRecebido 5");
+                document.getElementById("qtd").value = document.getElementById("qtdFabricado").options.item(i).text;
+                alert(" *** idProdGtinRecebido 6");
+                document.getElementById("qtdFabricado").options[i].selected = true;
+                alert(" *** idProdGtinRecebido 7");
+                document.getElementById("lote").value = document.getElementById("loteFabricado").options.item(i).value;
+                alert(" *** idProdGtinRecebido 8");
+                document.getElementById("loteFabricado").options[i].selected = true;
+                alert(" *** idProdGtinRecebido 9");
+                document.getElementById("validade").value = DtFormt(document.getElementById("validadeFabricado").options.item(i).value);
+                alert(" *** idProdGtinRecebido 10");
+                document.getElementById("validadeFabricado").options[i].selected = true;
+                alert(" *** idProdGtinRecebido 11");
+                document.getElementById("encomenda").value = document.getElementById("encomendaFabricado").options.item(i).value;
+                alert(" *** idProdGtinRecebido 12");
+                document.getElementById("encomendaFabricado").options[i].selected = true;
+                if (!exit)
+                    addMoreRows();
+                exit = true;
+            }
+        }
+        return false;
+        }
+            
+        function idProdGtinRec(codigoProduto_id) {
+            alert(" *** idProdGtinRec 1");
+            var elsProdGtinRecebido = document.getElementById("produtosGtinRecebido").childElementCount;
+            for (var i = 0; i < elsProdGtinRecebido; ++i) {
+                if (codigoProduto_id == document.getElementById("produtosGtinRecebido").options.item(i).value) {
+                    alert(" *** idProdGtinRec 2");
+                    var referencia = document.getElementById("refGtinRecebido").options[i].value;
+                    document.getElementById("codcomercial").value = referencia;
+                    if (referencia == document.getElementById("produtosDesc").options.item(i).value) {
+                        alert(" *** idProdGtinRec 3");
+                        document.getElementById("produtosDesc").value = document.getElementById("produtosDesc").options[i].value;
+                        alert(" *** idProdGtinRec 4");
+                        document.getElementById("codcomercial").value = referencia;
+                        alert(" *** idProdGtinRec 5");
+                        document.getElementById("refdescricao").value = document.getElementById("produtosDesc").options[i].value;
+                        alert(" *** idProdGtinRec 6");
+                    }
+                    document.getElementById("descricao").value = document.getElementById("produtosDesc").value;
+                    alert(" *** idProdGtinRec 7");
+                    document.getElementById("qtd").value = document.getElementById("qtdFabricado").options.item(i).text;
+                    alert(" *** idProdGtinRec 8");
+                    document.getElementById("qtdFabricado").options[i].selected = true;
+                    alert(" *** idProdGtinRec 9");
+                    document.getElementById("lote").value = document.getElementById("loteFabricado").options.item(i).value;
+                    alert(" *** idProdGtinRec 10");
+                    document.getElementById("loteFabricado").options[i].selected = true;
+                    alert(" *** idProdGtinRec 11");
+                    document.getElementById("validade").value = DtFormt(document.getElementById("validadeFabricado").options.item(i).value);
+                    alert(" *** idProdGtinRec 12");
+                    document.getElementById("validadeFabricado").options[i].selected = true;
+                    alert(" *** idProdGtinRec 13");
+                    document.getElementById("encomenda").value = document.getElementById("encomendaFabricado").options.item(i).value;
+                    alert(" *** idProdGtinRec 14");
+                    document.getElementById("encomendaFabricado").options[i].selected = true;
+                    alert(" *** idProdGtinRec 15");
+                    if (!exit)
+                        addMoreRows();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+            function idProdutoIndex( index) {
+                alert(" *** idProdutoIndex 1");
+                var codigoProduto_id = document.getElementById("refproduto" + index).value;
+                var elsProdCodComercial = document.getElementById("produtosDesc").childElementCount;
+                var elsdescricoes = document.getElementById("id_produtosDescricao").childElementCount;
+                for (var i = 0; i < elsProdCodComercial; ++i) {
+                    if (codigoProduto_id == document.getElementById("produtosDesc").options.item(i).value) {
+                        alert(" *** idProdutoIndex 2");
+                        document.getElementById("codcomercial" + index).value = document.getElementById("produtosDesc").options.item(i).text;
+                        alert(" *** idProdutoIndex 3");
+                        for (var desc = 0; desc < elsdescricoes; ++desc) {
+                            if (document.getElementById("codcomercial" + index).value == document.getElementById("id_produtosDescricao").options.item(desc).value) {
+                                alert(" *** idProdutoIndex 4");
+                                document.getElementById("codcomercial" + index).value = document.getElementById("produtosDesc").options.item(i).text;
+                                alert(" *** idProdutoIndex 5");
+                                document.getElementById("refdescricao").value = document.getElementById("id_produtosDescricao").options.item(desc).text;
+                                alert(" *** idProdutoIndex 6");
+                                document.getElementById("descricao" + index).value = document.getElementById("id_produtosDescricao").options.item(desc).text;
+                                alert(" *** idProdutoIndex 7");
+                            }
+                        }
+                        alert(" *** idProdutoIndex 8");
+                        document.getElementById("qtd" + index).value = document.getElementById("qtdProduto").options.item(i).text;
+                        alert(" *** idProdutoIndex 9");
+                        document.getElementById("lote" + index).value = document.getElementById("loteProduto").options.item(i).text;
+                        alert(" *** idProdutoIndex 10");
+                        document.getElementById("validade" + index).value =  DtFormt(document.getElementById("validadeProduto").options.item(i).text);
+                        alert(" *** idProdutoIndex 11");
+                        document.getElementById("encomenda" + index).value = document.getElementById("encomendaProduto").options.item(i).text;
+                        alert(" *** idProdutoIndex 12");
+                        if (!exit)
+                            addMoreRows();
+                        return  true;
+                    }
+                }
+                return false;
+            }
+
+            function ProdGtinFabricadoIndex(index){
+                alert(" *** ProdGtinFabricadoIndex 1");
+                var codigoProduto_id = document.getElementById("refproduto" + index).value;
+                var elsProdGtinFabricado = document.getElementById("refGtinFabricado").childElementCount;
+                var refComercialproduto;
+                var refIdproduto;
+                alert(" *** ProdGtinFabricadoIndex 2");       
+                for (var i = 0; i < elsProdGtinFabricado; ++i) {
+                    var refComercialprodutoCount = document.getElementById("id_produtos").childElementCount;
+                    for (var ref = 0; ref < refComercialprodutoCount; ++ref) {
+                        if (codigoProduto_id == document.getElementById("id_produtos").options.item(ref).text) {
+                            alert(" *** ProdGtinFabricadoIndex 3");
+                            refComercialproduto = document.getElementById("id_produtos").options.item(ref).text;
+                            alert(" *** ProdGtinFabricadoIndex 4");
+                            refIdproduto = document.getElementById("id_produtos").options[ref].value;
+                            alert(" *** ProdGtinFabricadoIndex 5");
+                            document.getElementById("codcomercial" + index).value = refComercialproduto;
+                            alert(" *** ProdGtinFabricadoIndex 6");
+                            document.getElementById("refdescricao").value = document.getElementById("id_produtosDescricao").options[ref].value;
+                            alert(" *** ProdGtinFabricadoIndex 7");
+                            document.getElementById("id_produtosDescricao" + index).value = document.getElementById("id_produtosDescricao").options[ref].value;
+                            alert(" *** ProdGtinFabricadoIndex 8");
+                            document.getElementById("id_produtosDescricao" + index).options[ref].selected = true;
+                            alert(" *** ProdGtinFabricadoIndex 9");
+                        }
+                    }
+                    if (refIdproduto == document.getElementById("of_Produto").options.item(i).text) {
+                        alert(" *** ProdGtinFabricadoIndex 10");
+                        document.getElementById("descricao" + index).value = document.getElementById("id_produtosDescricao").value
+                        alert(" *** ProdGtinFabricadoIndex 11");
+                        document.getElementById("qtd" + index).value = document.getElementById("of_QtdProduzida").options.item(i).text;
+                        alert(" *** ProdGtinFabricadoIndex 12");
+                        document.getElementById("lote" + index).value = document.getElementById("of_LOTE").options.item(i).text;
+                        alert(" *** ProdGtinFabricadoIndex 13");
+                        document.getElementById("validade" + index).value = DtFormt(document.getElementById("of_Validade").options.item(i).text);
+                        alert(" *** ProdGtinFabricadoIndex 14");
+                        document.getElementById("encomenda" + index).value = document.getElementById("encomendaFabricado").options.item(i).text;
+                        alert(" *** ProdGtinFabricadoIndex 15");
+                        document.getElementById("refGtinFabricado" + index).value = document.getElementById("refGtinFabricado").options[i].value;
+                        alert(" *** ProdGtinFabricadoIndex 16");
+                        document.getElementById("refGtinFabricado" + index).options[i].selected = true;
+                        alert(" *** ProdGtinFabricadoIndex 17");
+                        document.getElementById("lote" + index).value = document.getElementById("loteFabricado").options.item(i).text;
+                        alert(" *** ProdGtinFabricadoIndex 18");
+                        if (!exit)
+                            addMoreRows();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            function ProdGtinRecebidoIndex(index) {
+                alert(" *** ProdGtinRecebidoIndex 1");
+                var codigoProduto_id = document.getElementById("refproduto" + index).value;
+                var elsProdGtinRecebido = document.getElementById("produtosGtinRecebido").childElementCount;
+                for (var i = 0; i < elsProdGtinRecebido; ++i) {
+                    if (codigoProduto_id == document.getElementById("produtosGtinRecebido").options.item(i).text) {
+                        alert(" *** ProdGtinRecebidoIndex 2");
+                        document.getElementById("descricao" + index).value = document.getElementById("descricaoGtinRecebido").options[i].text;
+                        alert(" *** ProdGtinRecebidoIndex 3");
+                        document.getElementById("refdescricao" + index).value = document.getElementById("descricao" + index).value;
+                        alert(" *** ProdGtinRecebidoIndex 4");
+                        document.getElementById("descricaoGtinRecebido" + index).options[i].selected = true;
+                        for (var refpai = 0; refPai < document.getElementById("produtosDesc").childElementCount; refpai++) {
+                            if (document.getElementById("produtosGtinRecebido").options.item(i).value == document.getElementById("produtosDesc").options.item(refPai).value) {
+                                alert(" *** ProdGtinRecebidoIndex 5");
+                                document.getElementById("codcomercial" + index).value = document.getElementById("produtosDesc").options.item(refPai).text;
+                                alert(" *** ProdGtinRecebidoIndex 6");
+                            }
+                        }
+                        alert(" *** ProdGtinRecebidoIndex 7");
+                        document.getElementById("qtd" + index).value = document.getElementById("qtdGtinRecebido").options.item(i).text;
+                        alert(" *** ProdGtinRecebidoIndex 8");
+                        document.getElementById("lote" + index).value = document.getElementById("loteGtinRecebido").options.item(i).text;
+                        alert(" *** ProdGtinRecebidoIndex 9");
+                        document.getElementById("validade" + index).value = DtFormt(document.getElementById("validadeGtinRecebido").options.item(i).text);
+                        alert(" *** ProdGtinRecebidoIndex 10");
+                        document.getElementById("encomenda" + index).value = document.getElementById("encomendaGtinRecebido").options.item(i).text;
+                        alert(" *** ProdGtinRecebidoIndex 11");
+                        if (document.getElementById("id_produtosDescricao").options[i].Text == document.getElementById("refGtinFabricado").options.item(i).value) {
+                            alert(" *** ProdGtinRecebidoIndex 12");
+                            document.getElementById("id_produtosDescricao").value = document.getElementById("id_produtosDescricao").options[i].value;
+                            alert(" *** ProdGtinRecebidoIndex 13");
+                            document.getElementById("id_produtosDescricao").options[i].selected = true;
+                        }
+                        alert(" *** ProdGtinRecebidoIndex 14");
+                        document.getElementById("descricao" + index).value = document.getElementById("produtosDesc").value;
+                        alert(" *** ProdGtinRecebidoIndex 15");
+                        document.getElementById("elsProdGtinRecebido").value = document.getElementById("elsProdGtinRecebido").options[i].value;
+                        alert(" *** ProdGtinRecebidoIndex 16");
+                        document.getElementById("elsProdGtinRecebido").options[i].selected = true;
+                        alert(" *** ProdGtinRecebidoIndex 17");
+                        if (!exit)
+                            addMoreRows();
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function  CodigoProdutoIndex(index){
+                alert(" *** CodigoProdutoIndex 1");
+                var codigoProduto_id = document.getElementById("refproduto" + index).value;
+                var produtos = document.getElementById("id_produtos").childElementCount;
+                for (var i = 0; i < produtos; ++i) {
+                    if (codigoProduto_id == document.getElementById("id_produtos").options.item(i).value) {
+                        alert(" *** CodigoProdutoIndex 2");
+                        document.getElementById("id_produtos").value = document.getElementById("id_produtos").options[i].value;
+                        alert(" *** CodigoProdutoIndex 3");
+                        document.getElementById("id_produtos").options[i].selected = true;
+                        alert(" *** CodigoProdutoIndex 4");
+                        exit = true;
+                    }
+                }
+                for (var i = 0; i < elsProdCodComercial; ++i) {
+                    if (codigoProduto_id == document.getElementById("produtosDesc").options.item(i).value) {
+                        alert(" *** CodigoProdutoIndex 5");
+                        document.getElementById("refdescricao" + index).value = document.getElementById("produtosDesc").options[i].value;
+                        alert(" *** CodigoProdutoIndex 6");
+                        document.getElementById("produtosDesc").value = document.getElementById("produtosDesc").options[i].value;
+                        alert(" *** CodigoProdutoIndex 7");
+                        document.getElementById("produtosDesc").options[i].selected = true;
+                        alert(" *** CodigoProdutoIndex 8");
+                        return true;
+                    }
+                }
+                return false;
+            }           
+
+            function GtinFabricadoIndex(index){
+                alert(" *** GtinFabricadoIndex 1");
+                var codigoProduto_id = document.getElementById("refproduto" + index).value;
+                for (var i = 0; i < elsProdGtinFabricado; ++i) {
+                    if (codigoProduto_id == document.getElementById("produtosGtinFabricado").options.item(i).value) {
+                        alert(" *** GtinFabricadoIndex 2");
+                        var referencia = document.getElementById("refGtinFabricado").options[i].value;
+                        alert(" *** GtinFabricadoIndex 3");
+                        document.getElementById("codcomercial" + index).value = referencia;
+                        alert(referencia);
+                        if (referencia == document.getElementById("produtosDesc").options.item(i).value) {
+                            alert(" *** GtinFabricadoIndex 4");
+                            document.getElementById("codcomercial" + index).value = referencia;
+                            alert(" *** GtinFabricadoIndex 5");
+                            document.getElementById("refdescricao").value = document.getElementById("produtosDesc").options[i].value;
+                            alert(" *** GtinFabricadoIndex 6");
+                            document.getElementById("produtosDesc" + index).value = document.getElementById("produtosDesc").options[i].value;
+                        }
+                        alert(" *** GtinFabricadoIndex 7");
+                        document.getElementById("descricao" + index).value = document.getElementById("produtosDesc").value;
+                        alert(" *** GtinFabricadoIndex 8");
+                        document.getElementById("qtd" + index).value = document.getElementById("qtdGtinRecebido").options.item(i).text;
+                        alert(" *** GtinFabricadoIndex 9");
+                        document.getElementById("qtdGtinRecebido" + index).options[i].selected = true;
+                        alert(" *** GtinFabricadoIndex 10");
+                        document.getElementById("lote" + index).value = document.getElementById("loteGtinRecebido").options.item(i).value;
+                        alert(" *** GtinFabricadoIndex 11");
+                        document.getElementById("loteGtinRecebido" + index).options[i].selected = true;
+                        alert(" *** GtinFabricadoIndex 12");
+                        document.getElementById("validade" + index).value = DtFormt(document.getElementById("validadeGtinRecebido").options.item(i).value);
+                        alert(" *** GtinFabricadoIndex 13");
+                        document.getElementById("validadeGtinRecebido" + index).options[i].selected = true;
+                        alert(" *** GtinFabricadoIndex 14");
+                        document.getElementById("encomenda" + index).value = document.getElementById("encomendaGtinRecebido").options.item(i).value;
+                        alert(" *** GtinFabricadoIndex 15");
+                        document.getElementById("encomendaGtinRecebido" + index).options[i].selected = true;
+                        alert(" *** GtinFabricadoIndex 16");
+                        if (!exit)
+                            addMoreRows();
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+    function GtinRecebidoIndex(index){
+        alert(" *** GtinRecebidoIndex 1");
+        var codigoProduto_id = document.getElementById("refproduto" + index).value;
+        for (var i = 0; i < elsProdGtinRecebido; ++i) {
+            if (codigoProduto_id == document.getElementById("produtosGtinRecebido").options.item(i).value) {
+                alert(" *** GtinRecebidoIndex 2");
+                var referencia = document.getElementById("refGtinRecebido").options[i].value;
+                alert(" *** GtinRecebidoIndex 3");
+                document.getElementById("codcomercial" + index).value = referencia;
+                alert(" *** GtinRecebidoIndex 4");
+                if (referencia == document.getElementById("produtosDesc").options.item(i).value) {
+                    alert(" *** GtinRecebidoIndex 5");
+                    document.getElementById("codcomercial" + index).value = referencia;
+                    alert(" *** GtinRecebidoIndex 6");
+                    document.getElementById("refdescricao").value = document.getElementById("produtosDesc").options[i].value;
+                    alert(" *** GtinRecebidoIndex 7");
+                    document.getElementById("produtosDesc").value = document.getElementById("produtosDesc").options[i].value;
+                    alert(" *** GtinRecebidoIndex 8");
+                }
+                alert(" *** GtinRecebidoIndex 9");
+                document.getElementById("descricao" + index).value = document.getElementById("produtosDesc").value;
+                alert(" *** GtinRecebidoIndex 10");
+                document.getElementById("qtd").value = document.getElementById("qtdFabricado").options.item(i).text;
+                alert(" *** GtinRecebidoIndex 11");
+                document.getElementById("qtdFabricado").options[i].selected = true;
+                alert(" *** GtinRecebidoIndex 12");
+                document.getElementById("lote").value = document.getElementById("loteFabricado").options.item(i).value;
+                alert(" *** GtinRecebidoIndex 13");
+                document.getElementById("loteFabricado").options[i].selected = true;
+                alert(" *** GtinRecebidoIndex 14");
+                document.getElementById("validade").value = DtFormt(document.getElementById("validadeFabricado").options.item(i).value);
+                alert(" *** GtinRecebidoIndex 15");
+                document.getElementById("validadeFabricado").options[i].selected = true;
+                alert(" *** GtinRecebidoIndex 16");
+                document.getElementById("encomenda").value = document.getElementById("encomendaFabricado").options.item(i).value;
+                alert(" *** GtinRecebidoIndex 17");
+                document.getElementById("encomendaFabricado").options[i].selected = true;
+                alert(" *** GtinRecebidoIndex 18");
+                if (!exit)
+                    addMoreRows();
+                return true;
+            }
+        }
+        return false;
+    }
+
+            function validaRef(index) {
+                alert(" *** "+index);
+                var exit = false;
+                if (index == 1) {
+                    alert(" *** 1"); 
+                    var codigoProduto_id = document.getElementById("refproduto").value;
+                     exit= pesquisaProdutos(codigoProduto_id);
+                    if (!exit) {
+                        exit = gtinFabricado(codigoProduto_id);
+                    }
+                    if (!exit) {
+                        exit = gtinRecebido(codigoProduto_id);
+                    }
+                    if (!exit) {
+                        exit = idProduto(codigoProduto_id);
+                    }
+                    if (!exit) {
+                        exit = idProdGtinRecebido(codigoProduto_id);
+                    }
+                    if (!exit) {
+                        exit = idProdGtinRec(codigoProduto_id);
+                    }
+                } else {
+                    exit = idProdutoIndex(index);
+                    if (!exit) {
+                        exit = idProdGtinRec(codigoProduto_id);
+                    }
+                    if (!exit) {
+                        exit= ProdGtinFabricadoIndex(index);
+                    }
+                    if (!exit) {
+                        exit= ProdGtinRecebidoIndex(index);
+                    }
+                    if (!exit) {
+                        exit= CodigoProdutoIndex(index);
+                    }
+                    if (!exit) {
+                        exit= GtinFabricadoIndex(index);
+                    }
+                    if (!exit) {
+                        exit= GtinRecebidoIndex(index);
+                    }
+                    
+                }
+                return false;
+            }
+
+            function DtFormt(entry) {
+                if(entry!=""){
+                    var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+                    var delim1 = entry.indexOf(delimChar);
+                    var delim2 = entry.lastIndexOf(delimChar);
+                    var mo, day, yr;
+                    day = parseInt(entry.substring(0, delim1), 10);
+                    mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+                    yr = parseInt(entry.substring(delim2 + 1), 10);
+                    entry = day + "/" + mo + "/" + yr;
+                }
+                return entry;
+            }
+
+
+
+            function appendTitle() {
+                var tbl = document.getElementById('componetes'), row = tbl.insertRow(tbl.rows.length), i;
+                createCell(row.insertCell(0), "", 'row');
+                createCell(row.insertCell(1), "SSCC", 'row');
+                createCell(row.insertCell(2), "Unidades", 'row');
+                createCell(row.insertCell(3), "Lote", 'row');
+                createCell(row.insertCell(4), "Validade", 'row');
+                addMoreRows(tbl.rows.length);
+            }
+
+            function createCell(cell, text, style) {
+                var div = document.createElement('div'), // create DIV element
+                    txt = document.createTextNode(text); // create text node
+                div.appendChild(txt);                    // append text node to the DIV
+                div.setAttribute('class', style);        // set DIV class attribute
+                div.setAttribute('className', style);    // set DIV class attribute for IE (?!)
+                cell.appendChild(div);                   // append DIV to the table cell
+            }
+
+
+
+            function validateData(elementValidade, numcoluna) {
+                document.getElementById("error").textContent = "";
+                var subProd = document.getElementById('subProduto' + numcoluna).value;
+                var subTotal = document.getElementById('subProdutoTotal' + numcoluna).value;
+                var subLote = document.getElementById('subProdutolote' + numcoluna).value;
+                if (subProd != "" && subTotal != "" && subLote != "") {
+                    addMoreRows();
+                } else {
+                    document.getElementById("error").textContent = "Preenchimento obrigatório!";
+                }
+            }
+
+
+            function addMoreRows() {
+                var table = document.getElementById('componetes');
+                var row = table.insertRow();
+                var referencia = row.insertCell(0);
+                var referenciapai = row.insertCell(1);
+                var descricao = row.insertCell(2);
+                var quantidades = row.insertCell(3);
+                var lote = row.insertCell(4);
+                var validade = row.insertCell(5);
+                var encomenda = row.insertCell(6);
+                    referencia.innerHTML = "<tr><td><input type='text' id='refproduto" +
+                            table.rows.length + "' name='refproduto" + table.rows.length +
+                            "' onchange = 'return validaRef("+table.rows.length+")'></td></tr>";
+                    referenciapai.innerHTML = "<tr><td><input type='text' id='codcomercial" +
+                            table.rows.length + "' name='codcomercial" + table.rows.length +
+                            "' readonly='true' disabled></td></tr>";
+                    descricao.innerHTML = "<tr><td><input type='text' id='descricao" +
+                            table.rows.length + "' name='descricao" + table.rows.length +
+                            "' readonly='true' disabled='true'></td></tr>";
+                    descricao.innerHTML = "<tr><td><input type='text' id='descricao" +
+                               table.rows.length + "' name='descricao" + table.rows.length +
+                               "' readonly='true' disabled></td></tr>";
+                    quantidades.innerHTML = "<tr><td><input type='text' id='qtd" +
+                               table.rows.length + "' name='qtd" + table.rows.length +
+                               "' ></td></tr>";
+                    lote.innerHTML = "<tr><td><input type='text' id='lote" +
+                               table.rows.length + "' name='lote" + table.rows.length +
+                               "' ></td></tr>";
+                    validade.innerHTML = "<tr><td><input type='text' id='validade" +
+                               table.rows.length + "' name='validade" + table.rows.length +
+                               "' ></td></tr>";
+                    encomenda.innerHTML = "<tr><td><input type='text' id='encomenda" +
+                               table.rows.length + "' name='encomenda" + table.rows.length +
+                               "' ></td></tr>";
+            }
+        </script>
+        <div class="form-group">
+            <h4><span style="color: red; font-size: 14px;" id="error"></span></h4>
+            <table class="table" id="componetes" onload="return appendTitle()">
+                <tr><th>Gtin/Ref/EAN</th><th>Referência</th><th>Descrição</th><th>Quantidade</th><th>Lote</th><th>Validade</th><th>Encomenda</th></tr>
+                <tr>
+                    <td><p> @Html.EditorFor(model => model.gtinRef, new { htmlAttributes = new { @class = "form-control", @id = "refproduto", @name = "refproduto", @onchange = "return validaRef(1)" } })</p></td>
+                    <td><p> @Html.EditorFor(model => model.codcomercial, new { htmlAttributes = new { @class = "form-control", @id = "codcomercial", @name = "codcomercial", @disabled = "disabled" } })</p></td>
+                    <td><p> @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control", @id = "descricao", @name = "descricao", @disabled = "disabled" } })</p></td>
+                    <td><p> @Html.EditorFor(model => model.qtd, new { htmlAttributes = new { @class = "form-control", @id = "qtd", @name = "qtd" } })</p></td>
+                    <td><p> @Html.EditorFor(model => model.lote, new { htmlAttributes = new { @class = "form-control", @id = "lote", @name = "lote" } })</p></td>
+                    <td><p> @Html.Editor("validade_prod", new { htmlAttributes = new { @class = "form-control", @id = "validade", @name = "validade", @onchange= "return checkDt(this)" } })</p></td>
+                    <td><p> @Html.EditorFor(model => model.encomenda, new { htmlAttributes = new { @class = "form-control", @id = "encomenda", @name = "encomenda", @onchange = "return addMoreRows()" } })</p></td>
+                    @Html.Editor("descRef", new { htmlAttributes = new { @class = "hidden", @id = "refdescricao" } })
+                    @Html.Editor("codcProd", new { htmlAttributes = new { @class = "hidden", @id = "codcProd" } })
+                </tr>
+                <tr style="display: none;" >
+                    <td><p> @Html.DropDownList("id_produtosDescricao", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "id_produtosDescricao", @name = "id_produtosDescricao" })</p></td> 
+                    <td><p> @Html.DropDownList("id_produtos", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "id_produtos", @name = "id_produtos"})</p></td> 
+                    <td><p> @Html.DropDownList("id_produtosCodComercial", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "produtosDesc", @name = "produtosDesc"})</p></td>
+                    <td><p> @Html.DropDownList("id_refGtinFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "refGtinFabricado", @name = "refGtinFabricado" })</p></td>
+                    <td><p> @Html.DropDownList("id_produtosGtinFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "produtosGtinFabricado", @name = "produtosGtinFabricado"})</p></td>
+                    <td><p> @Html.DropDownList("id_descricaoGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "descricaoGtinRecebido", @name = "descricaoGtinRecebido" })</p></td>
+                    <td><p> @Html.DropDownList("id_produtosGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "produtosGtinRecebido", @name = "produtosGtinRecebido" })</p></td>
+                    <td><p> @Html.DropDownList("id_encomendaFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "encomendaFabricado", @name = "encomendaFabricado"})</p></td>
+                    @Html.Editor("descRef", new { htmlAttributes = new { @class = "hidden", @id = "refdescricao" } })
+                    <td><p> @Html.DropDownList("id_produtosDesc", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "produtosDesc", @name = "produtosDesc" })</p></td>
+                    <td><p> @Html.DropDownList("id_qtd", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "qtdProduto", @name = "qtdProduto" })</p></td>
+                    <td><p> @Html.DropDownList("id_lote", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "loteProduto", @name = "loteProduto"})</p></td>
+                    <td><p> @Html.DropDownList("id_validade", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "validadeProduto", @name = "validadeProduto" })</p></td>
+                    <td><p> @Html.DropDownList("id_encomenda", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "encomendaProduto", @name = "encomendaProduto" })</p></td>
+                    <td><p> @Html.DropDownList("id_qtdGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "qtdGtinRecebido", @name = "qtdGtinRecebido" })</p></td>
+                    <td><p> @Html.DropDownList("id_refGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "", @id = "refGtinRecebido", @name = "refGtinRecebido" })</p></td>                    <td><p> @Html.DropDownList("id_qtdGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "qtdGtinRecebido", @name = "qtdGtinRecebido"})</p></td>
+                    <td><p> @Html.DropDownList("id_loteGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "loteGtinRecebido", @name = "loteGtinRecebido" })</p></td>
+                    <td><p> @Html.DropDownList("id_validadeGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "validadeGtinRecebido", @name = "validadeGtinRecebido"})</p></td>
+                    <td><p> @Html.DropDownList("id_encomendaGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "encomendaGtinRecebido", @name = "encomendaGtinRecebido"})</p></td>
+                    <td><p> @Html.DropDownList("id_qtdFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "qtdFabricado", @name = "qtdFabricado"})</p></td>
+                    <td><p> @Html.DropDownList("id_loteFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "loteFabricado", @name = "loteFabricado"})</p></td>
+                    <td><p> @Html.DropDownList("id_validadeFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "validadeFabricado", @name = "validadeFabricado"})</p></td>
+                    <td><p> @Html.DropDownList("id_encomendaFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "encomendaFabricado", name = "encomendaFabricado" })</p></td>
+                    
+                    <td><p> @Html.DropDownList("id_OfGtinFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "ofFabricado", name = "ofFabricado" })</p></td>
+                    <td><p> @Html.DropDownList("ofValidade", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_validade", @name = "of_validade" })</p></td>
+                    <td><p> @Html.DropDownList("ofQtdProduzida", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_QtdProduzida", @name = "of_QtdProduzida" })</p></td>
+                    <td><p> @Html.DropDownList("ofLOTE", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_LOTE", @name = "of_LOTE" })</p></td>
+                    <td><p> @Html.DropDownList("ofProduto", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_Produto", name = "of_Produto" })</p></td>                
+                    <td><p> @Html.DropDownList("id_OfGtinFabricadoSSCC", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_gtinFabricado", name = "of_gtinFabricado" })</p></td>                
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+<script language="javascript">
+    function checkDt(fld) {
+        var mo, day, yr;
+        var entry = fld.value;
+        if (entry != "" && entry != null) {
+            var reLong = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/;
+            var reShort = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{2}\b/;
+            var valid = (reLong.test(entry)) || (reShort.test(entry));
+            if (valid) {
+                var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+                var delim1 = entry.indexOf(delimChar);
+                var delim2 = entry.lastIndexOf(delimChar);
+                day = parseInt(entry.substring(0, delim1), 10);
+                mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+                yr = parseInt(entry.substring(delim2 + 1), 10);
+                // handle two-digit year
+                if (yr < 100) {
+                    var today = new Date();
+                    var currCent = parseInt(today.getFullYear() / 100) * 100;
+                    var threshold = (today.getFullYear() + 15) - currCent;
+                    if (yr > threshold) { yr += currCent - 100; } else { yr += currCent; }
+                }
+                fld.value = day + "/" + mo + "/" + yr;
+                appendTitle();
+                return true;
+            } else { alert("Invalid date format. Enter as dd/mm/yyyy."); }
+            return false;
+        }
+        else {
+            appendTitle();
+            return true;
+        }
+    }
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

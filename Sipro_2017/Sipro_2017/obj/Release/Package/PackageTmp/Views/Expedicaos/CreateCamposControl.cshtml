@@ -1,0 +1,102 @@
+﻿@model PagedList.IPagedList<Sipro_2017.camposControlo>
+
+@{
+        ViewBag.Title = "CreateCamposControl";
+}
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    Expedicao desExpedicao = new Sipro_2017.Expedicao();
+    SiproEntities db = new SiproEntities();
+    camposControlo controlo = new Sipro_2017.camposControlo(); 
+    
+    var numeroCamporControl = db.camposControloes.Count();
+    int indexCamposControlo = 0;
+     <div class="form-horizontal">
+            <h4>Expedição</h4>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-10">
+                        <div class="col-md-10">
+                            @Html.Label("Nrº de guia de Expedição")
+                        </div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => desExpedicao.numeroGuia, new { htmlAttributes = new { @class = "form-control", @id="numeroGuia", @name="numeroGuia"} })
+                            @Html.ValidationMessageFor(model => desExpedicao.numeroGuia, "", new { @class = "text-danger" })
+                        </div>
+                </div>
+            </div>
+             <div>
+                 <tr>
+                     <div class="form-group">
+                         @foreach (var item in Model){
+                             indexCamposControlo++;
+                             <div class="col-lg-12">
+                                 <input onclick="return valida(@item.id)" id=@item.id type="submit" value="@Html.DisplayFor(modelItem => item.descricao)" class="btn btn-default" style="color:white;background-color:red;width:initial"/>
+                             </div>
+                         }
+                         <script>
+                             function valida(idSelected) {
+                                 if (document.getElementById(idSelected).style.backgroundColor.endsWith("red")) {
+                                     document.getElementById(idSelected).style.backgroundColor = 'green';
+                                 }
+                                 else {
+                                     document.getElementById(idSelected).style.backgroundColor = 'red';
+                                 }
+                                 return false;
+                             }
+                        </script>
+                    </div>
+                 </tr>
+             </div>
+        </div>
+    }
+
+<script type="text/javascript">
+    function activeLink() {
+        inputs = document.getElementsByTagName('input');
+        var numeroGuia = document.getElementById("numeroGuia").value;
+        if (numeroGuia == "") {
+            alert("Preenchimento obrigatório número de guia de Expedição!");
+        }
+        var canFinish;
+        canFinish = true;
+        var naoconforme = "";
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs.item(i).style.backgroundColor.endsWith("red")) {
+                naoconforme= i+";"+naoconforme;
+                canFinish = false;
+            }
+        }
+       if (!canFinish) {
+           if (confirm("Existem alguns campos de control não aprovados. Pretende abrir não confomidade ?")){
+               var url = '@Url.Action("NaoConformidadeExpedicao", "Expedicaos",  new { guia=-2})';
+               var opcoes = numeroGuia + ";" + naoconforme;
+               var path = url.replace("-2", opcoes);
+               document.location = path;
+           }
+           else {
+               document.getElementById(Id).value = "";
+               document.getElementById(Id).focus();
+           }
+
+        } else {
+           var url = '@Url.Action("ExpedicaoMercadoria", "Expedicaos",  new { obs = -2})';
+           var opcoes = numeroGuia;
+           var path = url.replace("-2", opcoes);
+           document.location = path;
+        }
+
+        return canFinish;
+    };
+</script>
+<div class="col-lg-12">
+    <button onclick="activeLink()">Avançar</button>
+</div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+<span style="color: red; font-size: 14px;">@ViewBag.Message</span>   
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }

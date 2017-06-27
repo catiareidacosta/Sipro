@@ -1,0 +1,76 @@
+﻿@model PagedList.IPagedList<Sipro_2017.OrdemFabrico>
+@using PagedList.Mvc;
+@{  ViewBag.Title = "Index";}
+<h2>Index</h2>
+<p> @Html.ActionLink("Nova Ordem Frabrico", "OFpesquisaEncomenda")</p>
+@using (Html.BeginForm()){
+    <p> Pesquisa : @Html.TextBox("criterioPesquisa")
+        <input type="submit" value="Pesquisa" />
+    </p>}
+<table class="table">
+    <tr>
+        <th>@Html.Label("Ordem de Fabrico")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "of_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "of_desc" })</th>
+        <th>@Html.Label("Estado")
+            @Html.ActionLink("(terminadas)", "Index", new { sortOrder = "estado_dataFim" })
+            @Html.ActionLink("(paused)", "Index", new { sortOrder = "estado_fimPausa" })
+            @Html.ActionLink("(activos)", "Index", new { sortOrder = "estado_inicioPausa" })</th>
+        <th>@Html.Label("Nrº de Pessoas")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "numpessoa_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "numpessoa_desc" })</th>
+        <th>@Html.Label("Rácio p/ hora")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "raciopessoa_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "raciopessoa_desc" })</th>
+        <th>@Html.Label("Referência")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "referencia_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "referencia_desc" })</th>
+        <th>@Html.Label("Descrição")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "descricao_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "descricao_desc" })</th>
+        <th></th>
+    <th></th>
+    </tr>
+
+@foreach (var item in Model){
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.id)</td>
+            @{
+                var datainicioPausa = item.dataInicioPausa.GetValueOrDefault();
+                var datafimpausa = item.dataFimPausa;
+                var nullDateTime = DateTime.MinValue;
+                var dataFimOF = item.dataFim;
+                if (dataFimOF != nullDateTime && dataFimOF != null){
+                    <td>@Html.Label("OF terminada")</td>
+                }
+                else{
+                    if (datainicioPausa != nullDateTime){
+                        <td>@Html.Label("Of Paused")</td>
+                    }
+                    else{
+                        <td>@Html.Label("Activa")</td>
+                    }
+                }
+            }
+        <td>@Html.DisplayFor(modelItem => item.numPessoas)</td>
+        <td>@Html.DisplayFor(modelItem => item.racioPessoa)</td>
+        <td>@Html.DisplayFor(modelItem => item.produto.codcomercial)</td>
+        <td>@Html.DisplayFor(modelItem => item.produto.descricao)</td>
+        @{
+
+            if (dataFimOF != nullDateTime && dataFimOF != null)
+            {
+                <td>@Html.ActionLink("Produtos OF", "ProdutosOF", new { of = item.id }) | @Html.ActionLink("Imprimir", "Details", new { id = item.id }) | @Html.ActionLink("Apagar", "Delete", new { id = item.id })</td>
+            }
+            else
+            {
+                <td>@Html.ActionLink("Editar", "OFSubMenu", new { of = item.id }) | @Html.ActionLink("Imprimir", "Details", new { id = item.id }) | @Html.ActionLink("Apagar", "Delete", new { id = item.id })</td>
+            }
+        }
+       
+    </tr>
+}
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of 
+        @Model.PageCount @Html.PagedListPager(Model, page => 
+                    Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</table>

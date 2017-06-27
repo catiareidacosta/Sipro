@@ -1,0 +1,2212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SiproModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Apuramento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tempo_producaoo" Type="Int32" />
+    <Property Name="data_encomenda" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="producoes_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="produto" Relationship="SiproModel.FK__Apurament__produ__65CC03DF" FromRole="Apuramento" ToRole="produto" />
+  </EntityType>
+  <EntityType Name="camposControlo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Recepcaos" Relationship="Self.FK__Recepcao__campos__2EFAF1E2" FromRole="camposControlo" ToRole="Recepcao" />
+    <NavigationProperty Name="Recepcaos1" Relationship="Self.FK__Recepcao__campos__33BFA6FF" FromRole="camposControlo" ToRole="Recepcao" />
+    <NavigationProperty Name="Recepcaos2" Relationship="Self.FK__Recepcao__id_cam__2E06CDA9" FromRole="camposControlo" ToRole="Recepcao" />
+    <NavigationProperty Name="Recepcaos3" Relationship="Self.FK__Recepcao__id_pro__32CB82C6" FromRole="camposControlo" ToRole="Recepcao" />
+    <NavigationProperty Name="naoConforRecepcaos" Relationship="SiproModel.FK__naoConfor__tipon__6DEC4894" FromRole="camposControlo" ToRole="naoConforRecepcao" />
+    <NavigationProperty Name="naoConforExpedicaos" Relationship="SiproModel.FK__naoConfor__tipon__4A43E4FB" FromRole="camposControlo" ToRole="naoConforExpedicao" />
+    <NavigationProperty Name="Expedicaos" Relationship="SiproModel.FK__Expedicao__campo__00DF2177" FromRole="camposControlo" ToRole="Expedicao" />
+    <NavigationProperty Name="Expedicaos1" Relationship="SiproModel.FK__Expedicao__campo__0D7A0286" FromRole="camposControlo" ToRole="Expedicao" />
+    <NavigationProperty Name="Expedicaos2" Relationship="SiproModel.FK__Expedicao__id_ca__01D345B0" FromRole="camposControlo" ToRole="Expedicao" />
+    <NavigationProperty Name="Expedicaos3" Relationship="SiproModel.FK__Expedicao__id_ca__0E6E26BF" FromRole="camposControlo" ToRole="Expedicao" />
+  </EntityType>
+  <EntityType Name="comercial">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dataContato" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="tipo" Type="Int32" Nullable="false" />
+    <Property Name="Morada" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="telf" Type="Int32" />
+    <Property Name="Observ" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="orcamentoEnviado" Type="Boolean" />
+    <Property Name="estadoOrcamento" Type="Int32" />
+    <Property Name="Motivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="estadoOrcamento1" Relationship="Self.FK__comercial__estad__190BB0C3" FromRole="comercial" ToRole="estadoOrcamento" />
+    <NavigationProperty Name="estadoOrcamento2" Relationship="Self.FK__comercial__estad__19FFD4FC" FromRole="comercial" ToRole="estadoOrcamento" />
+    <NavigationProperty Name="tipoMorada" Relationship="Self.FK__comercial__tipo__18178C8A" FromRole="comercial" ToRole="tipoMorada" />
+  </EntityType>
+  <EntityType Name="componenteComposto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="designacao_componente" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="qtd" Type="Int32" />
+  </EntityType>
+  <EntityType Name="condicoesTemperatura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContaCorrenteStock">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="referencia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="data_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="data_fim" Type="DateTime" Precision="0" />
+    <Property Name="movimento_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="movimento" Relationship="Self.FK__ContaCorr__movim__76B698BF" FromRole="ContaCorrenteStocks" ToRole="movimento" />
+  </EntityType>
+  <EntityType Name="contato">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telf" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telm" Type="Int32" />
+    <Property Name="cargo" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="contato_morada" Type="Int32" />
+    <NavigationProperty Name="morada" Relationship="Self.morada_id" FromRole="contato" ToRole="morada" />
+  </EntityType>
+  <EntityType Name="departamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Outsoucings" Relationship="Self.FK__Outsoucin__depar__7A8729A3" FromRole="departamento" ToRole="Outsoucing" />
+    <NavigationProperty Name="RHs" Relationship="Self.FK__RH__departamento__22951AFD" FromRole="departamento" ToRole="RH" />
+  </EntityType>
+  <EntityType Name="docQualidade">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="n_modelo" Type="Int64" Nullable="false" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data_upload" Type="DateTime" Precision="0" />
+    <Property Name="inserir_ficheiro" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="data_fim" Type="DateTime" Precision="0" />
+    <Property Name="tipo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="funcionarios" Relationship="Self.doc_id" FromRole="docQualidade" ToRole="funcionario" />
+    <NavigationProperty Name="tipoDocumento" Relationship="Self.FK__docQualida__tipo__4242D080" FromRole="docQualidade" ToRole="tipoDocumento" />
+  </EntityType>
+  <EntityType Name="empresa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="RHs" Relationship="Self.FK__RH__empresa_id__23893F36" FromRole="empresa" ToRole="RH" />
+  </EntityType>
+  <EntityType Name="estadoOrcamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="comercials" Relationship="Self.FK__comercial__estad__190BB0C3" FromRole="estadoOrcamento" ToRole="comercial" />
+    <NavigationProperty Name="comercials1" Relationship="Self.FK__comercial__estad__19FFD4FC" FromRole="estadoOrcamento" ToRole="comercial" />
+    <NavigationProperty Name="orcamentoes" Relationship="SiproModel.FK__orcamento__estad__7F6BDA51" FromRole="estadoOrcamento" ToRole="orcamento" />
+  </EntityType>
+  <EntityType Name="Formaco">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dataFormacao" Type="DateTime" Precision="3" />
+    <Property Name="tipoOnJob_id" Type="Int32" />
+    <Property Name="nomeFormacao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="numHoras" Type="Int32" />
+    <NavigationProperty Name="tipoFormacao" Relationship="Self.FK__Formacoes__tipoO__284DF453" FromRole="Formacoes" ToRole="tipoFormacao" />
+  </EntityType>
+  <EntityType Name="funcionario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome_user" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pass_user" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero_user" Type="Int32" Nullable="false" />
+    <Property Name="data_entrada" Type="DateTime" Precision="0" />
+    <Property Name="grupo_funcionario" Type="Int32" />
+    <Property Name="docs_funcionario" Type="Int32" />
+    <NavigationProperty Name="docQualidade" Relationship="Self.doc_id" FromRole="funcionario" ToRole="docQualidade" />
+    <NavigationProperty Name="Manutencoes" Relationship="Self.FK__Manutenco__funci__7F4BDEC0" FromRole="funcionario" ToRole="Manutencoes" />
+    <NavigationProperty Name="Reports" Relationship="Self.FK__Report__user_rep__695C9DA1" FromRole="funcionario" ToRole="Report" />
+    <NavigationProperty Name="listagemGrupo" Relationship="Self.grupos_id" FromRole="funcionario" ToRole="listagemGrupo" />
+    <NavigationProperty Name="orcamentoes" Relationship="SiproModel.FK__orcamento__user___005FFE8A" FromRole="funcionario" ToRole="orcamento" />
+  </EntityType>
+  <EntityType Name="gestaoContrato">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="n_modelo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="data_fim" Type="DateTime" Precision="0" />
+    <Property Name="inserir_ficheirodownload" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="listagemAcesso">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="acesso" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="listagem_acessos" Type="Int32" />
+    <NavigationProperty Name="listagemGrupoes" Relationship="Self.listagem_id" FromRole="listagemAcesso" ToRole="listagemGrupo" />
+    <NavigationProperty Name="permissao" Relationship="Self.permissoes_id" FromRole="listagemAcesso" ToRole="permissao" />
+  </EntityType>
+  <EntityType Name="listagemGrupo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome_grupo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="acessos" Type="Int32" />
+    <Property Name="user_group" Type="Int32" />
+    <NavigationProperty Name="funcionarios" Relationship="Self.grupos_id" FromRole="listagemGrupo" ToRole="funcionario" />
+    <NavigationProperty Name="listagemAcesso" Relationship="Self.listagem_id" FromRole="listagemGrupo" ToRole="listagemAcesso" />
+    <NavigationProperty Name="userGrupo" Relationship="Self.users" FromRole="listagemGrupo" ToRole="userGrupo" />
+  </EntityType>
+  <EntityType Name="manipulacao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="precoOriginal" Type="Int32" />
+    <Property Name="precoActual" Type="Int32" />
+  </EntityType>
+  <EntityType Name="manutencao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="periodicidade" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tipomanutenção_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tipoManutencao" Relationship="Self.FK__manutenca__tipom__48EFCE0F" FromRole="manutencao" ToRole="tipoManutencao" />
+    <NavigationProperty Name="maquinas" Relationship="Self.FK__maquina__manuten__4CC05EF3" FromRole="manutencao" ToRole="maquina" />
+  </EntityType>
+  <EntityType Name="Manutenco">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="manutencao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="data_manutencao" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="maquina" Type="Int32" Nullable="false" />
+    <Property Name="nivel_manutencao" Type="Int32" Nullable="false" />
+    <Property Name="funcinario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="funcionario" Relationship="Self.FK__Manutenco__funci__7F4BDEC0" FromRole="Manutencoes" ToRole="funcionario" />
+    <NavigationProperty Name="maquina1" Relationship="Self.FK__Manutenco__maqui__7D63964E" FromRole="Manutencoes" ToRole="maquina" />
+    <NavigationProperty Name="tipoManutencao" Relationship="Self.FK__Manutenco__nivel__7E57BA87" FromRole="Manutencoes" ToRole="tipoManutencao" />
+  </EntityType>
+  <EntityType Name="maquina">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="marca" Type="Int32" Nullable="false" />
+    <Property Name="nserie" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data_aquisicao" Type="DateTime" Precision="0" />
+    <Property Name="ano_fabrico" Type="Int32" Nullable="false" />
+    <Property Name="loja_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="imagem" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ficheiro" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="manutencao_id" Type="Int32" />
+    <NavigationProperty Name="manutencao" Relationship="Self.FK__maquina__manuten__4CC05EF3" FromRole="maquina" ToRole="manutencao" />
+    <NavigationProperty Name="Manutencoes" Relationship="Self.FK__Manutenco__maqui__7D63964E" FromRole="maquina" ToRole="Manutencoes" />
+    <NavigationProperty Name="morada" Relationship="Self.FK__maquina__marca__4BCC3ABA" FromRole="maquina" ToRole="morada" />
+  </EntityType>
+  <EntityType Name="morada">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numero" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sector" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="morada1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="Int32" />
+    <NavigationProperty Name="contatoes" Relationship="Self.morada_id" FromRole="morada" ToRole="contato" />
+    <NavigationProperty Name="maquinas" Relationship="Self.FK__maquina__marca__4BCC3ABA" FromRole="morada" ToRole="maquina" />
+    <NavigationProperty Name="tipoMorada" Relationship="Self.FK__morada__tipo__269AB60B" FromRole="morada" ToRole="tipoMorada" />
+    <NavigationProperty Name="Recepcaos" Relationship="Self.FK__Recepcao__id_Mor__30E33A54" FromRole="morada" ToRole="Recepcao" />
+    <NavigationProperty Name="Recepcaos1" Relationship="Self.FK__Recepcao__morada__31D75E8D" FromRole="morada" ToRole="Recepcao" />
+    <NavigationProperty Name="orcamentoes" Relationship="SiproModel.FK__orcamento__morad__015422C3" FromRole="morada" ToRole="orcamento" />
+    <NavigationProperty Name="produtoes" Relationship="SiproModel.FK__produto__morada__4EE89E87" FromRole="morada" ToRole="produto" />
+    <NavigationProperty Name="Encomendas" Relationship="SiproModel.FK__Encomenda__morad__0C85DE4D" FromRole="morada" ToRole="Encomenda" />
+    <NavigationProperty Name="Encomendas1" Relationship="SiproModel.FK__Encomenda__morad__7FEAFD3E" FromRole="morada" ToRole="Encomenda" />
+    <NavigationProperty Name="Expedicaos" Relationship="SiproModel.FK__Expedicao__morad__02C769E9" FromRole="morada" ToRole="Expedicao" />
+    <NavigationProperty Name="Expedicaos1" Relationship="SiproModel.FK__Expedicao__morad__0F624AF8" FromRole="morada" ToRole="Expedicao" />
+  </EntityType>
+  <EntityType Name="motivoNaoAaprovado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="motivoOrcamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="orcamentoes" Relationship="SiproModel.FK__orcamento__motiv__7D8391DF" FromRole="motivoOrcamento" ToRole="orcamento" />
+  </EntityType>
+  <EntityType Name="movimento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ContaCorrenteStocks" Relationship="Self.FK__ContaCorr__movim__76B698BF" FromRole="movimento" ToRole="ContaCorrenteStocks" />
+  </EntityType>
+  <EntityType Name="naoConformidadesOF">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ordemFabrico_id" Type="Int32" />
+    <Property Name="ref_id" Type="Int32" />
+    <Property Name="gtin_id" Type="Int32" />
+    <Property Name="Motivo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_id" Type="Int32" />
+    <NavigationProperty Name="TipoNaoConformidade" Relationship="Self.FK__naoConfor__tipo___153B1FDF" FromRole="naoConformidadesOF" ToRole="TipoNaoConformidades" />
+    <NavigationProperty Name="produto" Relationship="SiproModel.FK__naoConfor__ref_i__76026BA8" FromRole="naoConformidadesOF" ToRole="produto" />
+    <Property Name="resolucao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="gtinRecebido" Relationship="SiproModel.FK__naoConfor__gtin___14DBF883" FromRole="naoConformidadesOF" ToRole="gtinRecebido" />
+    <NavigationProperty Name="OrdemFabrico" Relationship="SiproModel.FK__naoConfor__ordem__0D44F85C" FromRole="naoConformidadesOF" ToRole="OrdemFabrico" />
+    <NavigationProperty Name="OrdemFabrico1" Relationship="SiproModel.FK__naoConfor__ordem__1EA48E88" FromRole="naoConformidadesOF" ToRole="OrdemFabrico" />
+  </EntityType>
+  <EntityType Name="Outsoucing">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="dt_auto" Precision="0" Type="DateTime" />
+    <Property Name="num_funcionarios" Type="Int32" />
+    <Property Name="facturacao" Type="Int64" />
+    <Property Name="departamento_id" Type="Int32" />
+    <NavigationProperty Name="departamento" Relationship="Self.FK__Outsoucin__depar__7A8729A3" FromRole="Outsoucing" ToRole="departamento" />
+  </EntityType>
+  <EntityType Name="permissao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="escrita" Type="Boolean" Nullable="false" />
+    <Property Name="listagem_acessos" Type="Int32" />
+    <NavigationProperty Name="listagemAcessoes" Relationship="Self.permissoes_id" FromRole="permissao" ToRole="listagemAcesso" />
+  </EntityType>
+  <EntityType Name="Producao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="qtd_produzir" Type="Int32" Nullable="false" />
+    <Property Name="qtd_produzida" Type="Int32" Nullable="false" />
+    <Property Name="tempo_total_producao" Type="Int32" />
+    <Property Name="observacoes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="concluido" Type="Boolean" Nullable="false" />
+    <Property Name="encomenda_id" Type="Int32" />
+    <NavigationProperty Name="Encomenda" Relationship="SiproModel.FK__Producao__encome__1D7B6025" FromRole="Producao" ToRole="Encomenda" />
+    <NavigationProperty Name="Encomenda1" Relationship="SiproModel.FK__Producao__encome__2EDAF651" FromRole="Producao" ToRole="Encomenda" />
+  </EntityType>
+  <EntityType Name="rastrealibidade">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="produtoes" Relationship="SiproModel.fichaProdutoElaborado_produto" FromRole="rastrealibidade" ToRole="produto" />
+  </EntityType>
+  <EntityType Name="Recepcao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="numeroGuia" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dataRecepcao" Type="DateTime" Precision="3" />
+    <Property Name="id_camposControl" Type="Int32" />
+    <Property Name="camposControl_id" Type="Int32" />
+    <Property Name="id_numeroEncomenda" Type="Int32" />
+    <Property Name="id_Moradas" Type="Int32" />
+    <Property Name="comentarios" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="id_camposControlLivre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="morada" Type="Int32" Nullable="false" />
+    <Property Name="id_produtos" Type="Int32" />
+    <Property Name="produtos_id" Type="Int32" />
+    <NavigationProperty Name="camposControlo" Relationship="Self.FK__Recepcao__campos__2EFAF1E2" FromRole="Recepcao" ToRole="camposControlo" />
+    <NavigationProperty Name="camposControlo1" Relationship="Self.FK__Recepcao__campos__33BFA6FF" FromRole="Recepcao" ToRole="camposControlo" />
+    <NavigationProperty Name="camposControlo2" Relationship="Self.FK__Recepcao__id_cam__2E06CDA9" FromRole="Recepcao" ToRole="camposControlo" />
+    <NavigationProperty Name="camposControlo3" Relationship="Self.FK__Recepcao__id_pro__32CB82C6" FromRole="Recepcao" ToRole="camposControlo" />
+    <NavigationProperty Name="morada1" Relationship="Self.FK__Recepcao__id_Mor__30E33A54" FromRole="Recepcao" ToRole="morada" />
+    <NavigationProperty Name="morada2" Relationship="Self.FK__Recepcao__morada__31D75E8D" FromRole="Recepcao" ToRole="morada" />
+    <NavigationProperty Name="produto" Relationship="SiproModel.FK__Recepcao__id_pro__0AFD888E" FromRole="Recepcao" ToRole="produto" />
+    <NavigationProperty Name="produto1" Relationship="SiproModel.FK__Recepcao__produt__0BF1ACC7" FromRole="Recepcao" ToRole="produto" />
+    <Property Name="dataInicioRecepcao" Type="DateTime" Precision="3" />
+    <Property Name="dataFimRecepcao" Type="DateTime" Precision="3" />
+    <Property Name="tempoRecepcaO" Type="Int64" />
+    <Property Name="userrecepcao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Encomenda" Relationship="SiproModel.FK__Recepcao__id_num__251C81ED" FromRole="Recepcao" ToRole="Encomenda" />
+    <NavigationProperty Name="Encomenda1" Relationship="SiproModel.FK__Recepcao__id_num__37703C52" FromRole="Recepcao" ToRole="Encomenda" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numero_report" Type="Int32" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="data_report" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="data_provacao" Type="DateTime" Precision="0" />
+    <Property Name="data_resolucao" Type="DateTime" Precision="0" />
+    <Property Name="user_report" Type="Int32" />
+    <NavigationProperty Name="funcionario" Relationship="Self.FK__Report__user_rep__695C9DA1" FromRole="Report" ToRole="funcionario" />
+  </EntityType>
+  <EntityType Name="RH">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nrFuncionario" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ativo" Type="Boolean" Nullable="false" />
+    <Property Name="role_id" Type="Int32" />
+    <Property Name="departamento_id" Type="Int32" />
+    <Property Name="empresa_id" Type="Int32" />
+    <Property Name="custoHora" Type="Int32" />
+    <Property Name="documentos" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="diasFerias" Type="Int32" />
+    <Property Name="fardamentoNr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="sapatos" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="calca" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="polo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="casaco" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="bata" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="dataAdmissao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="morada" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="telefone" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="dataNascimento" Type="DateTime" Precision="3" />
+    <Property Name="nif" Type="Int64" />
+    <Property Name="docIdenfiticacao" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="fichaAptidao" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="curriculo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="certHabilitacoes" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="registoCriminal" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="temporario" Type="Boolean" />
+    <Property Name="numeroContrato" Type="Int32" />
+    <Property Name="nss" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="dataInicioContrato" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dataFimContrato" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="departamento" Relationship="Self.FK__RH__departamento__22951AFD" FromRole="RH" ToRole="departamento" />
+    <NavigationProperty Name="empresa" Relationship="Self.FK__RH__empresa_id__23893F36" FromRole="RH" ToRole="empresa" />
+    <NavigationProperty Name="role" Relationship="Self.FK__RH__role_id__21A0F6C4" FromRole="RH" ToRole="role" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="RHs" Relationship="Self.FK__RH__role_id__21A0F6C4" FromRole="role" ToRole="RH" />
+  </EntityType>
+  <EntityType Name="temporario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dataAdmissao" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tipoDocumento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="docQualidades" Relationship="Self.FK__docQualida__tipo__4242D080" FromRole="tipoDocumento" ToRole="docQualidade" />
+  </EntityType>
+  <EntityType Name="tipoFormacao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dependencia" Type="Int32" />
+    <NavigationProperty Name="Formacoes" Relationship="Self.FK__Formacoes__tipoO__284DF453" FromRole="tipoFormacao" ToRole="Formacoes" />
+  </EntityType>
+  <EntityType Name="tipoManutencao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="manutencaos" Relationship="Self.FK__manutenca__tipom__48EFCE0F" FromRole="tipoManutencao" ToRole="manutencao" />
+    <NavigationProperty Name="Manutencoes" Relationship="Self.FK__Manutenco__nivel__7E57BA87" FromRole="tipoManutencao" ToRole="Manutencoes" />
+  </EntityType>
+  <EntityType Name="tipoMorada">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="comercials" Relationship="Self.FK__comercial__tipo__18178C8A" FromRole="tipoMorada" ToRole="comercial" />
+    <NavigationProperty Name="moradas" Relationship="Self.FK__morada__tipo__269AB60B" FromRole="tipoMorada" ToRole="morada" />
+    <NavigationProperty Name="orcamentoes" Relationship="SiproModel.FK__orcamento__morad__7E77B618" FromRole="tipoMorada" ToRole="orcamento" />
+    <NavigationProperty Name="Encomendas" Relationship="SiproModel.FK__Encomenda__encom__0A9D95DB" FromRole="tipoMorada" ToRole="Encomenda" />
+    <NavigationProperty Name="Encomendas1" Relationship="SiproModel.FK__Encomenda__encom__7E02B4CC" FromRole="tipoMorada" ToRole="Encomenda" />
+  </EntityType>
+  <EntityType Name="TipoNaoConformidade">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="naoConformidadesOFs" Relationship="Self.FK__naoConfor__tipo___153B1FDF" FromRole="TipoNaoConformidades" ToRole="naoConformidadesOF" />
+  </EntityType>
+  <EntityType Name="userGrupo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="grupo_nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="listagemGrupoes" Relationship="Self.users" FromRole="userGrupo" ToRole="listagemGrupo" />
+  </EntityType>
+  <EntityType Name="verificacao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomeVerificacao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Recepcao__campos__2EFAF1E2">
+    <End Role="camposControlo" Type="Self.camposControlo" Multiplicity="0..1" />
+    <End Role="Recepcao" Type="Self.Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="camposControl_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recepcao__campos__33BFA6FF">
+    <End Role="camposControlo" Type="Self.camposControlo" Multiplicity="0..1" />
+    <End Role="Recepcao" Type="Self.Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="camposControl_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recepcao__id_cam__2E06CDA9">
+    <End Role="camposControlo" Type="Self.camposControlo" Multiplicity="0..1" />
+    <End Role="Recepcao" Type="Self.Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="id_camposControl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recepcao__id_pro__32CB82C6">
+    <End Role="camposControlo" Type="Self.camposControlo" Multiplicity="0..1" />
+    <End Role="Recepcao" Type="Self.Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="id_produtos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__comercial__estad__190BB0C3">
+    <End Role="estadoOrcamento" Type="Self.estadoOrcamento" Multiplicity="0..1" />
+    <End Role="comercial" Type="Self.comercial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estadoOrcamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comercial">
+        <PropertyRef Name="estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__comercial__estad__19FFD4FC">
+    <End Role="estadoOrcamento" Type="Self.estadoOrcamento" Multiplicity="0..1" />
+    <End Role="comercial" Type="Self.comercial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estadoOrcamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comercial">
+        <PropertyRef Name="estadoOrcamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__comercial__tipo__18178C8A">
+    <End Role="tipoMorada" Type="Self.tipoMorada" Multiplicity="1" />
+    <End Role="comercial" Type="Self.comercial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoMorada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="comercial">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContaCorr__movim__76B698BF">
+    <End Role="movimento" Type="Self.movimento" Multiplicity="1" />
+    <End Role="ContaCorrenteStocks" Type="Self.ContaCorrenteStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="movimento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ContaCorrenteStocks">
+        <PropertyRef Name="movimento_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="morada_id">
+    <End Role="morada" Type="Self.morada" Multiplicity="0..1" />
+    <End Role="contato" Type="Self.contato" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="contato">
+        <PropertyRef Name="contato_morada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Outsoucin__depar__7A8729A3">
+    <End Type="Self.departamento" Multiplicity="0..1" Role="departamento" />
+    <End Type="Self.Outsoucing" Multiplicity="*" Role="Outsoucing" />
+    <ReferentialConstraint>
+      <Principal Role="departamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Outsoucing">
+        <PropertyRef Name="departamento_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RH__departamento__22951AFD">
+    <End Role="departamento" Type="Self.departamento" Multiplicity="0..1" />
+    <End Role="RH" Type="Self.RH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RH">
+        <PropertyRef Name="departamento_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="doc_id">
+    <End Role="docQualidade" Type="Self.docQualidade" Multiplicity="0..1" />
+    <End Role="funcionario" Type="Self.funcionario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="docQualidade">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcionario">
+        <PropertyRef Name="docs_funcionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__docQualida__tipo__4242D080">
+    <End Role="tipoDocumento" Type="Self.tipoDocumento" Multiplicity="1" />
+    <End Role="docQualidade" Type="Self.docQualidade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoDocumento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="docQualidade">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RH__empresa_id__23893F36">
+    <End Role="empresa" Type="Self.empresa" Multiplicity="0..1" />
+    <End Role="RH" Type="Self.RH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RH">
+        <PropertyRef Name="empresa_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Formacoes__tipoO__284DF453">
+    <End Role="tipoFormacao" Type="Self.tipoFormacao" Multiplicity="0..1" />
+    <End Role="Formacoes" Type="Self.Formaco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoFormacao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Formacoes">
+        <PropertyRef Name="tipoOnJob_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Manutenco__funci__7F4BDEC0">
+    <End Role="funcionario" Type="Self.funcionario" Multiplicity="1" />
+    <End Role="Manutencoes" Type="Self.Manutenco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="funcionario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Manutencoes">
+        <PropertyRef Name="funcinario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Report__user_rep__695C9DA1">
+    <End Role="funcionario" Type="Self.funcionario" Multiplicity="0..1" />
+    <End Role="Report" Type="Self.Report" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="funcionario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="user_report" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="grupos_id">
+    <End Role="listagemGrupo" Type="Self.listagemGrupo" Multiplicity="0..1" />
+    <End Role="funcionario" Type="Self.funcionario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="listagemGrupo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="funcionario">
+        <PropertyRef Name="grupo_funcionario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="listagem_id">
+    <End Role="listagemAcesso" Type="Self.listagemAcesso" Multiplicity="0..1" />
+    <End Role="listagemGrupo" Type="Self.listagemGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="listagemAcesso">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="listagemGrupo">
+        <PropertyRef Name="acessos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="permissoes_id">
+    <End Role="permissao" Type="Self.permissao" Multiplicity="0..1" />
+    <End Role="listagemAcesso" Type="Self.listagemAcesso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permissao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="listagemAcesso">
+        <PropertyRef Name="listagem_acessos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="users">
+    <End Role="userGrupo" Type="Self.userGrupo" Multiplicity="0..1" />
+    <End Role="listagemGrupo" Type="Self.listagemGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userGrupo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="listagemGrupo">
+        <PropertyRef Name="user_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__manutenca__tipom__48EFCE0F">
+    <End Role="tipoManutencao" Type="Self.tipoManutencao" Multiplicity="1" />
+    <End Role="manutencao" Type="Self.manutencao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoManutencao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="manutencao">
+        <PropertyRef Name="tipomanutenção_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__maquina__manuten__4CC05EF3">
+    <End Role="manutencao" Type="Self.manutencao" Multiplicity="0..1" />
+    <End Role="maquina" Type="Self.maquina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="manutencao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="maquina">
+        <PropertyRef Name="manutencao_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Manutenco__maqui__7D63964E">
+    <End Role="maquina" Type="Self.maquina" Multiplicity="1" />
+    <End Role="Manutencoes" Type="Self.Manutenco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="maquina">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Manutencoes">
+        <PropertyRef Name="maquina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Manutenco__nivel__7E57BA87">
+    <End Role="tipoManutencao" Type="Self.tipoManutencao" Multiplicity="1" />
+    <End Role="Manutencoes" Type="Self.Manutenco" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoManutencao">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Manutencoes">
+        <PropertyRef Name="nivel_manutencao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__maquina__marca__4BCC3ABA">
+    <End Role="morada" Type="Self.morada" Multiplicity="1" />
+    <End Role="maquina" Type="Self.maquina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="maquina">
+        <PropertyRef Name="marca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__morada__tipo__269AB60B">
+    <End Role="tipoMorada" Type="Self.tipoMorada" Multiplicity="0..1" />
+    <End Role="morada" Type="Self.morada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoMorada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="morada">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recepcao__id_Mor__30E33A54">
+    <End Role="morada" Type="Self.morada" Multiplicity="0..1" />
+    <End Role="Recepcao" Type="Self.Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="id_Moradas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recepcao__morada__31D75E8D">
+    <End Role="morada" Type="Self.morada" Multiplicity="1" />
+    <End Role="Recepcao" Type="Self.Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="morada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__naoConfor__tipo___153B1FDF">
+    <End Role="TipoNaoConformidades" Type="Self.TipoNaoConformidade" Multiplicity="0..1" />
+    <End Role="naoConformidadesOF" Type="Self.naoConformidadesOF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoNaoConformidades">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="naoConformidadesOF">
+        <PropertyRef Name="tipo_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RH__role_id__21A0F6C4">
+    <End Role="role" Type="Self.role" Multiplicity="0..1" />
+    <End Role="RH" Type="Self.RH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RH">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SiproEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Apuramentoes" EntityType="Self.Apuramento" />
+    <EntitySet Name="camposControloes" EntityType="Self.camposControlo" />
+    <EntitySet Name="comercials" EntityType="Self.comercial" />
+    <EntitySet Name="componenteCompostoes" EntityType="Self.componenteComposto" />
+    <EntitySet Name="condicoesTemperaturas" EntityType="Self.condicoesTemperatura" />
+    <EntitySet Name="ContaCorrenteStocks" EntityType="Self.ContaCorrenteStock" />
+    <EntitySet Name="contatoes" EntityType="Self.contato" />
+    <EntitySet Name="departamentoes" EntityType="Self.departamento" />
+    <EntitySet Name="docQualidades" EntityType="Self.docQualidade" />
+    <EntitySet Name="empresas" EntityType="Self.empresa" />
+    <EntitySet Name="estadoOrcamentoes" EntityType="Self.estadoOrcamento" />
+    <EntitySet Name="Formacoes" EntityType="Self.Formaco" />
+    <EntitySet Name="funcionarios" EntityType="Self.funcionario" />
+    <EntitySet Name="gestaoContratoes" EntityType="Self.gestaoContrato" />
+    <EntitySet Name="listagemAcessoes" EntityType="Self.listagemAcesso" />
+    <EntitySet Name="listagemGrupoes" EntityType="Self.listagemGrupo" />
+    <EntitySet Name="manipulacaos" EntityType="Self.manipulacao" />
+    <EntitySet Name="manutencaos" EntityType="Self.manutencao" />
+    <EntitySet Name="Manutencoes" EntityType="Self.Manutenco" />
+    <EntitySet Name="maquinas" EntityType="Self.maquina" />
+    <EntitySet Name="moradas" EntityType="Self.morada" />
+    <EntitySet Name="motivoNaoAaprovadoes" EntityType="Self.motivoNaoAaprovado" />
+    <EntitySet Name="motivoOrcamentoes" EntityType="Self.motivoOrcamento" />
+    <EntitySet Name="movimentoes" EntityType="Self.movimento" />
+    <EntitySet Name="naoConformidadesOFs" EntityType="Self.naoConformidadesOF" />
+    <EntitySet Name="Outsoucings" EntityType="Self.Outsoucing" />
+    <EntitySet Name="permissaos" EntityType="Self.permissao" />
+    <EntitySet Name="Producaos" EntityType="Self.Producao" />
+    <EntitySet Name="rastrealibidades" EntityType="Self.rastrealibidade" />
+    <EntitySet Name="Recepcaos" EntityType="Self.Recepcao" />
+    <EntitySet Name="Reports" EntityType="Self.Report" />
+    <EntitySet Name="RHs" EntityType="Self.RH" />
+    <EntitySet Name="roles" EntityType="Self.role" />
+    <EntitySet Name="temporarios" EntityType="Self.temporario" />
+    <EntitySet Name="tipoDocumentoes" EntityType="Self.tipoDocumento" />
+    <EntitySet Name="tipoFormacaos" EntityType="Self.tipoFormacao" />
+    <EntitySet Name="tipoManutencaos" EntityType="Self.tipoManutencao" />
+    <EntitySet Name="tipoMoradas" EntityType="Self.tipoMorada" />
+    <EntitySet Name="TipoNaoConformidades" EntityType="Self.TipoNaoConformidade" />
+    <EntitySet Name="userGrupoes" EntityType="Self.userGrupo" />
+    <EntitySet Name="verificacaos" EntityType="Self.verificacao" />
+    <AssociationSet Name="FK__Recepcao__campos__2EFAF1E2" Association="Self.FK__Recepcao__campos__2EFAF1E2">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recepcao__campos__33BFA6FF" Association="Self.FK__Recepcao__campos__33BFA6FF">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recepcao__id_cam__2E06CDA9" Association="Self.FK__Recepcao__id_cam__2E06CDA9">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recepcao__id_pro__32CB82C6" Association="Self.FK__Recepcao__id_pro__32CB82C6">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__comercial__estad__190BB0C3" Association="Self.FK__comercial__estad__190BB0C3">
+      <End Role="estadoOrcamento" EntitySet="estadoOrcamentoes" />
+      <End Role="comercial" EntitySet="comercials" />
+    </AssociationSet>
+    <AssociationSet Name="FK__comercial__estad__19FFD4FC" Association="Self.FK__comercial__estad__19FFD4FC">
+      <End Role="estadoOrcamento" EntitySet="estadoOrcamentoes" />
+      <End Role="comercial" EntitySet="comercials" />
+    </AssociationSet>
+    <AssociationSet Name="FK__comercial__tipo__18178C8A" Association="Self.FK__comercial__tipo__18178C8A">
+      <End Role="tipoMorada" EntitySet="tipoMoradas" />
+      <End Role="comercial" EntitySet="comercials" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContaCorr__movim__76B698BF" Association="Self.FK__ContaCorr__movim__76B698BF">
+      <End Role="movimento" EntitySet="movimentoes" />
+      <End Role="ContaCorrenteStocks" EntitySet="ContaCorrenteStocks" />
+    </AssociationSet>
+    <AssociationSet Name="morada_id" Association="Self.morada_id">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="contato" EntitySet="contatoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Outsoucin__depar__7A8729A3" Association="Self.FK__Outsoucin__depar__7A8729A3">
+      <End EntitySet="departamentoes" Role="departamento" />
+      <End EntitySet="Outsoucings" Role="Outsoucing" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RH__departamento__22951AFD" Association="Self.FK__RH__departamento__22951AFD">
+      <End Role="departamento" EntitySet="departamentoes" />
+      <End Role="RH" EntitySet="RHs" />
+    </AssociationSet>
+    <AssociationSet Name="doc_id" Association="Self.doc_id">
+      <End Role="docQualidade" EntitySet="docQualidades" />
+      <End Role="funcionario" EntitySet="funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__docQualida__tipo__4242D080" Association="Self.FK__docQualida__tipo__4242D080">
+      <End Role="tipoDocumento" EntitySet="tipoDocumentoes" />
+      <End Role="docQualidade" EntitySet="docQualidades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RH__empresa_id__23893F36" Association="Self.FK__RH__empresa_id__23893F36">
+      <End Role="empresa" EntitySet="empresas" />
+      <End Role="RH" EntitySet="RHs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Formacoes__tipoO__284DF453" Association="Self.FK__Formacoes__tipoO__284DF453">
+      <End Role="tipoFormacao" EntitySet="tipoFormacaos" />
+      <End Role="Formacoes" EntitySet="Formacoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Manutenco__funci__7F4BDEC0" Association="Self.FK__Manutenco__funci__7F4BDEC0">
+      <End Role="funcionario" EntitySet="funcionarios" />
+      <End Role="Manutencoes" EntitySet="Manutencoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Report__user_rep__695C9DA1" Association="Self.FK__Report__user_rep__695C9DA1">
+      <End Role="funcionario" EntitySet="funcionarios" />
+      <End Role="Report" EntitySet="Reports" />
+    </AssociationSet>
+    <AssociationSet Name="grupos_id" Association="Self.grupos_id">
+      <End Role="listagemGrupo" EntitySet="listagemGrupoes" />
+      <End Role="funcionario" EntitySet="funcionarios" />
+    </AssociationSet>
+    <AssociationSet Name="listagem_id" Association="Self.listagem_id">
+      <End Role="listagemAcesso" EntitySet="listagemAcessoes" />
+      <End Role="listagemGrupo" EntitySet="listagemGrupoes" />
+    </AssociationSet>
+    <AssociationSet Name="permissoes_id" Association="Self.permissoes_id">
+      <End Role="permissao" EntitySet="permissaos" />
+      <End Role="listagemAcesso" EntitySet="listagemAcessoes" />
+    </AssociationSet>
+    <AssociationSet Name="users" Association="Self.users">
+      <End Role="userGrupo" EntitySet="userGrupoes" />
+      <End Role="listagemGrupo" EntitySet="listagemGrupoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__manutenca__tipom__48EFCE0F" Association="Self.FK__manutenca__tipom__48EFCE0F">
+      <End Role="tipoManutencao" EntitySet="tipoManutencaos" />
+      <End Role="manutencao" EntitySet="manutencaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__maquina__manuten__4CC05EF3" Association="Self.FK__maquina__manuten__4CC05EF3">
+      <End Role="manutencao" EntitySet="manutencaos" />
+      <End Role="maquina" EntitySet="maquinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Manutenco__maqui__7D63964E" Association="Self.FK__Manutenco__maqui__7D63964E">
+      <End Role="maquina" EntitySet="maquinas" />
+      <End Role="Manutencoes" EntitySet="Manutencoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Manutenco__nivel__7E57BA87" Association="Self.FK__Manutenco__nivel__7E57BA87">
+      <End Role="tipoManutencao" EntitySet="tipoManutencaos" />
+      <End Role="Manutencoes" EntitySet="Manutencoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__maquina__marca__4BCC3ABA" Association="Self.FK__maquina__marca__4BCC3ABA">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="maquina" EntitySet="maquinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__morada__tipo__269AB60B" Association="Self.FK__morada__tipo__269AB60B">
+      <End Role="tipoMorada" EntitySet="tipoMoradas" />
+      <End Role="morada" EntitySet="moradas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recepcao__id_Mor__30E33A54" Association="Self.FK__Recepcao__id_Mor__30E33A54">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recepcao__morada__31D75E8D" Association="Self.FK__Recepcao__morada__31D75E8D">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__naoConfor__tipo___153B1FDF" Association="Self.FK__naoConfor__tipo___153B1FDF">
+      <End Role="TipoNaoConformidades" EntitySet="TipoNaoConformidades" />
+      <End Role="naoConformidadesOF" EntitySet="naoConformidadesOFs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RH__role_id__21A0F6C4" Association="Self.FK__RH__role_id__21A0F6C4">
+      <End Role="role" EntitySet="roles" />
+      <End Role="RH" EntitySet="RHs" />
+    </AssociationSet>
+    <EntitySet Name="naoConforRecepcaos" EntityType="SiproModel.naoConforRecepcao" />
+    <AssociationSet Name="FK__naoConfor__tipon__6DEC4894" Association="SiproModel.FK__naoConfor__tipon__6DEC4894">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="naoConforRecepcao" EntitySet="naoConforRecepcaos" />
+    </AssociationSet>
+    <EntitySet Name="orcamentoes" EntityType="SiproModel.orcamento" />
+    <EntitySet Name="produtoes" EntityType="SiproModel.produto" />
+    <EntitySet Name="TipoProdutoes" EntityType="SiproModel.TipoProduto" />
+    <AssociationSet Name="FK__Apurament__produ__65CC03DF" Association="SiproModel.FK__Apurament__produ__65CC03DF">
+      <End Role="produto" EntitySet="produtoes" />
+      <End Role="Apuramento" EntitySet="Apuramentoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orcamento__estad__7F6BDA51" Association="SiproModel.FK__orcamento__estad__7F6BDA51">
+      <End Role="estadoOrcamento" EntitySet="estadoOrcamentoes" />
+      <End Role="orcamento" EntitySet="orcamentoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orcamento__user___005FFE8A" Association="SiproModel.FK__orcamento__user___005FFE8A">
+      <End Role="funcionario" EntitySet="funcionarios" />
+      <End Role="orcamento" EntitySet="orcamentoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orcamento__morad__015422C3" Association="SiproModel.FK__orcamento__morad__015422C3">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="orcamento" EntitySet="orcamentoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__produto__morada__4EE89E87" Association="SiproModel.FK__produto__morada__4EE89E87">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="produto" EntitySet="produtoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orcamento__motiv__7D8391DF" Association="SiproModel.FK__orcamento__motiv__7D8391DF">
+      <End Role="motivoOrcamento" EntitySet="motivoOrcamentoes" />
+      <End Role="orcamento" EntitySet="orcamentoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__naoConfor__ref_i__76026BA8" Association="SiproModel.FK__naoConfor__ref_i__76026BA8">
+      <End Role="produto" EntitySet="produtoes" />
+      <End Role="naoConformidadesOF" EntitySet="naoConformidadesOFs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orcamento__morad__7E77B618" Association="SiproModel.FK__orcamento__morad__7E77B618">
+      <End Role="tipoMorada" EntitySet="tipoMoradas" />
+      <End Role="orcamento" EntitySet="orcamentoes" />
+    </AssociationSet>
+    <AssociationSet Name="fichaProdutoElaborado_produto" Association="SiproModel.fichaProdutoElaborado_produto">
+      <End Role="rastrealibidade" EntitySet="rastrealibidades" />
+      <End Role="produto" EntitySet="produtoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__produto__compone__4FDCC2C0" Association="SiproModel.FK__produto__compone__4FDCC2C0">
+      <End Role="produto" EntitySet="produtoes" />
+      <End Role="produto1" EntitySet="produtoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__produto__tipopro__4DF47A4E" Association="SiproModel.FK__produto__tipopro__4DF47A4E">
+      <End Role="TipoProduto" EntitySet="TipoProdutoes" />
+      <End Role="produto" EntitySet="produtoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recepcao__id_pro__0AFD888E" Association="SiproModel.FK__Recepcao__id_pro__0AFD888E">
+      <End Role="produto" EntitySet="produtoes" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recepcao__produt__0BF1ACC7" Association="SiproModel.FK__Recepcao__produt__0BF1ACC7">
+      <End Role="produto" EntitySet="produtoes" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <EntitySet Name="FasesOrdemFabricoes" EntityType="SiproModel.FasesOrdemFabrico" />
+    <EntitySet Name="FimOperacoes" EntityType="SiproModel.FimOperaco" />
+    <EntitySet Name="MotivoFaltas" EntityType="SiproModel.MotivoFalta" />
+    <EntitySet Name="MotivoQuebras" EntityType="SiproModel.MotivoQuebra" />
+    <EntitySet Name="ParagemProducaos" EntityType="SiproModel.ParagemProducao" />
+    <AssociationSet Name="FK__ParagemPr__motiv__19A0ADA0" Association="SiproModel.FK__ParagemPr__motiv__19A0ADA0">
+      <End Role="FimOperaco" EntitySet="FimOperacoes" />
+      <End Role="ParagemProducao" EntitySet="ParagemProducaos" />
+    </AssociationSet>
+    <EntitySet Name="naoConforExpedicaos" EntityType="SiproModel.naoConforExpedicao" />
+    <AssociationSet Name="FK__naoConfor__tipon__4A43E4FB" Association="SiproModel.FK__naoConfor__tipon__4A43E4FB">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="naoConforExpedicao" EntitySet="naoConforExpedicaos" />
+    </AssociationSet>
+    <EntitySet Name="saidasEntradas" EntityType="SiproModel.saidasEntrada" />
+    <EntitySet Name="produtosExpedidos" EntityType="SiproModel.produtosExpedido" />
+    <EntitySet Name="gtinRecebidos" EntityType="SiproModel.gtinRecebido" />
+    <AssociationSet Name="FK__naoConfor__gtin___14DBF883" Association="SiproModel.FK__naoConfor__gtin___14DBF883">
+      <End Role="gtinRecebido" EntitySet="gtinRecebidos" />
+      <End Role="naoConformidadesOF" EntitySet="naoConformidadesOFs" />
+    </AssociationSet>
+    <EntitySet Name="gtinFabricados" EntityType="SiproModel.gtinFabricado" />
+    <EntitySet Name="Encomendas" EntityType="SiproModel.Encomenda" />
+    <AssociationSet Name="FK__Encomenda__codig__09A971A2" Association="SiproModel.FK__Encomenda__codig__09A971A2">
+      <End Role="produto" EntitySet="produtoes" />
+      <End Role="Encomenda" EntitySet="Encomendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Encomenda__codig__7D0E9093" Association="SiproModel.FK__Encomenda__codig__7D0E9093">
+      <End Role="produto" EntitySet="produtoes" />
+      <End Role="Encomenda" EntitySet="Encomendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Encomenda__encom__0A9D95DB" Association="SiproModel.FK__Encomenda__encom__0A9D95DB">
+      <End Role="tipoMorada" EntitySet="tipoMoradas" />
+      <End Role="Encomenda" EntitySet="Encomendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Encomenda__encom__0B91BA14" Association="SiproModel.FK__Encomenda__encom__0B91BA14">
+      <End Role="orcamento" EntitySet="orcamentoes" />
+      <End Role="Encomenda" EntitySet="Encomendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Encomenda__encom__7E02B4CC" Association="SiproModel.FK__Encomenda__encom__7E02B4CC">
+      <End Role="tipoMorada" EntitySet="tipoMoradas" />
+      <End Role="Encomenda" EntitySet="Encomendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Encomenda__encom__7EF6D905" Association="SiproModel.FK__Encomenda__encom__7EF6D905">
+      <End Role="orcamento" EntitySet="orcamentoes" />
+      <End Role="Encomenda" EntitySet="Encomendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Encomenda__morad__0C85DE4D" Association="SiproModel.FK__Encomenda__morad__0C85DE4D">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="Encomenda" EntitySet="Encomendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Encomenda__morad__7FEAFD3E" Association="SiproModel.FK__Encomenda__morad__7FEAFD3E">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="Encomenda" EntitySet="Encomendas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producao__encome__1D7B6025" Association="SiproModel.FK__Producao__encome__1D7B6025">
+      <End Role="Encomenda" EntitySet="Encomendas" />
+      <End Role="Producao" EntitySet="Producaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producao__encome__2EDAF651" Association="SiproModel.FK__Producao__encome__2EDAF651">
+      <End Role="Encomenda" EntitySet="Encomendas" />
+      <End Role="Producao" EntitySet="Producaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recepcao__id_num__251C81ED" Association="SiproModel.FK__Recepcao__id_num__251C81ED">
+      <End Role="Encomenda" EntitySet="Encomendas" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Recepcao__id_num__37703C52" Association="SiproModel.FK__Recepcao__id_num__37703C52">
+      <End Role="Encomenda" EntitySet="Encomendas" />
+      <End Role="Recepcao" EntitySet="Recepcaos" />
+    </AssociationSet>
+    <EntitySet Name="Expedicaos" EntityType="SiproModel.Expedicao" />
+    <AssociationSet Name="FK__Expedicao__campo__00DF2177" Association="SiproModel.FK__Expedicao__campo__00DF2177">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="Expedicao" EntitySet="Expedicaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Expedicao__campo__0D7A0286" Association="SiproModel.FK__Expedicao__campo__0D7A0286">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="Expedicao" EntitySet="Expedicaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Expedicao__id_ca__01D345B0" Association="SiproModel.FK__Expedicao__id_ca__01D345B0">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="Expedicao" EntitySet="Expedicaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Expedicao__id_ca__0E6E26BF" Association="SiproModel.FK__Expedicao__id_ca__0E6E26BF">
+      <End Role="camposControlo" EntitySet="camposControloes" />
+      <End Role="Expedicao" EntitySet="Expedicaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Expedicao__morad__02C769E9" Association="SiproModel.FK__Expedicao__morad__02C769E9">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="Expedicao" EntitySet="Expedicaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Expedicao__morad__0F624AF8" Association="SiproModel.FK__Expedicao__morad__0F624AF8">
+      <End Role="morada" EntitySet="moradas" />
+      <End Role="Expedicao" EntitySet="Expedicaos" />
+    </AssociationSet>
+    <EntitySet Name="OrdemFabricoes" EntityType="SiproModel.OrdemFabrico" />
+    <AssociationSet Name="FK__OrdemFabr__encom__15DA3E5D" Association="SiproModel.FK__OrdemFabr__encom__15DA3E5D">
+      <End Role="Encomenda" EntitySet="Encomendas" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdemFabr__encom__2739D489" Association="SiproModel.FK__OrdemFabr__encom__2739D489">
+      <End Role="Encomenda" EntitySet="Encomendas" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdemFabr__fases__17C286CF" Association="SiproModel.FK__OrdemFabr__fases__17C286CF">
+      <End Role="FasesOrdemFabrico" EntitySet="FasesOrdemFabricoes" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdemFabr__fases__29221CFB" Association="SiproModel.FK__OrdemFabr__fases__29221CFB">
+      <End Role="FasesOrdemFabrico" EntitySet="FasesOrdemFabricoes" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdemFabr__falta__16CE6296" Association="SiproModel.FK__OrdemFabr__falta__16CE6296">
+      <End Role="MotivoFalta" EntitySet="MotivoFaltas" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdemFabr__falta__282DF8C2" Association="SiproModel.FK__OrdemFabr__falta__282DF8C2">
+      <End Role="MotivoFalta" EntitySet="MotivoFaltas" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdemFabr__quebr__19AACF41" Association="SiproModel.FK__OrdemFabr__quebr__19AACF41">
+      <End Role="MotivoQuebra" EntitySet="MotivoQuebras" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdemFabr__quebr__2B0A656D" Association="SiproModel.FK__OrdemFabr__quebr__2B0A656D">
+      <End Role="MotivoQuebra" EntitySet="MotivoQuebras" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__naoConfor__ordem__0D44F85C" Association="SiproModel.FK__naoConfor__ordem__0D44F85C">
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+      <End Role="naoConformidadesOF" EntitySet="naoConformidadesOFs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__naoConfor__ordem__1EA48E88" Association="SiproModel.FK__naoConfor__ordem__1EA48E88">
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+      <End Role="naoConformidadesOF" EntitySet="naoConformidadesOFs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdemFabr__produ__18B6AB08" Association="SiproModel.FK__OrdemFabr__produ__18B6AB08">
+      <End Role="produto" EntitySet="produtoes" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrdemFabr__produ__2A164134" Association="SiproModel.FK__OrdemFabr__produ__2A164134">
+      <End Role="produto" EntitySet="produtoes" />
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ParagemPr__OF_id__1C873BEC" Association="SiproModel.FK__ParagemPr__OF_id__1C873BEC">
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+      <End Role="ParagemProducao" EntitySet="ParagemProducaos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ParagemPr__OF_id__2DE6D218" Association="SiproModel.FK__ParagemPr__OF_id__2DE6D218">
+      <End Role="OrdemFabrico" EntitySet="OrdemFabricoes" />
+      <End Role="ParagemProducao" EntitySet="ParagemProducaos" />
+    </AssociationSet>
+    <EntitySet Name="produto_new" EntityType="SiproModel.produto_new" />
+    <AssociationSet Name="FK__produto_n__id_nu__214BF109" Association="SiproModel.FK__produto_n__id_nu__214BF109">
+      <End Role="Encomenda" EntitySet="Encomendas" />
+      <End Role="produto_new" EntitySet="produto_new" />
+    </AssociationSet>
+    <AssociationSet Name="FK__produto_n__id_nu__339FAB6E" Association="SiproModel.FK__produto_n__id_nu__339FAB6E">
+      <End Role="Encomenda" EntitySet="Encomendas" />
+      <End Role="produto_new" EntitySet="produto_new" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="naoConforRecepcao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="guia" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tiponaoconformidade_id" Type="Int32" />
+    <Property Name="obs" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dataInicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="recepcionado" Type="Boolean" />
+    <NavigationProperty Name="camposControlo" Relationship="SiproModel.FK__naoConfor__tipon__6DEC4894" FromRole="naoConforRecepcao" ToRole="camposControlo" />
+  </EntityType>
+  <Association Name="FK__naoConfor__tipon__6DEC4894">
+    <End Type="SiproModel.camposControlo" Role="camposControlo" Multiplicity="0..1" />
+    <End Type="SiproModel.naoConforRecepcao" Role="naoConforRecepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="naoConforRecepcao">
+        <PropertyRef Name="tiponaoconformidade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="orcamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="qtd_produto1" Type="Int32" />
+    <Property Name="qtd_produto2" Type="Int32" />
+    <Property Name="qtd_produto3" Type="Int32" />
+    <Property Name="qtd_produto4" Type="Int32" />
+    <Property Name="preco_produto1" Type="Decimal" Precision="15" Scale="3" />
+    <Property Name="preco_produto2" Type="Decimal" Precision="15" Scale="3" />
+    <Property Name="preco_produto3" Type="Decimal" Precision="15" Scale="3" />
+    <Property Name="preco_produto4" Type="Decimal" Precision="15" Scale="3" />
+    <Property Name="metrica_produto1" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="metrica_produto2" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="metrica_produto3" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="metrica_produto4" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="motivo" Type="Int32" />
+    <Property Name="data_aprovacao" Type="DateTime" Precision="0" />
+    <Property Name="ficheiro_orcamento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="data_alteracao" Type="DateTime" Precision="0" />
+    <Property Name="data_recepcao" Type="DateTime" Precision="0" />
+    <Property Name="observacoes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="loja_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="moradas" Type="Int32" Nullable="false" />
+    <Property Name="produto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="estado_orcamento" Type="Int32" Nullable="false" />
+    <Property Name="user_alteracao" Type="Int32" Nullable="false" />
+    <Property Name="morada_orcamento" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="estadoOrcamento" Relationship="SiproModel.FK__orcamento__estad__7F6BDA51" FromRole="orcamento" ToRole="estadoOrcamento" />
+    <NavigationProperty Name="funcionario" Relationship="SiproModel.FK__orcamento__user___005FFE8A" FromRole="orcamento" ToRole="funcionario" />
+    <NavigationProperty Name="morada" Relationship="SiproModel.FK__orcamento__morad__015422C3" FromRole="orcamento" ToRole="morada" />
+    <NavigationProperty Name="motivoOrcamento" Relationship="SiproModel.FK__orcamento__motiv__7D8391DF" FromRole="orcamento" ToRole="motivoOrcamento" />
+    <NavigationProperty Name="tipoMorada" Relationship="SiproModel.FK__orcamento__morad__7E77B618" FromRole="orcamento" ToRole="tipoMorada" />
+    <NavigationProperty Name="Encomendas" Relationship="SiproModel.FK__Encomenda__encom__0B91BA14" FromRole="orcamento" ToRole="Encomenda" />
+    <NavigationProperty Name="Encomendas1" Relationship="SiproModel.FK__Encomenda__encom__7EF6D905" FromRole="orcamento" ToRole="Encomenda" />
+  </EntityType>
+  <EntityType Name="produto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codcomercial" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ean13_produto" Type="Int64" />
+    <Property Name="dun_itf14_subemb" Type="Int64" />
+    <Property Name="itf_itf14_caixa" Type="Int64" />
+    <Property Name="comprimento" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="largura" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="altura" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="peso" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="imagem" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NrCxsPlano" Type="Int64" />
+    <Property Name="NrPlanos" Type="Int64" />
+    <Property Name="NrUnidadesCx" Type="Int64" />
+    <Property Name="PesoPorCaixa" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NrCxsPalete" Type="Int64" />
+    <Property Name="UndsPorPalete" Type="Int64" />
+    <Property Name="CompPalete" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="LargPalete" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="AlturaPalete" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PesoPalete" Type="Int64" />
+    <Property Name="ImagemPalete" Type="Int64" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="fichaProdutoElaborado_id" Type="Int32" />
+    <Property Name="fichaProdutoDataElaboracao" Type="DateTime" Precision="0" />
+    <Property Name="tipoproduto_id" Type="Int32" />
+    <Property Name="morada" Type="Int32" />
+    <Property Name="componente_id" Type="Int32" />
+    <NavigationProperty Name="Apuramentoes" Relationship="SiproModel.FK__Apurament__produ__65CC03DF" FromRole="produto" ToRole="Apuramento" />
+    <NavigationProperty Name="morada1" Relationship="SiproModel.FK__produto__morada__4EE89E87" FromRole="produto" ToRole="morada" />
+    <NavigationProperty Name="naoConformidadesOFs" Relationship="SiproModel.FK__naoConfor__ref_i__76026BA8" FromRole="produto" ToRole="naoConformidadesOF" />
+    <NavigationProperty Name="rastrealibidade" Relationship="SiproModel.fichaProdutoElaborado_produto" FromRole="produto" ToRole="rastrealibidade" />
+    <NavigationProperty Name="produto1" Relationship="SiproModel.FK__produto__compone__4FDCC2C0" FromRole="produto" ToRole="produto1" />
+    <NavigationProperty Name="produto2" Relationship="SiproModel.FK__produto__compone__4FDCC2C0" FromRole="produto1" ToRole="produto" />
+    <NavigationProperty Name="TipoProduto" Relationship="SiproModel.FK__produto__tipopro__4DF47A4E" FromRole="produto" ToRole="TipoProduto" />
+    <NavigationProperty Name="Recepcaos" Relationship="SiproModel.FK__Recepcao__id_pro__0AFD888E" FromRole="produto" ToRole="Recepcao" />
+    <NavigationProperty Name="Recepcaos1" Relationship="SiproModel.FK__Recepcao__produt__0BF1ACC7" FromRole="produto" ToRole="Recepcao" />
+    <NavigationProperty Name="Encomendas" Relationship="SiproModel.FK__Encomenda__codig__09A971A2" FromRole="produto" ToRole="Encomenda" />
+    <NavigationProperty Name="Encomendas1" Relationship="SiproModel.FK__Encomenda__codig__7D0E9093" FromRole="produto" ToRole="Encomenda" />
+    <NavigationProperty Name="OrdemFabricoes" Relationship="SiproModel.FK__OrdemFabr__produ__18B6AB08" FromRole="produto" ToRole="OrdemFabrico" />
+    <NavigationProperty Name="OrdemFabricoes1" Relationship="SiproModel.FK__OrdemFabr__produ__2A164134" FromRole="produto" ToRole="OrdemFabrico" />
+  </EntityType>
+  <EntityType Name="TipoProduto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="produtoes" Relationship="SiproModel.FK__produto__tipopro__4DF47A4E" FromRole="TipoProduto" ToRole="produto" />
+  </EntityType>
+  <Association Name="FK__Apurament__produ__65CC03DF">
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="1" />
+    <End Type="SiproModel.Apuramento" Role="Apuramento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Apuramento">
+        <PropertyRef Name="producoes_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orcamento__estad__7F6BDA51">
+    <End Type="SiproModel.estadoOrcamento" Role="estadoOrcamento" Multiplicity="1" />
+    <End Type="SiproModel.orcamento" Role="orcamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estadoOrcamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="orcamento">
+        <PropertyRef Name="estado_orcamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orcamento__user___005FFE8A">
+    <End Type="SiproModel.funcionario" Role="funcionario" Multiplicity="1" />
+    <End Type="SiproModel.orcamento" Role="orcamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="funcionario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="orcamento">
+        <PropertyRef Name="user_alteracao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orcamento__morad__015422C3">
+    <End Type="SiproModel.morada" Role="morada" Multiplicity="1" />
+    <End Type="SiproModel.orcamento" Role="orcamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="orcamento">
+        <PropertyRef Name="morada_orcamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__produto__morada__4EE89E87">
+    <End Type="SiproModel.morada" Role="morada" Multiplicity="0..1" />
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="produto">
+        <PropertyRef Name="morada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orcamento__motiv__7D8391DF">
+    <End Type="SiproModel.motivoOrcamento" Role="motivoOrcamento" Multiplicity="0..1" />
+    <End Type="SiproModel.orcamento" Role="orcamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="motivoOrcamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="orcamento">
+        <PropertyRef Name="motivo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__naoConfor__ref_i__76026BA8">
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="0..1" />
+    <End Type="SiproModel.naoConformidadesOF" Role="naoConformidadesOF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="naoConformidadesOF">
+        <PropertyRef Name="ref_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orcamento__morad__7E77B618">
+    <End Type="SiproModel.tipoMorada" Role="tipoMorada" Multiplicity="1" />
+    <End Type="SiproModel.orcamento" Role="orcamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoMorada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="orcamento">
+        <PropertyRef Name="moradas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fichaProdutoElaborado_produto">
+    <End Type="SiproModel.rastrealibidade" Role="rastrealibidade" Multiplicity="0..1" />
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rastrealibidade">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="produto">
+        <PropertyRef Name="fichaProdutoElaborado_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__produto__compone__4FDCC2C0">
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="0..1" />
+    <End Type="SiproModel.produto" Role="produto1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="produto1">
+        <PropertyRef Name="componente_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__produto__tipopro__4DF47A4E">
+    <End Type="SiproModel.TipoProduto" Role="TipoProduto" Multiplicity="0..1" />
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoProduto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="produto">
+        <PropertyRef Name="tipoproduto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recepcao__id_pro__0AFD888E">
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="0..1" />
+    <End Type="SiproModel.Recepcao" Role="Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="id_produtos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recepcao__produt__0BF1ACC7">
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="0..1" />
+    <End Type="SiproModel.Recepcao" Role="Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="produtos_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FasesOrdemFabrico">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="OrdemFabricoes" Relationship="SiproModel.FK__OrdemFabr__fases__17C286CF" FromRole="FasesOrdemFabrico" ToRole="OrdemFabrico" />
+    <NavigationProperty Name="OrdemFabricoes1" Relationship="SiproModel.FK__OrdemFabr__fases__29221CFB" FromRole="FasesOrdemFabrico" ToRole="OrdemFabrico" />
+  </EntityType>
+  <EntityType Name="FimOperaco">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ParagemProducaos" Relationship="SiproModel.FK__ParagemPr__motiv__19A0ADA0" FromRole="FimOperaco" ToRole="ParagemProducao" />
+  </EntityType>
+  <EntityType Name="MotivoFalta">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="OrdemFabricoes" Relationship="SiproModel.FK__OrdemFabr__falta__16CE6296" FromRole="MotivoFalta" ToRole="OrdemFabrico" />
+    <NavigationProperty Name="OrdemFabricoes1" Relationship="SiproModel.FK__OrdemFabr__falta__282DF8C2" FromRole="MotivoFalta" ToRole="OrdemFabrico" />
+  </EntityType>
+  <EntityType Name="MotivoQuebra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="OrdemFabricoes" Relationship="SiproModel.FK__OrdemFabr__quebr__19AACF41" FromRole="MotivoQuebra" ToRole="OrdemFabrico" />
+    <NavigationProperty Name="OrdemFabricoes1" Relationship="SiproModel.FK__OrdemFabr__quebr__2B0A656D" FromRole="MotivoQuebra" ToRole="OrdemFabrico" />
+  </EntityType>
+  <EntityType Name="ParagemProducao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OF_id" Type="Int32" />
+    <Property Name="qtdProduzida" Type="Int64" />
+    <Property Name="motivoParagem_id" Type="Int32" />
+    <NavigationProperty Name="FimOperaco" Relationship="SiproModel.FK__ParagemPr__motiv__19A0ADA0" FromRole="ParagemProducao" ToRole="FimOperaco" />
+    <NavigationProperty Name="OrdemFabrico" Relationship="SiproModel.FK__ParagemPr__OF_id__1C873BEC" FromRole="ParagemProducao" ToRole="OrdemFabrico" />
+    <NavigationProperty Name="OrdemFabrico1" Relationship="SiproModel.FK__ParagemPr__OF_id__2DE6D218" FromRole="ParagemProducao" ToRole="OrdemFabrico" />
+  </EntityType>
+  <Association Name="FK__ParagemPr__motiv__19A0ADA0">
+    <End Type="SiproModel.FimOperaco" Role="FimOperaco" Multiplicity="0..1" />
+    <End Type="SiproModel.ParagemProducao" Role="ParagemProducao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FimOperaco">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ParagemProducao">
+        <PropertyRef Name="motivoParagem_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="naoConforExpedicao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="guiaExpedicao" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tiponaoconformidade_id" Type="Int32" />
+    <Property Name="obs" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dataInicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="expedido" Type="Boolean" />
+    <NavigationProperty Name="camposControlo" Relationship="SiproModel.FK__naoConfor__tipon__4A43E4FB" FromRole="naoConforExpedicao" ToRole="camposControlo" />
+  </EntityType>
+  <Association Name="FK__naoConfor__tipon__4A43E4FB">
+    <End Type="SiproModel.camposControlo" Role="camposControlo" Multiplicity="0..1" />
+    <End Type="SiproModel.naoConforExpedicao" Role="naoConforExpedicao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="naoConforExpedicao">
+        <PropertyRef Name="tiponaoconformidade_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="saidasEntrada">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gtinRef" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="codcomercial" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="descricao" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="qtd" Type="Int32" />
+    <Property Name="lote" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="validade" Type="DateTime" Precision="0" />
+    <Property Name="numGuiaExpedicao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="numGuiaRecepcao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="produtosExpedido">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gtinRef" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="codcomercial" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="descricao" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="qtd" Type="Int32" />
+    <Property Name="lote" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="validade" Type="DateTime" Precision="0" />
+    <Property Name="numExpedicao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="encomenda" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gtinRecebido">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="numUnidades" Type="Int32" />
+    <Property Name="validade" Type="DateTime" Precision="0" />
+    <Property Name="ref" Type="Int32" />
+    <Property Name="numGtin" Type="Int64" />
+    <Property Name="Lote" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="naoConformidadesOFs" Relationship="SiproModel.FK__naoConfor__gtin___14DBF883" FromRole="gtinRecebido" ToRole="naoConformidadesOF" />
+  </EntityType>
+  <Association Name="FK__naoConfor__gtin___14DBF883">
+    <End Type="SiproModel.gtinRecebido" Role="gtinRecebido" Multiplicity="0..1" />
+    <End Type="SiproModel.naoConformidadesOF" Role="naoConformidadesOF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gtinRecebido">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="naoConformidadesOF">
+        <PropertyRef Name="gtin_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="gtinFabricado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="loteProduzir" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="encomenda_id" Type="Int32" />
+    <Property Name="gtinrecebido_id" Type="Int64" />
+    <Property Name="produto_id" Type="Int32" />
+    <Property Name="ordemFabrico_id" Type="Int32" />
+    <Property Name="qtdFabricada" Type="Int32" />
+    <Property Name="validade" Type="DateTime" Precision="0" />
+    <Property Name="gtinFabricado1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Encomenda">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao_encomenda" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="encomendaExterna" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="dataConclusao" Type="DateTime" Precision="0" />
+    <Property Name="concluido" Type="Boolean" />
+    <Property Name="ficheiro_encomenda" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="dataEncomenda" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dataPrevista" Type="DateTime" Precision="0" />
+    <Property Name="quantidade" Type="Int32" Nullable="false" />
+    <Property Name="controle_qualidade_producao" Type="Int32" />
+    <Property Name="encomenda_cliente" Type="Int32" Nullable="false" />
+    <Property Name="encomenda_orcamento" Type="Int32" />
+    <Property Name="morada_cliente" Type="Int32" />
+    <Property Name="codigoProduto_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="produto" Relationship="SiproModel.FK__Encomenda__codig__09A971A2" FromRole="Encomenda" ToRole="produto" />
+    <NavigationProperty Name="produto1" Relationship="SiproModel.FK__Encomenda__codig__7D0E9093" FromRole="Encomenda" ToRole="produto" />
+    <NavigationProperty Name="tipoMorada" Relationship="SiproModel.FK__Encomenda__encom__0A9D95DB" FromRole="Encomenda" ToRole="tipoMorada" />
+    <NavigationProperty Name="orcamento" Relationship="SiproModel.FK__Encomenda__encom__0B91BA14" FromRole="Encomenda" ToRole="orcamento" />
+    <NavigationProperty Name="tipoMorada1" Relationship="SiproModel.FK__Encomenda__encom__7E02B4CC" FromRole="Encomenda" ToRole="tipoMorada" />
+    <NavigationProperty Name="orcamento1" Relationship="SiproModel.FK__Encomenda__encom__7EF6D905" FromRole="Encomenda" ToRole="orcamento" />
+    <NavigationProperty Name="morada" Relationship="SiproModel.FK__Encomenda__morad__0C85DE4D" FromRole="Encomenda" ToRole="morada" />
+    <NavigationProperty Name="morada1" Relationship="SiproModel.FK__Encomenda__morad__7FEAFD3E" FromRole="Encomenda" ToRole="morada" />
+    <NavigationProperty Name="Producaos" Relationship="SiproModel.FK__Producao__encome__1D7B6025" FromRole="Encomenda" ToRole="Producao" />
+    <NavigationProperty Name="Producaos1" Relationship="SiproModel.FK__Producao__encome__2EDAF651" FromRole="Encomenda" ToRole="Producao" />
+    <NavigationProperty Name="Recepcaos" Relationship="SiproModel.FK__Recepcao__id_num__251C81ED" FromRole="Encomenda" ToRole="Recepcao" />
+    <NavigationProperty Name="Recepcaos1" Relationship="SiproModel.FK__Recepcao__id_num__37703C52" FromRole="Encomenda" ToRole="Recepcao" />
+    <NavigationProperty Name="OrdemFabricoes" Relationship="SiproModel.FK__OrdemFabr__encom__15DA3E5D" FromRole="Encomenda" ToRole="OrdemFabrico" />
+    <NavigationProperty Name="OrdemFabricoes1" Relationship="SiproModel.FK__OrdemFabr__encom__2739D489" FromRole="Encomenda" ToRole="OrdemFabrico" />
+    <NavigationProperty Name="produto_new" Relationship="SiproModel.FK__produto_n__id_nu__214BF109" FromRole="Encomenda" ToRole="produto_new" />
+    <NavigationProperty Name="produto_new1" Relationship="SiproModel.FK__produto_n__id_nu__339FAB6E" FromRole="Encomenda" ToRole="produto_new" />
+  </EntityType>
+  <Association Name="FK__Encomenda__codig__09A971A2">
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="1" />
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encomenda">
+        <PropertyRef Name="codigoProduto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Encomenda__codig__7D0E9093">
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="1" />
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encomenda">
+        <PropertyRef Name="codigoProduto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Encomenda__encom__0A9D95DB">
+    <End Type="SiproModel.tipoMorada" Role="tipoMorada" Multiplicity="1" />
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoMorada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encomenda">
+        <PropertyRef Name="encomenda_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Encomenda__encom__0B91BA14">
+    <End Type="SiproModel.orcamento" Role="orcamento" Multiplicity="0..1" />
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orcamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encomenda">
+        <PropertyRef Name="encomenda_orcamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Encomenda__encom__7E02B4CC">
+    <End Type="SiproModel.tipoMorada" Role="tipoMorada" Multiplicity="1" />
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoMorada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encomenda">
+        <PropertyRef Name="encomenda_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Encomenda__encom__7EF6D905">
+    <End Type="SiproModel.orcamento" Role="orcamento" Multiplicity="0..1" />
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orcamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encomenda">
+        <PropertyRef Name="encomenda_orcamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Encomenda__morad__0C85DE4D">
+    <End Type="SiproModel.morada" Role="morada" Multiplicity="0..1" />
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encomenda">
+        <PropertyRef Name="morada_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Encomenda__morad__7FEAFD3E">
+    <End Type="SiproModel.morada" Role="morada" Multiplicity="0..1" />
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Encomenda">
+        <PropertyRef Name="morada_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producao__encome__1D7B6025">
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="0..1" />
+    <End Type="SiproModel.Producao" Role="Producao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encomenda">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Producao">
+        <PropertyRef Name="encomenda_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producao__encome__2EDAF651">
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="0..1" />
+    <End Type="SiproModel.Producao" Role="Producao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encomenda">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Producao">
+        <PropertyRef Name="encomenda_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recepcao__id_num__251C81ED">
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="0..1" />
+    <End Type="SiproModel.Recepcao" Role="Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encomenda">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="id_numeroEncomenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Recepcao__id_num__37703C52">
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="0..1" />
+    <End Type="SiproModel.Recepcao" Role="Recepcao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encomenda">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recepcao">
+        <PropertyRef Name="id_numeroEncomenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Expedicao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="numeroGuia" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="id_camposControl" Type="Int32" />
+    <Property Name="camposControl_id" Type="Int32" />
+    <Property Name="matricula" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="cmr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="morada" Type="Int32" Nullable="false" />
+    <Property Name="dataExpedicao" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="camposControlo" Relationship="SiproModel.FK__Expedicao__campo__00DF2177" FromRole="Expedicao" ToRole="camposControlo" />
+    <NavigationProperty Name="camposControlo1" Relationship="SiproModel.FK__Expedicao__campo__0D7A0286" FromRole="Expedicao" ToRole="camposControlo" />
+    <NavigationProperty Name="camposControlo2" Relationship="SiproModel.FK__Expedicao__id_ca__01D345B0" FromRole="Expedicao" ToRole="camposControlo" />
+    <NavigationProperty Name="camposControlo3" Relationship="SiproModel.FK__Expedicao__id_ca__0E6E26BF" FromRole="Expedicao" ToRole="camposControlo" />
+    <NavigationProperty Name="morada1" Relationship="SiproModel.FK__Expedicao__morad__02C769E9" FromRole="Expedicao" ToRole="morada" />
+    <NavigationProperty Name="morada2" Relationship="SiproModel.FK__Expedicao__morad__0F624AF8" FromRole="Expedicao" ToRole="morada" />
+  </EntityType>
+  <Association Name="FK__Expedicao__campo__00DF2177">
+    <End Type="SiproModel.camposControlo" Role="camposControlo" Multiplicity="0..1" />
+    <End Type="SiproModel.Expedicao" Role="Expedicao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Expedicao">
+        <PropertyRef Name="camposControl_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Expedicao__campo__0D7A0286">
+    <End Type="SiproModel.camposControlo" Role="camposControlo" Multiplicity="0..1" />
+    <End Type="SiproModel.Expedicao" Role="Expedicao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Expedicao">
+        <PropertyRef Name="camposControl_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Expedicao__id_ca__01D345B0">
+    <End Type="SiproModel.camposControlo" Role="camposControlo" Multiplicity="0..1" />
+    <End Type="SiproModel.Expedicao" Role="Expedicao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Expedicao">
+        <PropertyRef Name="id_camposControl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Expedicao__id_ca__0E6E26BF">
+    <End Type="SiproModel.camposControlo" Role="camposControlo" Multiplicity="0..1" />
+    <End Type="SiproModel.Expedicao" Role="Expedicao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camposControlo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Expedicao">
+        <PropertyRef Name="id_camposControl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Expedicao__morad__02C769E9">
+    <End Type="SiproModel.morada" Role="morada" Multiplicity="1" />
+    <End Type="SiproModel.Expedicao" Role="Expedicao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Expedicao">
+        <PropertyRef Name="morada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Expedicao__morad__0F624AF8">
+    <End Type="SiproModel.morada" Role="morada" Multiplicity="1" />
+    <End Type="SiproModel.Expedicao" Role="Expedicao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="morada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Expedicao">
+        <PropertyRef Name="morada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OrdemFabrico">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="produto_id" Type="Int32" />
+    <Property Name="numPessoas" Type="Int32" />
+    <Property Name="dataInicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dataFim" Type="DateTime" Precision="0" />
+    <Property Name="racioPessoa" Type="Decimal" Precision="15" Scale="2" />
+    <Property Name="encomenda_id" Type="Int32" />
+    <Property Name="fases_id" Type="Int32" />
+    <Property Name="numQuebras" Type="Int32" />
+    <Property Name="numFaltas" Type="Int32" />
+    <Property Name="quebras_id" Type="Int32" />
+    <Property Name="qtdPalteteProduto" Type="Int32" />
+    <Property Name="estadoEmbalagemOk" Type="Boolean" />
+    <Property Name="faltas_id" Type="Int32" />
+    <Property Name="qtdFabricado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dataInicioPausa" Type="DateTime" Precision="3" />
+    <Property Name="dataFimPausa" Type="DateTime" Precision="3" />
+    <Property Name="LOTE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tempoPausaMinutos" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="estadoOF" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="validade" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Encomenda" Relationship="SiproModel.FK__OrdemFabr__encom__15DA3E5D" FromRole="OrdemFabrico" ToRole="Encomenda" />
+    <NavigationProperty Name="Encomenda1" Relationship="SiproModel.FK__OrdemFabr__encom__2739D489" FromRole="OrdemFabrico" ToRole="Encomenda" />
+    <NavigationProperty Name="FasesOrdemFabrico" Relationship="SiproModel.FK__OrdemFabr__fases__17C286CF" FromRole="OrdemFabrico" ToRole="FasesOrdemFabrico" />
+    <NavigationProperty Name="FasesOrdemFabrico1" Relationship="SiproModel.FK__OrdemFabr__fases__29221CFB" FromRole="OrdemFabrico" ToRole="FasesOrdemFabrico" />
+    <NavigationProperty Name="MotivoFalta" Relationship="SiproModel.FK__OrdemFabr__falta__16CE6296" FromRole="OrdemFabrico" ToRole="MotivoFalta" />
+    <NavigationProperty Name="MotivoFalta1" Relationship="SiproModel.FK__OrdemFabr__falta__282DF8C2" FromRole="OrdemFabrico" ToRole="MotivoFalta" />
+    <NavigationProperty Name="MotivoQuebra" Relationship="SiproModel.FK__OrdemFabr__quebr__19AACF41" FromRole="OrdemFabrico" ToRole="MotivoQuebra" />
+    <NavigationProperty Name="MotivoQuebra1" Relationship="SiproModel.FK__OrdemFabr__quebr__2B0A656D" FromRole="OrdemFabrico" ToRole="MotivoQuebra" />
+    <NavigationProperty Name="naoConformidadesOFs" Relationship="SiproModel.FK__naoConfor__ordem__0D44F85C" FromRole="OrdemFabrico" ToRole="naoConformidadesOF" />
+    <NavigationProperty Name="naoConformidadesOFs1" Relationship="SiproModel.FK__naoConfor__ordem__1EA48E88" FromRole="OrdemFabrico" ToRole="naoConformidadesOF" />
+    <NavigationProperty Name="produto" Relationship="SiproModel.FK__OrdemFabr__produ__18B6AB08" FromRole="OrdemFabrico" ToRole="produto" />
+    <NavigationProperty Name="produto1" Relationship="SiproModel.FK__OrdemFabr__produ__2A164134" FromRole="OrdemFabrico" ToRole="produto" />
+    <NavigationProperty Name="ParagemProducaos" Relationship="SiproModel.FK__ParagemPr__OF_id__1C873BEC" FromRole="OrdemFabrico" ToRole="ParagemProducao" />
+    <NavigationProperty Name="ParagemProducaos1" Relationship="SiproModel.FK__ParagemPr__OF_id__2DE6D218" FromRole="OrdemFabrico" ToRole="ParagemProducao" />
+  </EntityType>
+  <Association Name="FK__OrdemFabr__encom__15DA3E5D">
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encomenda">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="encomenda_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdemFabr__encom__2739D489">
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encomenda">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="encomenda_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdemFabr__fases__17C286CF">
+    <End Type="SiproModel.FasesOrdemFabrico" Role="FasesOrdemFabrico" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FasesOrdemFabrico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="fases_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdemFabr__fases__29221CFB">
+    <End Type="SiproModel.FasesOrdemFabrico" Role="FasesOrdemFabrico" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FasesOrdemFabrico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="fases_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdemFabr__falta__16CE6296">
+    <End Type="SiproModel.MotivoFalta" Role="MotivoFalta" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MotivoFalta">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="faltas_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdemFabr__falta__282DF8C2">
+    <End Type="SiproModel.MotivoFalta" Role="MotivoFalta" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MotivoFalta">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="faltas_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdemFabr__quebr__19AACF41">
+    <End Type="SiproModel.MotivoQuebra" Role="MotivoQuebra" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MotivoQuebra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="quebras_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdemFabr__quebr__2B0A656D">
+    <End Type="SiproModel.MotivoQuebra" Role="MotivoQuebra" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MotivoQuebra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="quebras_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__naoConfor__ordem__0D44F85C">
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="0..1" />
+    <End Type="SiproModel.naoConformidadesOF" Role="naoConformidadesOF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdemFabrico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="naoConformidadesOF">
+        <PropertyRef Name="ordemFabrico_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__naoConfor__ordem__1EA48E88">
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="0..1" />
+    <End Type="SiproModel.naoConformidadesOF" Role="naoConformidadesOF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdemFabrico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="naoConformidadesOF">
+        <PropertyRef Name="ordemFabrico_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdemFabr__produ__18B6AB08">
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="produto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrdemFabr__produ__2A164134">
+    <End Type="SiproModel.produto" Role="produto" Multiplicity="0..1" />
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdemFabrico">
+        <PropertyRef Name="produto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ParagemPr__OF_id__1C873BEC">
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="0..1" />
+    <End Type="SiproModel.ParagemProducao" Role="ParagemProducao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdemFabrico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ParagemProducao">
+        <PropertyRef Name="OF_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ParagemPr__OF_id__2DE6D218">
+    <End Type="SiproModel.OrdemFabrico" Role="OrdemFabrico" Multiplicity="0..1" />
+    <End Type="SiproModel.ParagemProducao" Role="ParagemProducao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdemFabrico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ParagemProducao">
+        <PropertyRef Name="OF_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="produto_new">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codcomercial" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="qtd" Type="Int32" />
+    <Property Name="id_numeroEncomenda" Type="Int32" />
+    <Property Name="ref" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="NrUnidades" Type="Int64" />
+    <Property Name="lote" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="validade" Type="DateTime" Precision="0" />
+    <Property Name="refProduto" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="numero_guia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="preco" Type="Decimal" Precision="18" Scale="3" />
+    <NavigationProperty Name="Encomenda" Relationship="SiproModel.FK__produto_n__id_nu__214BF109" FromRole="produto_new" ToRole="Encomenda" />
+    <NavigationProperty Name="Encomenda1" Relationship="SiproModel.FK__produto_n__id_nu__339FAB6E" FromRole="produto_new" ToRole="Encomenda" />
+  </EntityType>
+  <Association Name="FK__produto_n__id_nu__214BF109">
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="0..1" />
+    <End Type="SiproModel.produto_new" Role="produto_new" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encomenda">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="produto_new">
+        <PropertyRef Name="id_numeroEncomenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__produto_n__id_nu__339FAB6E">
+    <End Type="SiproModel.Encomenda" Role="Encomenda" Multiplicity="0..1" />
+    <End Type="SiproModel.produto_new" Role="produto_new" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encomenda">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="produto_new">
+        <PropertyRef Name="id_numeroEncomenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

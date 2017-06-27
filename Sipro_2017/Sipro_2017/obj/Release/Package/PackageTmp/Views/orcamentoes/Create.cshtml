@@ -1,0 +1,178 @@
+﻿@model Sipro_2017.orcamento
+
+@{
+    ViewBag.Title = "Novo Orçamento";
+}
+<h2>Novo</h2>
+
+@using (Html.BeginForm()) 
+{
+
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Orçamento</h4>
+    </div>
+        <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="center-div">
+                <div>
+                    <input type="submit" value="Gravar" />
+                    <input type="button" value="Cancelar" onclick="forwardMe('index')" />
+                    <script> function forwardMe(url) { window.location.href = url;} </script>
+                </div>
+            </div>
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Dados Orçamento</legend>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="col-md-10">
+                                    @Html.DisplayName("Cliente / Fornecedor")
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("morada_orcamento", null, "--Select One--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.morada_orcamento, "", new { @class = "text-danger" })
+                                </div>
+                                </div>
+                            </div>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Descrição Orçamento</legend>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="col-md-10">
+                                    @Html.DisplayName("Produto")
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.TextArea("produto", new { @class = "whatever-class", @cols = "150", @rows = "3" })
+                                    @Html.ValidationMessageFor(model => model.produto, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <table class="table">
+                                <tr><th>Qtd</th><th>Preço</th><th>Métrica</th><th></th></tr>
+                                <tr><tr><td><p>
+                                    @Html.EditorFor(model => model.qtd_produto1, new { htmlAttributes = new { @class = "form-control", @id = "qtd1" } })
+                                    @Html.ValidationMessageFor(model => model.qtd_produto1, "", new { @class = "text-danger" })
+                                </td><td>
+                                    @Html.EditorFor(model => model.preco_produto1, new { htmlAttributes = new { @class = "form-control", @id = "preco1" } })
+                                    @Html.ValidationMessageFor(model => model.preco_produto1, "", new { @class = "text-danger" })
+                                </td><td>
+                                    @Html.EditorFor(model => model.metrica_produto1, new { htmlAttributes = new { @class = "form-control", @id = "metrica1" } })
+                                    @Html.ValidationMessageFor(model => model.metrica_produto1, "", new { @class = "text-danger" })
+                                </td></tr>
+                                <tr><td><p>
+                                    @Html.EditorFor(model => model.qtd_produto2, new { htmlAttributes = new { @class = "form-control", @id = "qtd2" } })
+                                    @Html.ValidationMessageFor(model => model.qtd_produto2, "", new { @class = "text-danger" })
+                                </td><td>
+                                    @Html.EditorFor(model => model.preco_produto2, new { htmlAttributes = new { @class = "form-control", @id = "preco2" } })
+                                    @Html.ValidationMessageFor(model => model.preco_produto2, "", new { @class = "text-danger" })
+                                </td><td>
+                                    @Html.EditorFor(model => model.metrica_produto2, new { htmlAttributes = new { @class = "form-control", @id = "metrica2" } })
+                                    @Html.ValidationMessageFor(model => model.metrica_produto2, "", new { @class = "text-danger" })
+                                </td></tr>
+                                <tr><td><p>
+                                    @Html.EditorFor(model => model.qtd_produto3, new { htmlAttributes = new { @class = "form-control", @id = "qtd3" } })
+                                    @Html.ValidationMessageFor(model => model.qtd_produto3, "", new { @class = "text-danger" })
+                                </td><td>
+                                    @Html.EditorFor(model => model.preco_produto3, new { htmlAttributes = new { @class = "form-control", @id = "preco3" } })
+                                    @Html.ValidationMessageFor(model => model.preco_produto3, "", new { @class = "text-danger" })
+                                </td><td>
+                                    @Html.EditorFor(model => model.metrica_produto3, new { htmlAttributes = new { @class = "form-control", @id = "metrica3" } })
+                                    @Html.ValidationMessageFor(model => model.metrica_produto3, "", new { @class = "text-danger" })
+                                </td></tr>
+                                <tr><td><p>
+                                    @Html.EditorFor(model => model.qtd_produto4, new { htmlAttributes = new { @class = "form-control", @id = "qtd4" } })
+                                    @Html.ValidationMessageFor(model => model.qtd_produto4, "", new { @class = "text-danger" })
+                                </td><td>
+                                    @Html.EditorFor(model => model.preco_produto4, new { htmlAttributes = new { @class = "form-control", @id = "preco4" } })
+                                    @Html.ValidationMessageFor(model => model.preco_produto4, "", new { @class = "text-danger" })
+                                </td><td>
+                                    @Html.EditorFor(model => model.metrica_produto4, new { htmlAttributes = new { @class = "form-control", @id = "metrica4" } })
+                                    @Html.ValidationMessageFor(model => model.metrica_produto4, "", new { @class = "text-danger" })
+                                </td></tr>
+                            </table>
+                            <div class="col-md-10">
+                                    <div class="col-md-10">
+                                        @Html.DisplayName("Obs")
+                                    </div>
+                                    <div class="col-md-10">
+                                        @Html.TextArea("observacoes", null, new { @class = "whatever-class", @cols = 80, @rows = 10 })
+                                        @Html.ValidationMessageFor(model => model.observacoes, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Descrição Estado</legend>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="col-md-10">
+                                    @Html.DisplayName("Estado orçamento")
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("estado_orcamento", null, "--Select One--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.estado_orcamento, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="col-md-10">
+                                    @Html.DisplayName("Motivo Orçamento")
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("motivo", null, "--Select One--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.motivo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="col-md-10">
+                                    @Html.DisplayName("Data Aprovação")
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.data_aprovacao, "{0:dd-MM-yyyy}" , new { htmlAttributes = new { @class = "datepicker", @type = "date", @disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.data_aprovacao, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <fieldset>
+                        <legend></legend>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="col-md-10">
+                                    @Html.DisplayName("Data Alteração")
+                                </div>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.data_alteracao, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @class = "datepicker", @type = "date", @disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.data_alteracao, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="col-md-10">
+                                    @Html.DisplayName("Ficheiro de orçamento")
+                                </div>
+                                <div class="col-md-10">
+                                    <form id="Form1" method="post" runat="server" enctype="multipart/form-data">
+                                        <!-- input id="ficheiro_orcamento" type="file" runat="server"> -->
+                                        @using (Html.BeginForm("FileUpload", "Events"))
+                                        {
+                                            <input type="file" name="file" id="ficheiro_orcamento" />
+                                        }
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+        </div>
+        }
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

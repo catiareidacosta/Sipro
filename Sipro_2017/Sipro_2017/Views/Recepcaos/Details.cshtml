@@ -1,0 +1,114 @@
+﻿@model Sipro_2017.Recepcao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Recepcao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroGuia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroGuia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataRecepcao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataRecepcao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comentarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_camposControlLivre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_camposControlLivre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.produtos_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produtos_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo1.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo1.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo2.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo2.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo3.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo3.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Encomenda.descricao_encomenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Encomenda.descricao_encomenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.morada1.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.morada1.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.morada2.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.morada2.nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink( "Editar ", "EditaRecepMercadoria", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

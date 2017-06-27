@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList<Sipro_2017.Expedicao>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Expedições";
+}
+
+<h2>Expedição</h2>
+
+<p>
+    @Html.ActionLink("Nova Expedição", "CreateCamposControl")
+</p>
+
+@using (Html.BeginForm()){
+
+    <p>
+        Pesquisa : @Html.TextBox("criterioPesquisa")
+        <input type="submit" value="Pesquisa" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nrº Expedição")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "numexp_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "numexp_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Nome destinatário")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "morada_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "morada_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Matricula")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "matricula_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "matricula_desc" })
+        </th>
+
+        <th>
+            @Html.DisplayName("CMR")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "cmr_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "cmr_desc" })
+        </th>
+
+        <th>
+            @Html.DisplayName("Nº guia de transporte")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "guiaExp_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "guiaExp_desc" })
+        </th>
+
+        <th>
+            @Html.DisplayName("Data Expedição")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "dataExpedicao_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "dataExpedicao_desc" })
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        SiproEntities db = new SiproEntities();
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => db.moradas.Find(item.morada).nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.matricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cmr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numeroGuia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataExpedicao)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "ExpedicaoMercadoriaEdit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</table>

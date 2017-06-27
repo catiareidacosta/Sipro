@@ -1,0 +1,50 @@
+﻿@model Sipro_2017.Formaco
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Formaco</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dataFormacao)
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.dataFormacao, "{0:dd-MM-yyyy}", new { @readonly = true, @size = "8", @style = "border-width: 0px;" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomeFormacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomeFormacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numHoras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numHoras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoFormacao.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoFormacao.descricao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

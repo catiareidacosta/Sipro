@@ -1,0 +1,13 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Informativo Alteração número Orçamento";
+}
+<h2>Acesso</h2>
+<input type="button" value="Ok" onclick="forwardMe('index')">
+<script> function forwardMe(url) {document.location = '@Url.Action("Index", "Encomendas")';} </script>
+
+<h1 class="text-danger">Número de Orçamento alterado</h1>
+<h1>@Html.Display("idorcamento")</h1>
+
+

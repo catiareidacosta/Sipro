@@ -1,0 +1,736 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SiproModelStoreContainer" CdmEntityContainer="SiproEntities">
+    <EntitySetMapping Name="Apuramentoes">
+      <EntityTypeMapping TypeName="SiproModel.Apuramento">
+        <MappingFragment StoreEntitySet="Apuramento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tempo_producaoo" ColumnName="tempo_producaoo" />
+          <ScalarProperty Name="data_encomenda" ColumnName="data_encomenda" />
+          <ScalarProperty Name="producoes_id" ColumnName="producoes_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="camposControloes">
+      <EntityTypeMapping TypeName="SiproModel.camposControlo">
+        <MappingFragment StoreEntitySet="camposControlo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comercials">
+      <EntityTypeMapping TypeName="SiproModel.comercial">
+        <MappingFragment StoreEntitySet="comercial">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dataContato" ColumnName="dataContato" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="Morada" ColumnName="Morada" />
+          <ScalarProperty Name="contacto" ColumnName="contacto" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="telf" ColumnName="telf" />
+          <ScalarProperty Name="Observ" ColumnName="Observ" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="orcamentoEnviado" ColumnName="orcamentoEnviado" />
+          <ScalarProperty Name="estadoOrcamento" ColumnName="estadoOrcamento" />
+          <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="componenteCompostoes">
+      <EntityTypeMapping TypeName="SiproModel.componenteComposto">
+        <MappingFragment StoreEntitySet="componenteComposto">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="designacao_componente" ColumnName="designacao_componente" />
+          <ScalarProperty Name="qtd" ColumnName="qtd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="condicoesTemperaturas">
+      <EntityTypeMapping TypeName="SiproModel.condicoesTemperatura">
+        <MappingFragment StoreEntitySet="condicoesTemperatura">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContaCorrenteStocks">
+      <EntityTypeMapping TypeName="SiproModel.ContaCorrenteStock">
+        <MappingFragment StoreEntitySet="ContaCorrenteStocks">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="referencia" ColumnName="referencia" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="data_inicio" ColumnName="data_inicio" />
+          <ScalarProperty Name="data_fim" ColumnName="data_fim" />
+          <ScalarProperty Name="movimento_id" ColumnName="movimento_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contatoes">
+      <EntityTypeMapping TypeName="SiproModel.contato">
+        <MappingFragment StoreEntitySet="contato">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telf" ColumnName="telf" />
+          <ScalarProperty Name="telm" ColumnName="telm" />
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="contato_morada" ColumnName="contato_morada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departamentoes">
+      <EntityTypeMapping TypeName="SiproModel.departamento">
+        <MappingFragment StoreEntitySet="departamento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="docQualidades">
+      <EntityTypeMapping TypeName="SiproModel.docQualidade">
+        <MappingFragment StoreEntitySet="docQualidade">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="n_modelo" ColumnName="n_modelo" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="data_upload" ColumnName="data_upload" />
+          <ScalarProperty Name="inserir_ficheiro" ColumnName="inserir_ficheiro" />
+          <ScalarProperty Name="data_inicio" ColumnName="data_inicio" />
+          <ScalarProperty Name="data_fim" ColumnName="data_fim" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresas">
+      <EntityTypeMapping TypeName="SiproModel.empresa">
+        <MappingFragment StoreEntitySet="empresa">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estadoOrcamentoes">
+      <EntityTypeMapping TypeName="SiproModel.estadoOrcamento">
+        <MappingFragment StoreEntitySet="estadoOrcamento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Formacoes">
+      <EntityTypeMapping TypeName="SiproModel.Formaco">
+        <MappingFragment StoreEntitySet="Formacoes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dataFormacao" ColumnName="dataFormacao" />
+          <ScalarProperty Name="tipoOnJob_id" ColumnName="tipoOnJob_id" />
+          <ScalarProperty Name="nomeFormacao" ColumnName="nomeFormacao" />
+          <ScalarProperty Name="numHoras" ColumnName="numHoras" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="funcionarios">
+      <EntityTypeMapping TypeName="SiproModel.funcionario">
+        <MappingFragment StoreEntitySet="funcionario">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome_user" ColumnName="nome_user" />
+          <ScalarProperty Name="pass_user" ColumnName="pass_user" />
+          <ScalarProperty Name="numero_user" ColumnName="numero_user" />
+          <ScalarProperty Name="data_entrada" ColumnName="data_entrada" />
+          <ScalarProperty Name="grupo_funcionario" ColumnName="grupo_funcionario" />
+          <ScalarProperty Name="docs_funcionario" ColumnName="docs_funcionario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gestaoContratoes">
+      <EntityTypeMapping TypeName="SiproModel.gestaoContrato">
+        <MappingFragment StoreEntitySet="gestaoContrato">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="n_modelo" ColumnName="n_modelo" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="data_inicio" ColumnName="data_inicio" />
+          <ScalarProperty Name="data_fim" ColumnName="data_fim" />
+          <ScalarProperty Name="inserir_ficheirodownload" ColumnName="inserir_ficheirodownload" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="listagemAcessoes">
+      <EntityTypeMapping TypeName="SiproModel.listagemAcesso">
+        <MappingFragment StoreEntitySet="listagemAcesso">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="acesso" ColumnName="acesso" />
+          <ScalarProperty Name="listagem_acessos" ColumnName="listagem_acessos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="listagemGrupoes">
+      <EntityTypeMapping TypeName="SiproModel.listagemGrupo">
+        <MappingFragment StoreEntitySet="listagemGrupo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome_grupo" ColumnName="nome_grupo" />
+          <ScalarProperty Name="acessos" ColumnName="acessos" />
+          <ScalarProperty Name="user_group" ColumnName="user_group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="manipulacaos">
+      <EntityTypeMapping TypeName="SiproModel.manipulacao">
+        <MappingFragment StoreEntitySet="manipulacao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="precoOriginal" ColumnName="precoOriginal" />
+          <ScalarProperty Name="precoActual" ColumnName="precoActual" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="manutencaos">
+      <EntityTypeMapping TypeName="SiproModel.manutencao">
+        <MappingFragment StoreEntitySet="manutencao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="periodicidade" ColumnName="periodicidade" />
+          <ScalarProperty Name="tipomanutenção_id" ColumnName="tipomanutenção_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Manutencoes">
+      <EntityTypeMapping TypeName="SiproModel.Manutenco">
+        <MappingFragment StoreEntitySet="Manutencoes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="manutencao" ColumnName="manutencao" />
+          <ScalarProperty Name="data_manutencao" ColumnName="data_manutencao" />
+          <ScalarProperty Name="maquina" ColumnName="maquina" />
+          <ScalarProperty Name="nivel_manutencao" ColumnName="nivel_manutencao" />
+          <ScalarProperty Name="funcinario" ColumnName="funcinario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="maquinas">
+      <EntityTypeMapping TypeName="SiproModel.maquina">
+        <MappingFragment StoreEntitySet="maquina">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="marca" ColumnName="marca" />
+          <ScalarProperty Name="nserie" ColumnName="nserie" />
+          <ScalarProperty Name="data_aquisicao" ColumnName="data_aquisicao" />
+          <ScalarProperty Name="ano_fabrico" ColumnName="ano_fabrico" />
+          <ScalarProperty Name="loja_id" ColumnName="loja_id" />
+          <ScalarProperty Name="imagem" ColumnName="imagem" />
+          <ScalarProperty Name="ficheiro" ColumnName="ficheiro" />
+          <ScalarProperty Name="manutencao_id" ColumnName="manutencao_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="moradas">
+      <EntityTypeMapping TypeName="SiproModel.morada">
+        <MappingFragment StoreEntitySet="morada">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="sector" ColumnName="sector" />
+          <ScalarProperty Name="morada1" ColumnName="morada" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="motivoNaoAaprovadoes">
+      <EntityTypeMapping TypeName="SiproModel.motivoNaoAaprovado">
+        <MappingFragment StoreEntitySet="motivoNaoAaprovado">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="motivoOrcamentoes">
+      <EntityTypeMapping TypeName="SiproModel.motivoOrcamento">
+        <MappingFragment StoreEntitySet="motivoOrcamento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="movimentoes">
+      <EntityTypeMapping TypeName="SiproModel.movimento">
+        <MappingFragment StoreEntitySet="movimento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="naoConformidadesOFs">
+      <EntityTypeMapping TypeName="SiproModel.naoConformidadesOF">
+        <MappingFragment StoreEntitySet="naoConformidadesOF">
+          <ScalarProperty Name="resolucao" ColumnName="resolucao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ordemFabrico_id" ColumnName="ordemFabrico_id" />
+          <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+          <ScalarProperty Name="gtin_id" ColumnName="gtin_id" />
+          <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+          <ScalarProperty Name="tipo_id" ColumnName="tipo_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Outsoucings">
+      <EntityTypeMapping TypeName="SiproModel.Outsoucing">
+        <MappingFragment StoreEntitySet="Outsoucing">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dt_auto" ColumnName="dt_auto" />
+          <ScalarProperty Name="num_funcionarios" ColumnName="num_funcionarios" />
+          <ScalarProperty Name="facturacao" ColumnName="facturacao" />
+          <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permissaos">
+      <EntityTypeMapping TypeName="SiproModel.permissao">
+        <MappingFragment StoreEntitySet="permissao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="escrita" ColumnName="escrita" />
+          <ScalarProperty Name="listagem_acessos" ColumnName="listagem_acessos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producaos">
+      <EntityTypeMapping TypeName="SiproModel.Producao">
+        <MappingFragment StoreEntitySet="Producao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="qtd_produzir" ColumnName="qtd_produzir" />
+          <ScalarProperty Name="qtd_produzida" ColumnName="qtd_produzida" />
+          <ScalarProperty Name="tempo_total_producao" ColumnName="tempo_total_producao" />
+          <ScalarProperty Name="observacoes" ColumnName="observacoes" />
+          <ScalarProperty Name="concluido" ColumnName="concluido" />
+          <ScalarProperty Name="encomenda_id" ColumnName="encomenda_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rastrealibidades">
+      <EntityTypeMapping TypeName="SiproModel.rastrealibidade">
+        <MappingFragment StoreEntitySet="rastrealibidade">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recepcaos">
+      <EntityTypeMapping TypeName="SiproModel.Recepcao">
+        <MappingFragment StoreEntitySet="Recepcao">
+          <ScalarProperty Name="userrecepcao" ColumnName="userrecepcao" />
+          <ScalarProperty Name="tempoRecepcaO" ColumnName="tempoRecepcaO" />
+          <ScalarProperty Name="dataFimRecepcao" ColumnName="dataFimRecepcao" />
+          <ScalarProperty Name="dataInicioRecepcao" ColumnName="dataInicioRecepcao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="numeroGuia" ColumnName="numeroGuia" />
+          <ScalarProperty Name="dataRecepcao" ColumnName="dataRecepcao" />
+          <ScalarProperty Name="id_camposControl" ColumnName="id_camposControl" />
+          <ScalarProperty Name="camposControl_id" ColumnName="camposControl_id" />
+          <ScalarProperty Name="id_numeroEncomenda" ColumnName="id_numeroEncomenda" />
+          <ScalarProperty Name="id_Moradas" ColumnName="id_Moradas" />
+          <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+          <ScalarProperty Name="id_camposControlLivre" ColumnName="id_camposControlLivre" />
+          <ScalarProperty Name="morada" ColumnName="morada" />
+          <ScalarProperty Name="id_produtos" ColumnName="id_produtos" />
+          <ScalarProperty Name="produtos_id" ColumnName="produtos_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="SiproModel.Report">
+        <MappingFragment StoreEntitySet="Report">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="numero_report" ColumnName="numero_report" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="data_report" ColumnName="data_report" />
+          <ScalarProperty Name="data_provacao" ColumnName="data_provacao" />
+          <ScalarProperty Name="data_resolucao" ColumnName="data_resolucao" />
+          <ScalarProperty Name="user_report" ColumnName="user_report" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RHs">
+      <EntityTypeMapping TypeName="SiproModel.RH">
+        <MappingFragment StoreEntitySet="RH">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nrFuncionario" ColumnName="nrFuncionario" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="ativo" ColumnName="ativo" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+          <ScalarProperty Name="empresa_id" ColumnName="empresa_id" />
+          <ScalarProperty Name="custoHora" ColumnName="custoHora" />
+          <ScalarProperty Name="documentos" ColumnName="documentos" />
+          <ScalarProperty Name="diasFerias" ColumnName="diasFerias" />
+          <ScalarProperty Name="fardamentoNr" ColumnName="fardamentoNr" />
+          <ScalarProperty Name="sapatos" ColumnName="sapatos" />
+          <ScalarProperty Name="calca" ColumnName="calca" />
+          <ScalarProperty Name="polo" ColumnName="polo" />
+          <ScalarProperty Name="casaco" ColumnName="casaco" />
+          <ScalarProperty Name="bata" ColumnName="bata" />
+          <ScalarProperty Name="dataAdmissao" ColumnName="dataAdmissao" />
+          <ScalarProperty Name="morada" ColumnName="morada" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+          <ScalarProperty Name="nif" ColumnName="nif" />
+          <ScalarProperty Name="docIdenfiticacao" ColumnName="docIdenfiticacao" />
+          <ScalarProperty Name="fichaAptidao" ColumnName="fichaAptidao" />
+          <ScalarProperty Name="curriculo" ColumnName="curriculo" />
+          <ScalarProperty Name="certHabilitacoes" ColumnName="certHabilitacoes" />
+          <ScalarProperty Name="registoCriminal" ColumnName="registoCriminal" />
+          <ScalarProperty Name="temporario" ColumnName="temporario" />
+          <ScalarProperty Name="numeroContrato" ColumnName="numeroContrato" />
+          <ScalarProperty Name="nss" ColumnName="nss" />
+          <ScalarProperty Name="dataInicioContrato" ColumnName="dataInicioContrato" />
+          <ScalarProperty Name="dataFimContrato" ColumnName="dataFimContrato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="SiproModel.role">
+        <MappingFragment StoreEntitySet="role">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="temporarios">
+      <EntityTypeMapping TypeName="SiproModel.temporario">
+        <MappingFragment StoreEntitySet="temporarios">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dataAdmissao" ColumnName="dataAdmissao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoDocumentoes">
+      <EntityTypeMapping TypeName="SiproModel.tipoDocumento">
+        <MappingFragment StoreEntitySet="tipoDocumento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoFormacaos">
+      <EntityTypeMapping TypeName="SiproModel.tipoFormacao">
+        <MappingFragment StoreEntitySet="tipoFormacao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="dependencia" ColumnName="dependencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoManutencaos">
+      <EntityTypeMapping TypeName="SiproModel.tipoManutencao">
+        <MappingFragment StoreEntitySet="tipoManutencao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoMoradas">
+      <EntityTypeMapping TypeName="SiproModel.tipoMorada">
+        <MappingFragment StoreEntitySet="tipoMorada">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoNaoConformidades">
+      <EntityTypeMapping TypeName="SiproModel.TipoNaoConformidade">
+        <MappingFragment StoreEntitySet="TipoNaoConformidades">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userGrupoes">
+      <EntityTypeMapping TypeName="SiproModel.userGrupo">
+        <MappingFragment StoreEntitySet="userGrupo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="grupo_nome" ColumnName="grupo_nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="verificacaos">
+      <EntityTypeMapping TypeName="SiproModel.verificacao">
+        <MappingFragment StoreEntitySet="verificacao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nomeVerificacao" ColumnName="nomeVerificacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="naoConforRecepcaos">
+      <EntityTypeMapping TypeName="SiproModel.naoConforRecepcao">
+        <MappingFragment StoreEntitySet="naoConforRecepcao">
+          <ScalarProperty Name="recepcionado" ColumnName="recepcionado" />
+          <ScalarProperty Name="dataInicio" ColumnName="dataInicio" />
+          <ScalarProperty Name="obs" ColumnName="obs" />
+          <ScalarProperty Name="tiponaoconformidade_id" ColumnName="tiponaoconformidade_id" />
+          <ScalarProperty Name="guia" ColumnName="guia" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orcamentoes">
+      <EntityTypeMapping TypeName="SiproModel.orcamento">
+        <MappingFragment StoreEntitySet="orcamento">
+          <ScalarProperty Name="morada_orcamento" ColumnName="morada_orcamento" />
+          <ScalarProperty Name="user_alteracao" ColumnName="user_alteracao" />
+          <ScalarProperty Name="estado_orcamento" ColumnName="estado_orcamento" />
+          <ScalarProperty Name="produto" ColumnName="produto" />
+          <ScalarProperty Name="moradas" ColumnName="moradas" />
+          <ScalarProperty Name="loja_id" ColumnName="loja_id" />
+          <ScalarProperty Name="observacoes" ColumnName="observacoes" />
+          <ScalarProperty Name="data_recepcao" ColumnName="data_recepcao" />
+          <ScalarProperty Name="data_alteracao" ColumnName="data_alteracao" />
+          <ScalarProperty Name="ficheiro_orcamento" ColumnName="ficheiro_orcamento" />
+          <ScalarProperty Name="data_aprovacao" ColumnName="data_aprovacao" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="metrica_produto4" ColumnName="metrica_produto4" />
+          <ScalarProperty Name="metrica_produto3" ColumnName="metrica_produto3" />
+          <ScalarProperty Name="metrica_produto2" ColumnName="metrica_produto2" />
+          <ScalarProperty Name="metrica_produto1" ColumnName="metrica_produto1" />
+          <ScalarProperty Name="preco_produto4" ColumnName="preco_produto4" />
+          <ScalarProperty Name="preco_produto3" ColumnName="preco_produto3" />
+          <ScalarProperty Name="preco_produto2" ColumnName="preco_produto2" />
+          <ScalarProperty Name="preco_produto1" ColumnName="preco_produto1" />
+          <ScalarProperty Name="qtd_produto4" ColumnName="qtd_produto4" />
+          <ScalarProperty Name="qtd_produto3" ColumnName="qtd_produto3" />
+          <ScalarProperty Name="qtd_produto2" ColumnName="qtd_produto2" />
+          <ScalarProperty Name="qtd_produto1" ColumnName="qtd_produto1" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produtoes">
+      <EntityTypeMapping TypeName="SiproModel.produto">
+        <MappingFragment StoreEntitySet="produto">
+          <ScalarProperty Name="componente_id" ColumnName="componente_id" />
+          <ScalarProperty Name="morada" ColumnName="morada" />
+          <ScalarProperty Name="tipoproduto_id" ColumnName="tipoproduto_id" />
+          <ScalarProperty Name="fichaProdutoDataElaboracao" ColumnName="fichaProdutoDataElaboracao" />
+          <ScalarProperty Name="fichaProdutoElaborado_id" ColumnName="fichaProdutoElaborado_id" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="ImagemPalete" ColumnName="ImagemPalete" />
+          <ScalarProperty Name="PesoPalete" ColumnName="PesoPalete" />
+          <ScalarProperty Name="AlturaPalete" ColumnName="AlturaPalete" />
+          <ScalarProperty Name="LargPalete" ColumnName="LargPalete" />
+          <ScalarProperty Name="CompPalete" ColumnName="CompPalete" />
+          <ScalarProperty Name="UndsPorPalete" ColumnName="UndsPorPalete" />
+          <ScalarProperty Name="NrCxsPalete" ColumnName="NrCxsPalete" />
+          <ScalarProperty Name="PesoPorCaixa" ColumnName="PesoPorCaixa" />
+          <ScalarProperty Name="NrUnidadesCx" ColumnName="NrUnidadesCx" />
+          <ScalarProperty Name="NrPlanos" ColumnName="NrPlanos" />
+          <ScalarProperty Name="NrCxsPlano" ColumnName="NrCxsPlano" />
+          <ScalarProperty Name="imagem" ColumnName="imagem" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="altura" ColumnName="altura" />
+          <ScalarProperty Name="largura" ColumnName="largura" />
+          <ScalarProperty Name="comprimento" ColumnName="comprimento" />
+          <ScalarProperty Name="itf_itf14_caixa" ColumnName="itf_itf14_caixa" />
+          <ScalarProperty Name="dun_itf14_subemb" ColumnName="dun_itf14_subemb" />
+          <ScalarProperty Name="ean13_produto" ColumnName="ean13_produto" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="codcomercial" ColumnName="codcomercial" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoProdutoes">
+      <EntityTypeMapping TypeName="SiproModel.TipoProduto">
+        <MappingFragment StoreEntitySet="TipoProduto">
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FasesOrdemFabricoes">
+      <EntityTypeMapping TypeName="SiproModel.FasesOrdemFabrico">
+        <MappingFragment StoreEntitySet="FasesOrdemFabrico">
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FimOperacoes">
+      <EntityTypeMapping TypeName="SiproModel.FimOperaco">
+        <MappingFragment StoreEntitySet="FimOperacoes">
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MotivoFaltas">
+      <EntityTypeMapping TypeName="SiproModel.MotivoFalta">
+        <MappingFragment StoreEntitySet="MotivoFaltas">
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MotivoQuebras">
+      <EntityTypeMapping TypeName="SiproModel.MotivoQuebra">
+        <MappingFragment StoreEntitySet="MotivoQuebras">
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParagemProducaos">
+      <EntityTypeMapping TypeName="SiproModel.ParagemProducao">
+        <MappingFragment StoreEntitySet="ParagemProducao">
+          <ScalarProperty Name="motivoParagem_id" ColumnName="motivoParagem_id" />
+          <ScalarProperty Name="qtdProduzida" ColumnName="qtdProduzida" />
+          <ScalarProperty Name="OF_id" ColumnName="OF_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="naoConforExpedicaos">
+      <EntityTypeMapping TypeName="SiproModel.naoConforExpedicao">
+        <MappingFragment StoreEntitySet="naoConforExpedicao">
+          <ScalarProperty Name="expedido" ColumnName="expedido" />
+          <ScalarProperty Name="dataInicio" ColumnName="dataInicio" />
+          <ScalarProperty Name="obs" ColumnName="obs" />
+          <ScalarProperty Name="tiponaoconformidade_id" ColumnName="tiponaoconformidade_id" />
+          <ScalarProperty Name="guiaExpedicao" ColumnName="guiaExpedicao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="saidasEntradas">
+      <EntityTypeMapping TypeName="SiproModel.saidasEntrada">
+        <MappingFragment StoreEntitySet="saidasEntradas">
+          <ScalarProperty Name="numGuiaRecepcao" ColumnName="numGuiaRecepcao" />
+          <ScalarProperty Name="numGuiaExpedicao" ColumnName="numGuiaExpedicao" />
+          <ScalarProperty Name="validade" ColumnName="validade" />
+          <ScalarProperty Name="lote" ColumnName="lote" />
+          <ScalarProperty Name="qtd" ColumnName="qtd" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="codcomercial" ColumnName="codcomercial" />
+          <ScalarProperty Name="gtinRef" ColumnName="gtinRef" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produtosExpedidos">
+      <EntityTypeMapping TypeName="SiproModel.produtosExpedido">
+        <MappingFragment StoreEntitySet="produtosExpedidos">
+          <ScalarProperty Name="encomenda" ColumnName="encomenda" />
+          <ScalarProperty Name="numExpedicao" ColumnName="numExpedicao" />
+          <ScalarProperty Name="validade" ColumnName="validade" />
+          <ScalarProperty Name="lote" ColumnName="lote" />
+          <ScalarProperty Name="qtd" ColumnName="qtd" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="codcomercial" ColumnName="codcomercial" />
+          <ScalarProperty Name="gtinRef" ColumnName="gtinRef" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gtinRecebidos">
+      <EntityTypeMapping TypeName="SiproModel.gtinRecebido">
+        <MappingFragment StoreEntitySet="gtinRecebidos">
+          <ScalarProperty Name="Lote" ColumnName="Lote" />
+          <ScalarProperty Name="numGtin" ColumnName="numGtin" />
+          <ScalarProperty Name="ref" ColumnName="ref" />
+          <ScalarProperty Name="validade" ColumnName="validade" />
+          <ScalarProperty Name="numUnidades" ColumnName="numUnidades" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gtinFabricados">
+      <EntityTypeMapping TypeName="SiproModel.gtinFabricado">
+        <MappingFragment StoreEntitySet="gtinFabricados">
+          <ScalarProperty Name="gtinFabricado1" ColumnName="gtinFabricado" />
+          <ScalarProperty Name="validade" ColumnName="validade" />
+          <ScalarProperty Name="qtdFabricada" ColumnName="qtdFabricada" />
+          <ScalarProperty Name="ordemFabrico_id" ColumnName="ordemFabrico_id" />
+          <ScalarProperty Name="produto_id" ColumnName="produto_id" />
+          <ScalarProperty Name="gtinrecebido_id" ColumnName="gtinrecebido_id" />
+          <ScalarProperty Name="encomenda_id" ColumnName="encomenda_id" />
+          <ScalarProperty Name="loteProduzir" ColumnName="loteProduzir" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Encomendas">
+      <EntityTypeMapping TypeName="SiproModel.Encomenda">
+        <MappingFragment StoreEntitySet="Encomenda">
+          <ScalarProperty Name="codigoProduto_id" ColumnName="codigoProduto_id" />
+          <ScalarProperty Name="morada_cliente" ColumnName="morada_cliente" />
+          <ScalarProperty Name="encomenda_orcamento" ColumnName="encomenda_orcamento" />
+          <ScalarProperty Name="encomenda_cliente" ColumnName="encomenda_cliente" />
+          <ScalarProperty Name="controle_qualidade_producao" ColumnName="controle_qualidade_producao" />
+          <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+          <ScalarProperty Name="dataPrevista" ColumnName="dataPrevista" />
+          <ScalarProperty Name="dataEncomenda" ColumnName="dataEncomenda" />
+          <ScalarProperty Name="ficheiro_encomenda" ColumnName="ficheiro_encomenda" />
+          <ScalarProperty Name="concluido" ColumnName="concluido" />
+          <ScalarProperty Name="dataConclusao" ColumnName="dataConclusao" />
+          <ScalarProperty Name="encomendaExterna" ColumnName="encomendaExterna" />
+          <ScalarProperty Name="descricao_encomenda" ColumnName="descricao_encomenda" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Expedicaos">
+      <EntityTypeMapping TypeName="SiproModel.Expedicao">
+        <MappingFragment StoreEntitySet="Expedicao">
+          <ScalarProperty Name="dataExpedicao" ColumnName="dataExpedicao" />
+          <ScalarProperty Name="morada" ColumnName="morada" />
+          <ScalarProperty Name="cmr" ColumnName="cmr" />
+          <ScalarProperty Name="matricula" ColumnName="matricula" />
+          <ScalarProperty Name="camposControl_id" ColumnName="camposControl_id" />
+          <ScalarProperty Name="id_camposControl" ColumnName="id_camposControl" />
+          <ScalarProperty Name="numeroGuia" ColumnName="numeroGuia" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrdemFabricoes">
+      <EntityTypeMapping TypeName="SiproModel.OrdemFabrico">
+        <MappingFragment StoreEntitySet="OrdemFabrico">
+          <ScalarProperty Name="validade" ColumnName="validade" />
+          <ScalarProperty Name="estadoOF" ColumnName="estadoOF" />
+          <ScalarProperty Name="tempoPausaMinutos" ColumnName="tempoPausaMinutos" />
+          <ScalarProperty Name="LOTE" ColumnName="LOTE" />
+          <ScalarProperty Name="dataFimPausa" ColumnName="dataFimPausa" />
+          <ScalarProperty Name="dataInicioPausa" ColumnName="dataInicioPausa" />
+          <ScalarProperty Name="qtdFabricado" ColumnName="qtdFabricado" />
+          <ScalarProperty Name="faltas_id" ColumnName="faltas_id" />
+          <ScalarProperty Name="estadoEmbalagemOk" ColumnName="estadoEmbalagemOk" />
+          <ScalarProperty Name="qtdPalteteProduto" ColumnName="qtdPalteteProduto" />
+          <ScalarProperty Name="quebras_id" ColumnName="quebras_id" />
+          <ScalarProperty Name="numFaltas" ColumnName="numFaltas" />
+          <ScalarProperty Name="numQuebras" ColumnName="numQuebras" />
+          <ScalarProperty Name="fases_id" ColumnName="fases_id" />
+          <ScalarProperty Name="encomenda_id" ColumnName="encomenda_id" />
+          <ScalarProperty Name="racioPessoa" ColumnName="racioPessoa" />
+          <ScalarProperty Name="dataFim" ColumnName="dataFim" />
+          <ScalarProperty Name="dataInicio" ColumnName="dataInicio" />
+          <ScalarProperty Name="numPessoas" ColumnName="numPessoas" />
+          <ScalarProperty Name="produto_id" ColumnName="produto_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produto_new">
+      <EntityTypeMapping TypeName="SiproModel.produto_new">
+        <MappingFragment StoreEntitySet="produto_new">
+          <ScalarProperty Name="preco" ColumnName="preco" />
+          <ScalarProperty Name="numero_guia" ColumnName="numero_guia" />
+          <ScalarProperty Name="refProduto" ColumnName="refProduto" />
+          <ScalarProperty Name="validade" ColumnName="validade" />
+          <ScalarProperty Name="lote" ColumnName="lote" />
+          <ScalarProperty Name="NrUnidades" ColumnName="NrUnidades" />
+          <ScalarProperty Name="ref" ColumnName="ref" />
+          <ScalarProperty Name="id_numeroEncomenda" ColumnName="id_numeroEncomenda" />
+          <ScalarProperty Name="qtd" ColumnName="qtd" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="codcomercial" ColumnName="codcomercial" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

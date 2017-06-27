@@ -1,0 +1,217 @@
+﻿@model Sipro_2017.Encomenda
+
+@{    ViewBag.Title = "create"; }
+<h2>Criar Encomenda</h2>
+@using (Html.BeginForm())
+{
+    SiproEntities db = new SiproEntities();
+    Producao producao = new Producao();
+    produto produto = new produto();
+    IEnumerable<produto_new> produto_new = new List<produto_new>();
+    Encomenda desEncomenda = new Sipro_2017.Encomenda();
+    var produtoIndex = 0;
+    @Html.AntiForgeryToken()
+    
+    
+
+<div class="form-horizontal" id="result">
+    <h4>Encomenda</h4>    
+    <hr />
+    <div class="center-div">
+        <div>
+            <input type="submit" value="Gravar" />
+            <input type="button" value="Cancelar" onclick="forwardMe('index')">
+            <script> function forwardMe(url) { window.location.href = url;} </script>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Label("Cliente / Fornecedor")
+        </div>
+        <div class="col-md-10">
+            @Html.DropDownList("morada_cliente", null, "--Select One--", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.morada_cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Label("Nr Encomenda Externa")
+        </div>
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.encomendaExterna, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.encomendaExterna, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Label("Orçamento encomenda")
+        </div>
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.encomenda_orcamento, new { htmlAttributes = new { @class = "form-control", @id= "orca"} })
+            @Html.DropDownList("encomenda_orcamento", null, "--Select One--", htmlAttributes: new {@class="hidden", @id="orcamentos" })
+            @Html.ValidationMessageFor(model => model.encomenda_orcamento, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-10">
+                @Html.Label("Descrição")
+        </div>
+        <div class="col-md-10">
+                @Html.EditorFor(model => model.descricao_encomenda, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => desEncomenda.descricao_encomenda, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <script>
+        function FindProdutos() {
+            MsgBox("Criar produto ?", this.Page, this);
+         }
+    </script>
+    </div>
+    <script>
+        function validaOrcamentos() {
+            var idOrcamento = document.getElementById("orca").value;
+            var els = document.getElementById("orcamentos").childElementCount;
+            var exit = false;
+            for (var i = 0; i < els; ++i) {
+                if (idOrcamento == document.getElementById("orcamentos").options.item(i).text){
+                    document.getElementById("orcamentos").options[i + 1].selected = true;
+                    exit = true;
+                }
+            }
+            if (!exit) {
+                if (confirm("Inserir novo orçamento ?")) {
+                    document.location = '@Url.Action("Create", "Orcamentoes")';
+                }
+                else {
+                    document.getElementById("orca").value = "";
+                    document.getElementById("orca").focus();
+                }
+            }
+            return false;
+        }
+
+        function valida(Id) {
+            codigoProduto_id = document.getElementById(Id).value;
+            var els = document.getElementById("idProdutos" + Id).childElementCount;
+            var exit = false;
+            for (var i = 0; i < els; ++i) {
+                    if (codigoProduto_id == document.getElementById("idProdutos" + Id).options.item(i).text) {
+                        document.getElementById("codigoproduto" + Id).value = codigoProduto_id;
+                        document.getElementById("descProdutos" + Id).value = document.getElementById("descProdutos" + Id).options[i + 1].value;
+                        document.getElementById("descProdutos" + Id).options[i + 1].selected = true;
+                        document.getElementById("desproduto" + Id).value = document.getElementById("descProdutos" + Id).options.item(i + 1).text;
+                        document.getElementById("qtdProdut" + Id).value = document.getElementById("qtdProduts" + Id).options.item(i + 1).text;
+                        document.getElementById("qtdProdut" + Id).focus();
+                        exit = true;
+                    }    
+            }
+            if (!exit) {
+                if (confirm("Inserir novo produto ?")) {
+                    document.location = '@Url.Action("Create", "Produtoes")';
+                }
+                else {
+                    document.getElementById(Id).value = "";
+                    document.getElementById(Id).focus();
+                }
+            }
+            return false;
+        }
+
+    </script>
+    <div class="form-group">
+        <table class="table">
+            <tr><th>Referencia</th><th>Descrição</th><th>Quantidade Unitária</th><th>Preço</th></tr>
+            <tr>
+                @for (var i = 0; i < 10; i++)
+                {
+                    var codIndex = "codigoproduto" + i;
+                    var descIndex = "descProduto" + i;
+                    var qtdIndex = "qtdProduto" + i;
+                <tr><td><p>
+                            @Html.DropDownList("codigoProduto_id", null, htmlAttributes: new { @class = "hidden", @id = "idProdutos" + i })
+                            @Html.EditorFor(model => model.codigoProduto_id, new{ htmlAttributes = new{ @class = "form-control",
+                                @id = i, @onchange = "return valida(" + i + ")"}})
+                            @Html.TextBox("codigoproduto"+i ,null, htmlAttributes: new { @class = "hidden" })
+                    </td>
+                    <td>
+                        <input id=@descIndex name="descricao" type="text" disabled="disabled" class="hidden" value=@Html.DisplayFor(model => model.produto.descricao) />
+                        @Html.DropDownList("codigoProduto_desc", null, " Select One", htmlAttributes: new { @name = "desc"  ,@id = "descProdutos" + i, @disabled = "disabled" })
+                        @Html.TextBox("desproduto" + i, null, htmlAttributes: new { @class = "hidden", @name = "descCRC" , @id= "desproduto"+i })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.quantidade, new { htmlAttributes = new { @class = "form-control", @id = "qtdProduts" + i } })
+                        <input id=@qtdIndex name="qtd" type="text" disabled="disabled" class="hidden"/>
+                        @Html.TextBox("qtdproduto" + i, null, htmlAttributes: new {@id = "qtdProdut" + i, @class = "hidden" })
+                </td>
+                    <td>
+                        @Html.EditorFor(model => model.produto_new.ElementAt(i).preco, new{ htmlAttributes = new {
+                       @class = "form-control", @id = "precoProdutsExits" + i, @name = "preco", @format="n" }})
+                        <input id="precoSelected" name="precoSelected" type="hidden" disabled="disabled" class="hidden" />
+                        @Html.TextBox("preco" + i, null, htmlAttributes: new { @id = "preco" + i, @class = "hidden" })
+                    </td>
+
+            </tr>
+                }
+         </table>
+        </div>
+
+<script language="javascript">
+               function checkDt(fld) {
+                    var mo, day, yr;
+                    var entry = fld.value;
+                    if (entry != "" && entry != null)
+                    {
+                        var reLong = /\b\d{ 1,2}[\/-]\d{1,2}[\/-]\d{4}\b/;
+            var reShort = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{2}\b/;
+            var valid = (reLong.test(entry)) || (reShort.test(entry));
+            if (valid) {
+                var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+        var delim1 = entry.indexOf(delimChar);
+        var delim2 = entry.lastIndexOf(delimChar);
+        day = parseInt(entry.substring(0, delim1), 10);
+                mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+                yr = parseInt(entry.substring(delim2 + 1), 10);
+                // handle two-digit year
+                if (yr< 100) {
+                    var today = new Date();
+        var currCent = parseInt(today.getFullYear() / 100) * 100;
+        var threshold = (today.getFullYear() + 15) - currCent;
+                    if (yr > threshold) { yr += currCent - 100; } else { yr += currCent; }
+                }
+                fld.value = day + "/" + mo + "/" + yr;
+                appendTitle();
+                return true;
+            } else { alert("Invalid date format. Enter as dd/mm/yyyy."); }
+            return false;
+        }
+        else {
+            appendTitle();
+            return true;
+        }
+    }
+</script>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Data Prevista")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.dataPrevista, "{0:dd-MM-yyyy}", new { @class = "datepicker", @onblur = "checkDt(this)", @size = "8" })
+                @Html.ValidationMessageFor(model => desEncomenda.dataPrevista, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Ficheiro")
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ficheiro_encomenda, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => desEncomenda.ficheiro_encomenda, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        }
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

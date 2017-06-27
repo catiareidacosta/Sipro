@@ -1,0 +1,134 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+}
+else
+{
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Sipro</a>
+                    <ul class="nav nav-tabs">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Orçamentos<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Novo", "Create", "Orcamentoes")</li>
+                                <li><a @Html.ActionLink("Pesquisa", "Index", "Orcamentoes")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Encomendas<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Novo", "Create", "Encomendas")</li>
+                                <li><a @Html.ActionLink("Pesquisar", "Index", "Encomendas")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recepção<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Nova Recepção", "CreateCamposControl", "Recepcaos")</li>
+                                <li><a @Html.ActionLink("Listagem Recepções", "Index", "Recepcaos")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Expedição<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Nova Expedição", "CreateCamposControl", "Expedicaos")</li>
+                                <li><a @Html.ActionLink("Listagem Expedições", "Index", "Expedicaos")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Produções<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Nova Ordem Fabrico", "OFpesquisaEncomenda", "OrdemFabricoes")</li>
+                                <li><a @Html.ActionLink("Pesquisar", "Index", "OrdemFabricoes")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Produtos<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Novo", "Create", "Produtoes")</li>
+                                <li><a @Html.ActionLink("Pesquisar", "Index", "Produtoes")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Moradas<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Novo", "Create", "moradas")</li>
+                                <li><a @Html.ActionLink("Pesquisar", "Index", "moradas")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manutenção<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Novo", "Create", "Manutencaos")</li>
+                                <li><a @Html.ActionLink("Pesquisar", "Index", "Manutencaos")</li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apuramentos<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Registar Apuramentos", "Create", "Apuramentos")</li>
+                                <li><a @Html.ActionLink("Listar Apuramentos", "Index", "Apuramentos")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Qualidade<span class="caret"></span></a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manutenção<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Registar Manutenção", "Create", "Manutencaos")</li>
+                                <li><a @Html.ActionLink("Listar Manutenção", "Index", "Manutencaos")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reclamações<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="##">Report<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a @Html.ActionLink("gerarReport", "Index", "Encomendas")</li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Incidência<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a @Html.ActionLink("Nova", "Create", "Incidencias")</li>
+                                        <li><a @Html.ActionLink("Pesquisar", "Index", "Incidencias")</li>
+                                    </ul>
+                                </li>
+                                <li><a @Html.ActionLink("Registar reclamações cliente", "Create", "Encomendas")</li>
+                                <li><a @Html.ActionLink("Listar reclamações cliente", "Index", "Encomendas")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Comercial<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Registar contratos", "Create", "Encomendas")</li>
+                                <li><a @Html.ActionLink("Listar contratos", "Index", "Encomendas")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Schedule<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a @Html.ActionLink("Schedule", "Index", "Encomendas")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Logout<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="~/Views/Shared/_Layout.cshtml">~/Views/Shared/_Layout.cshtml</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            }

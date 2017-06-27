@@ -1,0 +1,120 @@
+﻿@model Sipro_2017.Recepcao
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Recepcao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroGuia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroGuia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataRecepcao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataRecepcao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comentarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_camposControlLivre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_camposControlLivre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.produtos_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produtos_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo1.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo1.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo2.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo2.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo3.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo3.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Encomenda.descricao_encomenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Encomenda.descricao_encomenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.morada1.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.morada1.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.morada2.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.morada2.nome)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,87 @@
+﻿@model PagedList.IPagedList<Sipro_2017.produto>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Listagem Produtos";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Criar Novo", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+
+    <p>
+        Pesquisa : @Html.TextBox("criterioPesquisa")
+        <input type="submit" value="Pesquisa" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Codigo Comercial")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "codcomercial_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "codcomercial_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Descrição")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "descricao_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "descricao_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Cliente")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "cliente_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "cliente_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("EAN")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "ean13_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "ean13_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("DUN")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "itf14_subemb_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "itf14_subemb_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("ITF")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "itf14_caixa_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "itf14_caixa_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Foto")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "imagem_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "imagem_desc" })
+        </th>
+        <th>
+            @Html.ActionLink("stock", "Index")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.codcomercial)</td>
+            <td>@Html.DisplayFor(modelItem => item.descricao)</td>
+            <td>@Html.DisplayFor(modelItem => item.morada1.nome)</td>
+            <td>@Html.DisplayFor(modelItem => item.ean13_produto)</td>
+            <td>@Html.DisplayFor(modelItem => item.dun_itf14_subemb)</td>
+            <td>@Html.DisplayFor(modelItem => item.itf_itf14_caixa)</td>
+            <td>@Html.DisplayFor(modelItem => item.imagem)</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Detalhe", "Details", new { id = item.id }) |
+                @Html.ActionLink("Apagar", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</table>
+</table>

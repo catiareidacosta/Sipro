@@ -1,0 +1,130 @@
+﻿@model Sipro_2017.Recepcao
+@{
+    ViewBag.Title = "RecepcionaMercadoria";
+}
+
+
+
+<h2>Recepção Mercadorias</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    produto produto = new Sipro_2017.produto();
+
+        <div class="form-horizontal">
+            <input type='text' id='dataRececpao' name='dataRececpao' value=@ViewBag.data style="border:none" readonly="readonly" />
+            <input type='text' id='erros' name='erros' value=@ViewBag.erros class="text-danger" style="border:none" readonly="readonly" />
+            <hr />@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="center-div">
+                <div>
+                    <input type="submit" value="Gravar" />
+                    <input type="button" value="Cancelar" onclick="forwardMe('index')" />
+                    <script> function forwardMe(url) { window.location.href = url; } </script>
+                </div>
+            </div>
+
+            <script>
+                function validaEncomenda() {
+                    var idEncomenda = document.getElementById("encomendas").value;
+                    var els = document.getElementById("id_numeroEncomenda").childElementCount;
+                    var exit = false;
+                    for (var i = 0; i < els; ++i) {
+                        if (idEncomenda == document.getElementById("id_numeroEncomenda").options.item(i).value) {
+                            document.getElementById("id_numeroEncomenda").options[i + 1].selected = true;
+                            exit = true;
+                        }
+                    }
+                    if (!exit) {
+                        alert("Encomenda não existe!");
+                    }
+                    return false;
+                }
+            </script>
+            <div class="form-group">
+                @Html.Label("Nº Encomenda (cliente / Fornecedor)")<div class="col-md-10">
+                    @Html.TextBox("id_numeroEncomendasAlter", null, htmlAttributes: new { @class = "form-control", @id = "encomendas", @onchange = " return validaEncomenda()" })
+                    @Html.ValidationMessageFor(model => model.id_numeroEncomenda, "", new { @class = "text-danger" })
+                    @Html.DropDownList("id_numeroEncomenda", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "id_numeroEncomenda"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Morada (cliente / Fornecedor)")<div class="col-md-10">
+                    @Html.DropDownList("morada", null, "--Select One--", htmlAttributes: new { @class = "form-control", @id = "morada"})
+                    @Html.ValidationMessageFor(model => model.morada, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Comentários")
+                    @Html.TextAreaFor(model => model.comentarios, new { @class = "form-control", @id = "comentarios" })
+                    @Html.ValidationMessageFor(model => model.comentarios, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.Label("Nrº de Guia")
+                    <input type='text' id='guia' name='guia' value=@ViewBag.guia readonly="readonly" style="border:none" hidden="hidden">
+                    <input type='text' id='numeroguia' name='numeroguia' value=@ViewBag.numeroGuia readonly="readonly" style="border:none">
+                </div>
+            </div>
+            <div class="col-md-10">
+                <input type='text' id='totalprodutos' name='totalprodutos' value=@ViewBag.totalprodutos readonly="readonly" style="border:none" hidden="hidden">
+            </div>
+            <div class="col-md-10">
+                <button type="button" id="btnAddCol" onclick="return addSubProdutos(1)">Novo produto</button>
+            </div>
+            <script>
+                    function addSubProdutos(index) {
+                        var url = '@Url.Action("AddSubProduto", "Recepcaos", new { obs = -2})';
+                        var opcoes = document.getElementById("numeroguia").value + ";"
+                                + document.getElementById("encomendas").value
+                                + ";" + document.getElementById("morada").value
+                                + ";" + document.getElementById("comentarios").value;
+                        var path = url.replace("-2", opcoes);
+                        document.location = path;
+                    }
+                </script>
+                <div class="form-group">
+
+                </div>
+            </div>
+
+        <div class="form-group col-md-12" id="listagemElementos" hidden="hidden">
+            <h4>Produtos</h4>
+        </div>
+}
+        <script language="javascript">
+    function checkDt(fld) {
+        var mo, day, yr;
+        var entry = fld.value;
+        var reLong = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/;
+        var reShort = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{2}\b/;
+        var valid = (reLong.test(entry)) || (reShort.test(entry));
+        if (valid) {
+            var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+            var delim1 = entry.indexOf(delimChar);
+            var delim2 = entry.lastIndexOf(delimChar);
+            day = parseInt(entry.substring(0, delim1), 10);
+            mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+            yr = parseInt(entry.substring(delim2 + 1), 10);
+            // handle two-digit year
+            if (yr < 100) {
+                var today = new Date();
+                var currCent = parseInt(today.getFullYear() / 100) * 100;
+                var threshold = (today.getFullYear() + 15) - currCent;
+                if (yr > threshold) { yr += currCent - 100; } else { yr += currCent; }
+            }
+            fld.value = day + "/" + mo + "/" + yr;
+            return true;
+        } else { alert("Invalid date format. Enter as mm/dd/yyyy."); }
+        return false;
+    }
+        </script>
+
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

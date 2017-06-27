@@ -1,0 +1,142 @@
+﻿@model Sipro_2017.Recepcao
+@{
+    ViewBag.Title = "Adiciona SSCC";
+}
+<h2>Recepção Mercadorias</h2>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    produto produto = new Sipro_2017.produto();
+    <div class="form-horizontal">
+        <input type='text' id='erros' name='erros' value=@ViewBag.erros class="text-danger" style="border:none" readonly="readonly" />
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-md-10">
+            <input type='text' id='id_ref' name='id_ref' value=@ViewBag.id_ref readonly="readonly" style="border:none" hidden="hidden">
+            <input type='text' id='morada' name='morada' value=@ViewBag.morada readonly="readonly" style="border:none" hidden="hidden">
+            <input type='text' id='encomendas' name='encomendas' value=@ViewBag.encomendas readonly="readonly" style="border:none" hidden="hidden">
+            <input type='text' id='comentarios' name='comentarios' value=@ViewBag.comentarios readonly="readonly" style="border:none" hidden="hidden">
+            <input type='text' id='vald_ref' name='vald_ref' value=@ViewBag.vald_ref readonly="readonly" style="border:none" hidden="hidden">
+            <input type='text' id='lote_ref' name='lote_ref' value=@ViewBag.lote_ref readonly="readonly" style="border:none" hidden="hidden">
+            @Html.Label("Nrº de Guia")
+            <input type='text' id='numeroguia' name='numeroguia' value=@ViewBag.numeroGuia  readonly="readonly" style="border:none" >
+            <input type='text' id='guia' name='guia'  value=@ViewBag.guia readonly="readonly" style="border:none" hidden="hidden">
+        </div>
+        <script>
+            function SSCCExists() {
+                var exit = false;
+                var codigoProduto_id = document.getElementById("ssccField").value;
+                var els = document.getElementById("listasSSCC").childElementCount;
+                for (var i = 0; i < els; ++i) {
+                    if (codigoProduto_id == document.getElementById("listasSSCC").options.item(i).value) {
+                        alert("Já existe");
+                        document.getElementById("ssccField").value = "";
+                        exit = true;
+                    }
+                }
+                return false;
+            }
+        </script>
+        <div class="form-group">
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.Label("SSCC")
+                </div>
+                <div class="col-md-10">
+                    @Html.Editor("ssccField", new { htmlAttributes = new { @class = "form-control", @id = "ssccField", @name = "ssccField", @onchange = "return pesquisaProduto()"} })
+                    @Html.DropDownList("sscc", null, htmlAttributes: new { @class = "hidden", @id = "listasSSCC", @name = "listasSSCC" })
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.Label("Lote")
+                </div>
+                <div class="col-md-10">
+                    @Html.Editor("lote", new { htmlAttributes = new { @class = "form-control", @id = "lote", @name = "lote"} })
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.Label("Validade")
+                </div>
+                <div class="col-md-10">
+                    @Html.Editor("validade", new { htmlAttributes = new { @class = "form-control", @id = "validade", @name = "validade"} })
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.Label("nºUnid")
+                </div>
+                <div class="col-md-10">
+                    @Html.Editor("numUnidades", new { htmlAttributes = new { @class = "form-control", @id = "unidades", @name = "unidades" } })
+                </div>
+            </div>
+        </div>
+        <div class="center-div">
+            <div>
+                <input type="submit" value="Validar"/>
+                <input type="button" value="Nova Referência"  onclick="novaRef()" />
+                <script>
+                    function novaRef() {
+                        var url = '@Url.Action("AddSubProduto", "Recepcaos", new { obs = -2})';
+                         var opcoes = document.getElementById("numeroguia").value + ";"
+                            + document.getElementById("guia").value + ";"
+                            + ";" + document.getElementById("morada").value
+                            + ";" + document.getElementById("encomendas").value
+                            + ";" + document.getElementById("comentarios").value;
+                         var path = url.replace("-2", opcoes);
+                         document.location = path;
+                } </script>
+                <script> function forwardMe(url) {document.location = '@Url.Action("AddSubProduto",new { id = @ViewBag.numeroGuia })';} </script>
+                <input type="button" value="Terminar" onclick="terminar()" />
+                <script>
+                    function terminar() {
+                        var url = '@Url.Action("EditaRecepMercadoria", "Recepcaos", new { id = -2})';
+                        var opcoes = document.getElementById("guia").value ;
+                        var path = url.replace("-2", opcoes);
+                        document.location = path;
+                } </script>
+            </div>
+        </div>
+    </div>
+}
+<script language="javascript">
+    function checkDt(fld) {
+        var mo, day, yr;
+        var entry = fld.value;
+        if (entry != "" && entry != null) {
+            var reLong = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/;
+            var reShort = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{2}\b/;
+            var valid = (reLong.test(entry)) || (reShort.test(entry));
+            if (valid) {
+                var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+                var delim1 = entry.indexOf(delimChar);
+                var delim2 = entry.lastIndexOf(delimChar);
+                day = parseInt(entry.substring(0, delim1), 10);
+                mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+                yr = parseInt(entry.substring(delim2 + 1), 10);
+                // handle two-digit year
+                if (yr < 100) {
+                    var today = new Date();
+                    var currCent = parseInt(today.getFullYear() / 100) * 100;
+                    var threshold = (today.getFullYear() + 15) - currCent;
+                    if (yr > threshold) { yr += currCent - 100; } else { yr += currCent; }
+                }
+                fld.value = day + "/" + mo + "/" + yr;
+                appendTitle();
+                return true;
+            } else { alert("Invalid date format. Enter as dd/mm/yyyy."); }
+            return false;
+        }
+        else {
+            appendTitle();
+            return true;
+        }
+    }
+</script>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

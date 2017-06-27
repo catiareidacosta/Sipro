@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Sipro" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\CatiaCosta\\Sipro\\Sipro_2017\\Sipro_2017\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\CatiaCosta\\Sipro\\Sipro_2017\\Sipro_2017\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-Sipro_2017-20170112022105.mdf;Initial Catalog=aspnet-Sipro_2017-20170112022105;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\CatiaCosta\\Sipro\\Sipro_2017\\Sipro_2017\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="SiproEntities-Web.config Connection String" description="" value="metadata=res://*/Sipro_Model.csdl|res://*/Sipro_Model.ssdl|res://*/Sipro_Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=sociEMBALpt04;initial catalog=Sipro;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\CatiaCosta\\Sipro\\Sipro_2017\\Sipro_2017\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SiproEntities']/@connectionString" />
+  </parameter>
+</parameters>

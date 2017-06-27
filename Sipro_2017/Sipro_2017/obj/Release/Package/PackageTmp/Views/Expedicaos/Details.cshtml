@@ -1,0 +1,74 @@
+﻿@model Sipro_2017.Expedicao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Expedicao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroGuia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroGuia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num_expedicao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_expedicao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataExpedicao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataExpedicao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.matricula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matricula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cmr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cmr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camposControlo1.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camposControlo1.descricao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

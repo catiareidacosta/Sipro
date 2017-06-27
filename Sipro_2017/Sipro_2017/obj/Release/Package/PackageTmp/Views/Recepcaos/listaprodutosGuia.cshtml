@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Sipro_2017.produto_new>
+@{
+        ViewBag.Title = "produtosGuia";
+}
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    SiproEntities db = new SiproEntities();
+   
+}
+     <div class="form-horizontal">
+            <h4>Recepcao</h4>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-10">
+                        <div class="col-md-10">
+                            <input type="button" value="Voltar" onclick="javascript: history.back(); history.back(); return false;" />
+                        </div>
+                    <div class="col-md-10">
+                        @Html.Label("Nrº de Guia")
+                        <input type='text' id='numeroguia' name='numeroguia' value=@ViewBag.numeroGuia readonly="readonly" style="border:none">
+                        <input type='text' id='guia' name='guia' value=@ViewBag.guia readonly="readonly" style="border:none">
+                    </div>
+                </div>
+            </div>
+         <table class="table">
+             <tr>
+
+                 <th>
+                     @Html.DisplayName("Código Comercial")
+                 </th>
+                 <th>
+                     @Html.DisplayName("SSCC")
+                 </th>
+                 <th>
+                     @Html.DisplayName("Descrição")
+                 </th>
+                 <th>
+                     @Html.DisplayName("Nr Unidades")
+                 </th>
+                 <th>
+                     @Html.DisplayName("Lote")
+                 </th>
+                 <th>
+                     @Html.DisplayName("Validade")
+                 </th>
+                 <th></th>
+             </tr>
+
+             @foreach (var item in Model)
+             {
+                 //produto_new moradas = db.produ.Find(item.morada_orcamento);
+                <tr >
+                    <td>
+                        @Html.DisplayFor(modelItem => item.@ref)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.codcomercial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NrUnidades)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lote)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.validade)
+                    </td>
+                 </tr>
+             }
+         </table>
+    </div>

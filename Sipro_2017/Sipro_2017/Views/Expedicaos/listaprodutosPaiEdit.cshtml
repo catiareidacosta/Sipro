@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Sipro_2017.produto_new>
+@using (Html.BeginForm()){
+    SiproEntities db = new SiproEntities();
+}
+    <input type='text' id='entrada' name='entrada' value=@ViewBag.entrada readonly="readonly" style="border:none" hidden="hidden">
+     <div class="form-horizontal">
+         <table class="table">
+             <tr>
+                 <th> @Html.DisplayName("Código Comercial") </th>
+                 <th> @Html.DisplayName("SSCC") </th>
+                 <th> @Html.DisplayName("Descrição") </th>
+                 <th> @Html.DisplayName("Nr Unidades") </th>
+                 <th> @Html.DisplayName("Lote") </th>
+                 <th> @Html.DisplayName("Validade") </th>
+                 <th></th>
+             </tr>
+
+             @foreach (var item in Model)
+             {
+                <tr >
+                    <td> @Html.DisplayFor(modelItem => item.@ref)</td>
+                    <td> @Html.DisplayFor(modelItem => item.codcomercial)</td>
+                    <td> @Html.DisplayFor(modelItem => item.descricao)</td>
+                    <td> @Html.DisplayFor(modelItem => item.NrUnidades)</td>
+                    <td> @Html.DisplayFor(modelItem => item.lote)</td>
+                    <td> @Html.DisplayFor(modelItem => item.validade)</td>
+                    
+                    <td>
+                         @Html.ActionLink("Edit", "AddSubProduto", new { obs= item.numero_guia+ ";"+item.codcomercial+";"+item.lote+";"+item.validade+";"+item.@ref}) |
+                         @Html.ActionLink("Delete", "DeleteProdutosEdit", new { id = item.id, obs = @ViewBag.entrada })
+                     </td>
+                 </tr>
+             }
+         </table>
+    </div>

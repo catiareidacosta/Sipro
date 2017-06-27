@@ -1,0 +1,208 @@
+﻿@model Sipro_2017.Recepcao
+@{
+    ViewBag.Title = "EditaRecepMercadoria";
+}
+<h2>Recepção Mercadorias</h2>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    produto produto = new Sipro_2017.produto();
+    <div class="form-horizontal">
+        <input type='text' id='entrada' name='entrada' value=@ViewBag.entrada readonly="readonly" style="border:none" hidden="hidden">
+        <input type='text' id='dataRececpao' name='dataRececpao' value=@ViewBag.data style="border:none" readonly="readonly" />
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="center-div">
+            <div>
+                <input type="submit" value="Gravar" />
+                <input type="button" value="Cancelar" onclick="forwardMe('index')" />
+                <script> function forwardMe(url) {document.location = '@Url.Action("Index", "Recepcaos")';} </script>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Nº Encomenda (cliente / Fornecedor)")
+            <div class="col-md-10">
+                @Html.TextBox("id_numeroEncomendasAlter", null, htmlAttributes: new { @class = "form-control", @id = "encomendas"})
+                 <!-- input type='text' id='numeroEncomenda' name='numeroguia' value=ViewBag.id_numeroEncomenda >-->
+                
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Morada (cliente / Fornecedor)")
+            <div class="col-md-10">
+                @Html.DropDownList("morada", null, "--Select One--", htmlAttributes: new { @class = "form-control", @id = "moradas" })
+                @Html.ValidationMessageFor(model => model.morada, "", new { @class = "text-danger", @id= "morada" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Comentários")
+                @Html.TextAreaFor(model => model.comentarios, new { @class = "form-control", @id = "comentarios" })
+                @Html.ValidationMessageFor(model => model.comentarios, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Nrº de Guia")
+                <input type='text' id='numeroguia' name='numeroguia' value=@ViewBag.numeroGuia readonly="readonly" style="border:none"  >
+                <input type='text' id='guia' name='guia' value=@ViewBag.guia readonly="readonly" style="border:none"  hidden="hidden">
+            </div>
+        </div>
+        <script>
+            function validaRef() {
+                var codigoProduto_id = document.getElementById("refproduto").value;
+                var els = document.getElementById("produtosDesc").childElementCount;
+                var exit = false;
+                for (var i = 0; i < els; ++i) {
+                    if (codigoProduto_id == document.getElementById("produtosDesc").options.item(i).value) {
+                        document.getElementById("produtosDesc").value = document.getElementById("produtosDesc").options[i].value;
+                        document.getElementById("produtosDesc").options[i].selected = true;
+                        document.getElementById("desproduto").value = document.getElementById("produtosDesc").options.item(i).text;
+                        document.getElementById("produtosUniCx").value = document.getElementById("produtosUniCx").options[i].value;
+                        document.getElementById("produtosUniCx").options[i].selected = true;
+                        document.getElementById("produtosNrCxPal").value = document.getElementById("produtosNrCxPal").options[i].value;
+                        document.getElementById("produtosNrCxPal").options[i].selected = true;
+                        document.getElementById("produtosUnidaPal").value = document.getElementById("produtosUnidaPal").options[i].value;
+                        document.getElementById("produtosUnidaPal").options[i].selected = true;
+                        exit = true;
+                    }
+                }
+                if (!exit) {
+                    if (confirm("Inserir novo produto ?")) {
+                        document.location = '@Url.Action("Create", "Produtoes")';
+                    }
+                    else {
+                        document.getElementById(Id).value = "";
+                        document.getElementById(Id).focus();
+                    }
+                }
+                return false;
+            }
+
+            function appendTitle() {
+                var tbl = document.getElementById('componetes'), row = tbl.insertRow(tbl.rows.length), i;
+                createCell(row.insertCell(0), "", 'row');
+                createCell(row.insertCell(1), "SSCC", 'row');
+                createCell(row.insertCell(2), "Unidades", 'row');
+                createCell(row.insertCell(3), "Lote", 'row');
+                createCell(row.insertCell(4), "Validade", 'row');
+                addMoreRows();
+            }
+
+            function createCell(cell, text, style) {
+                var div = document.createElement('div'), // create DIV element
+                    txt = document.createTextNode(text); // create text node
+                div.appendChild(txt);                    // append text node to the DIV
+                div.setAttribute('class', style);        // set DIV class attribute
+                div.setAttribute('className', style);    // set DIV class attribute for IE (?!)
+                cell.appendChild(div);                   // append DIV to the table cell
+            }
+
+            function addMoreRows() {
+                var table = document.getElementById('componetes');
+                var row = table.insertRow();
+                var rowFirst = row.insertCell(0);
+                var subProduto = row.insertCell(1);
+                var total = row.insertCell(2);
+                var lote = row.insertCell(3);
+                var validade = row.insertCell(4);
+                var mensagem = row.insertCell(5);
+                subProduto.innerHTML = "<tr><td><input type='text' id='subProduto"+table.rows.length+"' name='subProduto" + table.rows.length + "' ></td></tr>";
+                total.innerHTML = "<tr><td><input type='text' id='subProdutoTotal"+table.rows.length+"' name='subProdutoTotal" + table.rows.length + "' value='" + document.getElementById("produtosUnidaPal").value + "' ></td></tr>";
+                lote.innerHTML = "<tr><td><input type='text'  id='subProdutolote"+table.rows.length+"' name='subProdutolote" + table.rows.length + "' value='" + document.getElementById("lote").value + "'></td></tr>";
+                validade.innerHTML = "<tr><td><input type='text' id='subProdutoValidade" + table.rows.length + "' name='subProdutoValidade" + table.rows.length + "' value='" + document.getElementById("validade").value + "' onblur=" + "validateData(this.value," + table.rows.length + ")" + " ></td></tr>";
+             }
+
+            function validateData(elementValidade, numcoluna) {
+                document.getElementById("error").textContent = "";
+                var subProd = document.getElementById('subProduto' + numcoluna).value;
+                var subTotal = document.getElementById('subProdutoTotal' + numcoluna).value;
+                var subLote = document.getElementById('subProdutolote' + numcoluna).value;
+                if (elementValidade != "" && subProd != "" && subTotal != "" && subLote != "") {
+                    addMoreRows();
+                } else {
+                    document.getElementById("error").textContent = "Preenchimento obrigatório!";
+                }
+            }
+             
+
+            function validaEncomenda() {
+                    var idOrcamento = document.getElementById("id_numeroEncomenda").value;
+                    var els = document.getElementById("encomendas").childElementCount;
+                    var exit = false;
+                    for (var i = 0; i < els; ++i) {
+                        alert("valida datas ! " + els);
+                        if (idOrcamento == document.getElementById("encomendas").options.item(i).text) {
+                            document.getElementById("encomendas").options[i + 1].selected = true;
+                            exit = true;
+                        }
+                    }
+                    if (!exit) {
+                        alert("Encomenda não existe!");
+                    }
+                    return false;
+                }
+        </script>
+        <div class="form-group">
+            <h4><span style="color: red; font-size: 14px;" id="error"></span></h4>
+
+            <button type="button" id="btnAddCol" onclick="return AddProdutos()">Nova Refêrencia</button> 
+            <button type="button" id="btnLista" onclick="return ListaProdutos()">Listagem</button> 
+            <script>
+                function AddProdutos() {
+                    var url = '@Url.Action("AddSubProduto", "Recepcaos", new { obs = -2})';
+                    var opcoes = document.getElementById("numeroguia").value + ";"
+                        + document.getElementById("guia").value + ";"
+                        + document.getElementById("encomendas").value + ";"
+                        + document.getElementById("moradas").value + ";" +
+                        document.getElementById("comentarios").value;
+                    var path = url.replace("-2", opcoes);
+                    document.location = path;
+                }
+                function ListaProdutos() {
+                    var url = '@Url.Action("listaprodutosPaiEdit", "Recepcaos", new { obs= -2})';
+                    //var opcoes = document.getElementById("numeroguia").value + ";" + document.getElementById("entrada").value;
+                    var path = url.replace("-2", document.getElementById("numeroguia").value + ";" + document.getElementById("entrada").value);
+                    //alert(path);
+                    document.location = path;
+                }
+            </script>
+        </div>
+    </div>
+}
+<script language="javascript">
+    function checkDt(fld) {
+        var mo, day, yr;
+        var entry = fld.value;
+        var reLong = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/;
+        var reShort = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{2}\b/;
+        var valid = (reLong.test(entry)) || (reShort.test(entry));
+        if (valid) {
+            var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+            var delim1 = entry.indexOf(delimChar);
+            var delim2 = entry.lastIndexOf(delimChar);
+            day = parseInt(entry.substring(0, delim1), 10);
+            mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+            yr = parseInt(entry.substring(delim2 + 1), 10);
+            // handle two-digit year
+            if (yr < 100) {
+                var today = new Date();
+                var currCent = parseInt(today.getFullYear() / 100) * 100;
+                var threshold = (today.getFullYear() + 15) - currCent;
+                if (yr > threshold) { yr += currCent - 100; } else { yr += currCent; }
+            }
+            fld.value = day + "/" + mo + "/" + yr;
+            return true;
+        } else { alert("Invalid date format. Enter as mm/dd/yyyy."); }
+        return false;
+    }
+
+</script>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

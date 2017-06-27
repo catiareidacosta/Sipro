@@ -1,0 +1,75 @@
+﻿@model Sipro_2017.Expedicao
+@{    ViewBag.Title = "ExpedicaoMercadoria"; }
+
+<h2>Expedição Mercadorias</h2>
+@using (Html.BeginForm()){
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <input type='text' id='dataExpedicao' name='dataExpedicao' value=@ViewBag.data style="border:none" readonly="readonly" />
+        <input type='text' id='erros' name='erros' value=@ViewBag.erros class="text-danger" style="border:none" readonly="readonly" />
+        <hr />@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="center-div">
+            <div>
+                <input type="submit" value="Gravar" class="btn btn-default" />
+                <input type="button" value="Cancelar" onclick="forwardMe('index')" />
+                <script> function forwardMe(url) { document.location = '@Url.Action("Index", "Expedicaos")'; } </script>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Nome destinatário (cliente / Fornecedor)")
+            @Html.DropDownList("morada", null, "--Select One--", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.morada, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.Label("Matricula")
+            @Html.EditorFor(model => model.matricula, new { htmlAttributes = new { @class = "form-control", @id = "matricula", @name = "matricula" } })
+            @Html.ValidationMessageFor(model => model.matricula, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.Label("CMR")
+            @Html.EditorFor(model => model.cmr, new { htmlAttributes = new { @class = "form-control", @id = "cmr", @name = "cmr" } })
+        </div>
+        <div class="form-group">
+            @Html.Label("Nrº de Guia de Expedição")
+            @Html.EditorFor(model => model.numeroGuia, new { htmlAttributes = new { @class = "form-control", @id = "numeroGuia", @name = "numeroGuia" } })
+            @Html.ValidationMessageFor(model => model.numeroGuia, "", new { @class = "text-danger" })
+        </div>
+      <script>
+          function addSubProdutos(index) {
+                  var codigoProduto_id = "";
+                  var loteProduto_id = "";
+                  var validadeProduto_id = "";
+                  var url = '@Url.Action("AddSubProduto", "Expedicaos", new { obs = -2 })';
+                  var opcoes = document.getElementById("numeroguia").value + ";" + document.getElementById("morada").value + ";" + document.getElementById("matricula").value + ";" + document.getElementById("cmr").value;
+                  var path = url.replace("-2", opcoes);
+                  document.location = path;
+              }
+            }
+         </script>
+        </div>
+        <input type="button" value="Regista Produtos" onclick="regista()" />
+        <script>
+            function regista() {
+                alert("Regista 1");
+                var numeroGuia = document.getElementById("numeroGuia").value;
+                alert("Regista 2");
+                if (numeroGuia == "") {
+                    alert("Preenchimento obrigatório número de guia de Expedição!");
+                }
+                else {
+                    alert("Regista 3");
+                    var url = '@Url.Action("AddSubProduto", "Expedicaos", new { obs = -2})';
+                    var opcoes = document.getElementById("numeroguia").value + ";" + document.getElementById("morada").value + ";" + document.getElementById("matricula").value + ";" + document.getElementById("cmr").value;;
+                    var path = url.replace("-2", opcoes);
+                    document.location = path;
+                }
+            }
+        </script>
+}
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

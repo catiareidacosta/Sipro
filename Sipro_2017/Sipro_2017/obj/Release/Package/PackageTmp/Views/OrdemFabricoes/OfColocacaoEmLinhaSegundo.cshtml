@@ -1,0 +1,107 @@
+﻿@model Sipro_2017.OrdemFabrico
+@{
+    ViewBag.Title = "Colocação na linha";
+}
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+     <div class="form-horizontal">
+            <h4>Sub Menu Ordem Fabrico</h4>
+            <hr />
+
+         <script type="text/javascript">
+             function gravalinha() {
+                 var qtdProduto = document.getElementById("qtd").value;
+                    if (qtdProduto == "") {
+                        alert("Preenchimento quantidade obrigatório!");
+                    } else {
+                        var idOF = document.getElementById('idOf');
+                        alert(@ViewBag.idProduto);
+                        var url = '@Url.Action("OfColocacaoEmLinhaSave", "OrdemFabricoes", new { obs = -2 })';
+                        var opcoes = @ViewBag.id + ";" + qtdProduto + ";" + @ViewBag.qtdPalteteProduto +";" + @ViewBag.idProduto;
+                        var path = url.replace("-2", opcoes);
+                        document.location = path;
+                    }
+                 return false;
+              };
+         </script>
+
+
+             <div class="center-div">
+                 <div class="col-lg-12">
+                     <input type="submit" value="Gravar" onclick="return gravalinha()" />
+                     <input type="button" value="Cancelar" onclick="forwardMe('index')">
+                     <script> function forwardMe(url) {document.location = '@Url.Action("OFSubMenu", "OrdemFabricoes", new { of = ViewBag.id })';} </script>
+                </div>
+             </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        <input type='text' id='idOf' name='idOf' value=@ViewBag.id readonly="readonly" style="border:none">
+                        <input type='text' id='qtdPalteteProduto' name='qtdPalteteProduto' value=@ViewBag.qtdPalteteProduto hidden="hidden">
+                        <input type='text' id='ipProduto' name='ipProduto' value=@ViewBag.idProduto hidden="hidden">
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        <p>@ViewBag.informativo</p>
+                    </div>
+                </div>
+            </div>
+             <div class="form-group">
+                 <div class="col-md-10">
+                     <div class="col-md-10">
+                         @Html.Label("Gtin")
+                     </div>
+                     <div class="col-md-10">
+                         @Html.Editor("refProd", new { htmlAttributes = new { @class = "form-control", @id = "gtin", @name = "gtin", @enable="enable"} })
+                     </div>
+                 </div>
+                 <div class="col-md-10">
+                     <div class="col-md-10">
+                         @Html.Label("Referência")
+                     </div>
+                     <div class="col-md-10">
+                         @Html.Editor("referencia", new { htmlAttributes = new { @class = "form-control", @id = "gtin", @name = "gtin", @enable = "enable" } })
+                     </div>
+                 </div>
+                 <div class="col-md-10">
+                     <div class="col-md-10">
+                         @Html.Label("Artigo")
+                     </div>
+                     <div class="col-md-10">
+                         @Html.Editor("artigo", new { htmlAttributes = new { @class = "form-control", @id = "referencia", @name = "referencia", @enable = "enable" } })
+                     </div>
+                 </div>
+                 <div class="col-md-10">
+                     <div class="col-md-10">
+                         @Html.Label("Lote")
+                     </div>
+                     <div class="col-md-10">
+                         @Html.Editor("loteproduto", new { htmlAttributes = new { @class = "form-control", @id = "lote", @name = "lote", @enable = "enable" } })
+                     </div>
+                 </div>
+                 <div class="col-md-10">
+                     <div class="col-md-10">
+                         @Html.Label("Vld")
+                     </div>
+                     <div class="col-md-10">
+                         @Html.Editor("validadeProduto", new { htmlAttributes = new { @class = "form-control", @id = "vld", @name = "vld", @enable = "enable" } })
+                     </div>
+                 </div>
+                 <div class="col-md-10">
+                     <div class="col-md-10">
+                         @Html.Label("Quantidade")
+                     </div>
+                     <div class="col-md-10">
+                         @Html.Editor("qtdProduto", new { htmlAttributes = new { @class = "form-control", @id = "qtd", @name = "qtd" } })
+                     </div>
+                 </div>
+             </div>
+        </div>
+    }
+<span style="color: red; font-size: 14px;">@ViewBag.Message</span>   
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }

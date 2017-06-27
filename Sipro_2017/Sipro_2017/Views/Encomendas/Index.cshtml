@@ -1,0 +1,97 @@
+﻿@model PagedList.IPagedList<Sipro_2017.Encomenda>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/App_Scripts/jquery.datetimepicker.js")" type="text/javascript"></script>
+@{
+    ViewBag.Title = "Index";
+    Encomenda desEncomenda = new Sipro_2017.Encomenda();
+   
+}
+<h2>Index</h2>
+<p>    @Html.ActionLink("Nova Encomenda", "Create")</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Pesquisa : @Html.TextBox("criterioPesquisa")
+        <input type="submit" value="Pesquisa" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nrº de encomenda")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "id_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "id_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Encomenda Externa")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "encomendaExterna_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "encomendaExterna_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Cliente / Fornecedor")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "nomeMorada_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "nomeMorada_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Descrição")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "desc_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "desc_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Data Encomenda")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "dataEncomenda_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "dataEncomenda_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Data Prevista")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "dataPrevista_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "dataPrevista_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Quantidade Encomenda")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "qtd_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "qtd_desc" })
+        </th>
+        <th></th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    SiproEntities db = new SiproEntities();
+    morada encomendaCliente = db.moradas.Find(item.morada_cliente);
+    tipoMorada tipoMorada = db.tipoMoradas.Find(item.encomenda_cliente);
+    <tr>
+        <td> @Html.DisplayFor(modelItem => item.id) </td>
+        <td> @Html.DisplayFor(model => item.encomendaExterna) </td>
+        <td> @Html.DisplayFor(model => encomendaCliente.nome) </td>
+        <td> @Html.DisplayFor(model => item.descricao_encomenda) </td>
+        <td> @Html.TextBoxFor(model => item.dataEncomenda, "{0:dd-MM-yyyy}", new { @readonly=true, @size = "8", @style = "border-width: 0px;" }) </td>
+        <td> @Html.TextBoxFor(model => item.dataPrevista, "{0:dd-MM-yyyy}", new { @readonly = true, @size = "8", @style = "border-width: 0px;" }) </td>
+        <td> @Html.DisplayFor(model => item.quantidade) </td>
+            
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Ordem Fabrico (testes)", "OFSubMenu", "OrdemFabricoes", new {id = item.id}, null) | 
+            @Html.ActionLink("Detalhe", "Details", new { id=item.id }) |
+            @{
+                var recepcoes = db.Recepcaos.ToList();
+                var numeroRecepcoes = recepcoes.Count();
+                Boolean associado = false;
+                for (int i = 0; i < numeroRecepcoes; i++){
+                    if (item.id == recepcoes[i].id_numeroEncomenda){
+                        associado = true;
+                    }
+                }
+                if (!associado){
+                    @Html.ActionLink("Apagar", "Delete", new { id = item.id })
+                }
+            }
+        </td>
+    </tr>
+}
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</table>

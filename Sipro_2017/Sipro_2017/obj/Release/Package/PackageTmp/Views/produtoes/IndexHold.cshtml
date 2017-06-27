@@ -1,0 +1,189 @@
+﻿@model IEnumerable<Sipro_2017.produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codcomercial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ean13_produto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dun_itf14_subemb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itf_itf14_caixa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comprimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.largura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.altura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.peso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NrCxsPlano)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NrPlanos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NrUnidadesCx)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PesoPorCaixa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NrCxsPalete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UndsPorPalete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompPalete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LargPalete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlturaPalete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PesoPalete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagemPalete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.activo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fichaProdutoDataElaboracao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.morada1.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rastrealibidade.tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.produto2.codcomercial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoProduto.descricao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codcomercial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ean13_produto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dun_itf14_subemb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itf_itf14_caixa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comprimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.largura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.altura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.peso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NrCxsPlano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NrPlanos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NrUnidadesCx)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PesoPorCaixa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NrCxsPalete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UndsPorPalete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompPalete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LargPalete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlturaPalete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PesoPalete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagemPalete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.activo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fichaProdutoDataElaboracao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.morada1.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rastrealibidade.tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.produto2.codcomercial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoProduto.descricao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

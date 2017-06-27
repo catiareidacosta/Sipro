@@ -1,0 +1,277 @@
+﻿@model Sipro_2017.produto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="center-div">
+        <div>
+            <input type="submit" value="Gravar" />
+            <input type="button" value="Cancelar" onclick="forwardMe('index')">
+            <script> function forwardMe(url) { document.location = '@Url.Action("index", "Produtoes")'; } </script>
+        </div>
+    </div>
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <fieldset>
+                <input type='text' id='id' name='id' value=@ViewBag.id hidden="hidden">
+                <legend>Atríbutos genéricos</legend>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Código Comercial</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.codcomercial, new { htmlAttributes = new { @class = "form-control",@id = "codigocomercial", @onchange = "return OnChangeEvent()" } })
+                        <script type="text/javascript">
+                            function OnChangeEvent() {
+                                codigoProduto_id = document.getElementById("codigocomercial").value;
+                                 var els = document.getElementById("componente_id").childElementCount;
+                                 var exit = false;
+                                 for (var i = 0; i < els; ++i) {
+                                     if (codigoProduto_id == document.getElementById("componente_id").options.item(i).text) {
+                                         alert("Produto já registado!");
+                                         document.getElementById("codigocomercial").setActive();
+                                         exit = true;
+                                     }
+                                 }
+                                 return false;
+                             }
+                        </script>
+                        @Html.DropDownList("componente_id", null, htmlAttributes: new { @class = "hidden" })
+                        @Html.ValidationMessageFor(model => model.codcomercial, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Descrição</div>
+                    </div> <div class="col-md-10">
+                        @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <fieldset>
+                <legend>Codigos produto</legend>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">EAN</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ean13_produto, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ean13_produto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">DUM</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.dun_itf14_subemb, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.dun_itf14_subemb, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">itf caixa</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.itf_itf14_caixa, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.itf_itf14_caixa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <fieldset>
+                <legend>Dimensões</legend>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Comprimento (mm)</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.comprimento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.comprimento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Largura (mm)</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.largura, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.largura, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Altura (mm)</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.altura, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.altura, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Peso (gr)</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.peso, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Imagem</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.imagem, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.imagem, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <fieldset>
+                <legend>Quantidades</legend>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Nº Caixas plano</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NrCxsPlano, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NrCxsPlano, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Nº planos</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NrPlanos, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NrPlanos, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Nº Unidades Caixa</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NrUnidadesCx, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NrUnidadesCx, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Peso por Caixa</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PesoPorCaixa, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PesoPorCaixa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Nº caixas palete</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NrCxsPalete, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NrCxsPalete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Unidades palete</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UndsPorPalete, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UndsPorPalete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Comprimento palete</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CompPalete, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CompPalete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Largura palete</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.LargPalete, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LargPalete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Altura palete</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AlturaPalete, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AlturaPalete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Peso palete</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PesoPalete, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PesoPalete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Imagem palete</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ImagemPalete, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ImagemPalete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <fieldset>
+                <legend>Composição Produto</legend>
+                <!-- Html.Action("listaprodutosPaiEdit", new { obs = @ViewBag.numeroGuia, entrada = @ViewBag.entrada })-->
+                @Html.Action("AssociarCompostoEdit", new { obs = @ViewBag.id })
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="display-label">Cliente / Fornecedor</div>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.DropDownList("morada", null, "--Select One--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.morada, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

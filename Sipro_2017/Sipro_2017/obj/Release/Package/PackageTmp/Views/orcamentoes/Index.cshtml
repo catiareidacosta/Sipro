@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList< Sipro_2017.orcamento>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@using PagedList.Mvc;
+
+@{ ViewBag.Title = "Listagem";
+    orcamento desOrcamento = new Sipro_2017.orcamento();
+}
+
+<h2>Listagem Orçamentos</h2>
+<p> @Html.ActionLink("Novo Orçamento", "Create") </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Pesquisa : @Html.TextBox("criterioPesquisa")
+        <input type="submit" value="Pesquisa" />
+    </p>
+}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Nrº de orçamento")
+                @Html.ActionLink("(asc)", "Index", new { sortOrder = "numeroOrcamento_asc" })
+                @Html.ActionLink("(des)", "Index", new { sortOrder = "numeroOrcamento_desc" })
+            </th>
+            <th>
+                @Html.DisplayName("Produto")
+                @Html.ActionLink("(asc)", "Index", new { sortOrder = "produto_asc" })
+                @Html.ActionLink("(des)", "Index", new { sortOrder = "produto_desc" })
+            </th>
+            <th>
+                @Html.DisplayName("Cliente / Fornecedor")
+                @Html.ActionLink("(asc)", "Index", new { sortOrder = "moradas_asc" })
+                @Html.ActionLink("(des)", "Index", new { sortOrder = "moradas_desc" })
+            </th>
+            <th>
+                @Html.DisplayName("Estado orçamento")
+                @Html.ActionLink("(asc)", "Index", new { sortOrder = "tipo_asc" })
+                @Html.ActionLink("(des)", "Index", new { sortOrder = "tipo_desc" })
+            </th>
+            <th>
+                @Html.DisplayName("Data alteração")
+                @Html.ActionLink("(asc)", "Index", new { sortOrder = "dtAlteracao_asc" })
+                @Html.ActionLink("(des)", "Index", new { sortOrder = "dtAlteracao_desc" })
+            </th>
+            <th>
+                @Html.DisplayName("Data aprovação")
+                @Html.ActionLink("(asc)", "Index", new { sortOrder = "dtAprovacao_asc" })
+                @Html.ActionLink("(des)", "Index", new { sortOrder = "dtAprovacao_desc" })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            SiproEntities db = new SiproEntities();
+            morada moradas = db.moradas.Find(item.morada_orcamento);
+
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.id)</td>
+                <td>@Html.DisplayFor(modelItem => item.produto)</td>
+                <td>@Html.DisplayFor(modelItem => moradas.nome)</td>
+                <td>@Html.DisplayFor(modelItem => item.estadoOrcamento.tipo)</td>
+                <td> @Html.TextBoxFor(model => item.data_alteracao, "{0:dd-MM-yyyy}", new { @readonly = true, @size = "8", @style = "border-width: 0px;" }) </td>
+                <td> @Html.TextBoxFor(model => item.data_aprovacao, "{0:dd-MM-yyyy}", new { @readonly = true, @size = "8", @style = "border-width: 0px;" }) </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id }) 
+                    @{
+                        var encomendas = db.Encomendas.ToList();
+                        var numeroEncomendas = encomendas.Count();
+                        Boolean associado = false;
+                        for (int i = 0; i < numeroEncomendas; i++)
+                        {
+                            if (item.id == encomendas[i].encomenda_orcamento)
+                            {
+                                associado = true;
+                            }
+                        }
+                        if (!associado)
+                        {
+                            @Html.ActionLink("Apagar", "Delete", new { id = item.id })
+                        }
+                    }
+
+                   
+                </td>
+            </tr>
+        }
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    <table>

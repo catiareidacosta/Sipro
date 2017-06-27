@@ -1,0 +1,72 @@
+﻿@model Sipro_2017.Producao
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Producao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.qtd_produzir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtd_produzir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qtd_produzida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtd_produzida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tempo_total_producao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tempo_total_producao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacoes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.concluido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.concluido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Encomenda.descricao_encomenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Encomenda.descricao_encomenda)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

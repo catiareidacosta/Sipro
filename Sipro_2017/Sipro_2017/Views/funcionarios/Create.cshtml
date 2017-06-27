@@ -1,0 +1,79 @@
+﻿@model Sipro_2017.funcionario
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Novo</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="center-div">
+        <div>
+            <input type="submit" value="Gravar" />
+            <input type="button" value="Cancelar" onclick="forwardMe('index')">
+            <script> function forwardMe(url) { window.location.href = url;} </script>
+        </div>
+    </div>
+
+    <div class="form-horizontal">
+        <h4>funcionario</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.nome_user, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nome_user, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nome_user, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pass_user, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pass_user, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pass_user, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.numero_user, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numero_user, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numero_user, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.data_entrada, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.data_entrada, "{0:dd-MM-yyyy}", new { @class = "datepicker", @size = "8" })
+                @Html.ValidationMessageFor(model => model.data_entrada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.grupo_funcionario, "grupo_funcionario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("grupo_funcionario", null, "--Select One--", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.grupo_funcionario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.docs_funcionario, "docs_funcionario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("docs_funcionario", null, "--Select One--", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.docs_funcionario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

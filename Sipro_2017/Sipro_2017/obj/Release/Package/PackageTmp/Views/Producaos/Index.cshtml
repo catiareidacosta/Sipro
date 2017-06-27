@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<Sipro_2017.Producao>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.qtd_produzir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qtd_produzida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tempo_total_producao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.observacoes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.concluido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Encomenda.descricao_encomenda)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.qtd_produzir)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qtd_produzida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tempo_total_producao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.observacoes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.concluido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Encomenda.descricao_encomenda)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</table>

@@ -1,0 +1,118 @@
+﻿@model Sipro_2017.OrdemFabrico
+
+@{
+    ViewBag.Title = "Menu Ordem Fabrico";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>OrdemFabrico</h4><hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="center-div"><div>
+                <input type="submit" value="Avançar" class="btn btn-default" />
+                <input type="button" value="Cancelar" onclick="forwardMe('index')">
+                <script> function forwardMe(url) {document.location = '@Url.Action("OFPesquisaEncomenda", "OrdemFabricoes")';} </script>
+        </div></div>
+    </div>
+        <script>
+            function pesquisaProduto() {
+                var encomenda = document.getElementById("produto").value;
+                var els = document.getElementById("listProdutos").childElementCount;
+                var exit = false;
+                for (var i =0; i < els; ++i) {
+                    if (encomenda == document.getElementById("listProdutos").options.item(i).text) {
+                        exit = true;
+                    }
+                }
+                if (!exit) {
+                    alert("Produto não se encontra registado na encomenda previamente seleccionada!");
+                    document.getElementById("produto").value = "";
+                }
+                return false;
+            }
+        </script>
+        <div class="form-group">
+            @Html.Label("Ordem de Fabrico Encomenda")
+            <div class="col-md-10">
+                <input type='text' id='numeroEncomenda' name='numeroEncomenda' value=@ViewBag.encomenda readonly="readonly" style="border:none">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Nº de Pessoas")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.numPessoas, htmlAttributes: new { @class = "form-control", @id = "numPessoas", name = "numPessoas", @required = true })
+                @Html.ValidationMessageFor(model => model.numPessoas, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Produto")
+            </div>
+            <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.produto_id, " Produtos " ,htmlAttributes: new { @class = "form-control", @id = "produto", name = "produto", @onblur = "return pesquisaProduto()", @onchange = "return pesquisaProduto()", @required = true })
+                    @Html.ValidationMessageFor(model => model.produto_id, "", new { @class = "text-danger" })
+                    @Html.DropDownList("produtosList", null ,htmlAttributes: new { @class = "hidden",  @id="listProdutos"})
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Lote a produzir")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.LOTE, htmlAttributes: new { @class = "form-control", @id = "numLote", name = "numLote", @required = true })
+                @Html.ValidationMessageFor(model => model.LOTE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Label("Validade")
+        </div>
+        <div class="col-md-10">
+            @Html.Editor("validade_of", new { htmlAttributes = new { @class = "form-control", @id = "validade", @name = "validade", @onblur = "checkDt(this)" } })
+        </div>
+        <script language="javascript">
+            function checkDt(fld) {
+                var mo, day, yr;
+                var entry = fld.value;
+                if (entry != "" && entry != null) {
+                    var reLong = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/;
+                    var reShort = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{2}\b/;
+                    var valid = (reLong.test(entry)) || (reShort.test(entry));
+                    if (valid) {
+                        var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+                        var delim1 = entry.indexOf(delimChar);
+                        var delim2 = entry.lastIndexOf(delimChar);
+                        day = parseInt(entry.substring(0, delim1), 10);
+                        mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+                        yr = parseInt(entry.substring(delim2 + 1), 10);
+                        // handle two-digit year
+                        if (yr < 100) {
+                            var today = new Date();
+                            var currCent = parseInt(today.getFullYear() / 100) * 100;
+                            var threshold = (today.getFullYear() + 15) - currCent;
+                            if (yr > threshold) { yr += currCent - 100; } else { yr += currCent; }
+                        }
+                        fld.value = day + "/" + mo + "/" + yr;
+                        appendTitle();
+                        return true;
+                    } else { alert("Invalid date format. Enter as dd/mm/yyyy."); }
+                    return false;
+                }
+                else {
+                    appendTitle();
+                    return true;
+                }
+            }
+        </script>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

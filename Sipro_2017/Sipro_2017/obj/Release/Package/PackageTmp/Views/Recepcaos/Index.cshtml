@@ -1,0 +1,73 @@
+﻿@model PagedList.IPagedList<Sipro_2017.Recepcao>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Recepção";
+    Recepcao desRecepcao = new Sipro_2017.Recepcao();
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nova Recepção", "CreateCamposControl")
+</p>
+
+@using (Html.BeginForm())
+{
+
+    <p>
+        Pesquisa : @Html.TextBox("criterioPesquisa")
+        <input type="submit" value="Pesquisa" />
+    </p>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nrº de Guia")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "guia_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "guia_desc" })
+        </th>
+        <th>
+            @Html.DisplayName("Morada")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "morada_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "morada_desc" })
+        </th>
+        <th>
+           @Html.DisplayName("Data Recepção")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "dataRecepcao_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "dataRecepcao_desc" })
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        SiproEntities db = new SiproEntities();
+        
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.numeroGuia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => db.moradas.Find(item.morada).nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataInicioRecepcao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditaRecepMercadoria", new { id = item.id }) |
+                @Html.ActionLink("Apagar", "DeleteRecepcao", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</table>
+
+

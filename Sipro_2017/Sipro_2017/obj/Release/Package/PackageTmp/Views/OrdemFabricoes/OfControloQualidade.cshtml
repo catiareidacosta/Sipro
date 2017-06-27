@@ -1,0 +1,141 @@
+﻿@model Sipro_2017.OrdemFabrico
+@{
+        ViewBag.Title = "OF SubMenu";
+}
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+     <div class="form-horizontal">
+            <h4>Sub Menu Ordem Fabrico</h4>
+            <hr />
+             <div class="center-div">
+                 <div class="col-lg-12">
+                     <button onclick="activeLink()">Avançar</button>
+                     <input type="button" value="Cancelar" onclick="forwardMe('index')">
+                     <script> function forwardMe(url) {document.location = '@Url.Action("OFSubMenu", "OrdemFabricoes", new { of = ViewBag.id })';} </script>
+                 </div>
+             </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        <input type='text' id='idOf' name='idOf' value=@ViewBag.id readonly="readonly" style="border:none">
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        <p>@ViewBag.informativo</p>
+                    </div>
+                </div>
+            </div>
+             <div>
+                 <tr>
+                     <div class="form-group">
+                        <div class="col-lg-12">
+                            <input onclick="return valida(1)" id='colocalinha' type="submit" value="Colocação na linha" class="btn btn-default"/>
+                        </div>
+                      </div>
+                 </tr>
+                 <tr>
+                     <div class="form-group">
+                         <div class="col-lg-12">
+                             <input onclick="return valida(2)" id='registoQuebrasFaltas' type="submit" value="Registo de Quebras / Faltas" class="btn btn-default"/>
+                         </div>
+                     </div>
+                 </tr>
+                 <tr>
+                     <div class="form-group">
+                         <div class="col-lg-12">
+                             <input onclick="return valida(3)" id='controloQualidadee' type="submit" value="Controlo de Qualidade" class="btn btn-default"/>
+                         </div>
+                     </div>
+                 </tr>
+                 <tr>
+                     <div class="form-group">
+                         <div class="col-lg-12">
+                             <input onclick="return valida(4)" id='FechoPaletes' type="submit" value="Fecho de Paletes" class="btn btn-default"/>
+                         </div>
+                     </div>
+                 </tr>
+                 <tr>
+                     <div class="form-group">
+                         <div class="col-lg-12">
+                             <input onclick="return valida(5)" id='fimOpercao' type="submit" value="Fim da Operação" class="btn btn-default"/>
+                         </div>
+                     </div>
+                 </tr>
+                 <script>
+                     function valida(idSelected) {
+                         var url;
+                            switch (idSelected) {
+                                case 1:
+                                url = '@Url.Action("OfColocacaoEmLinha", "OrdemFabricoes",  new { obs = -2})';
+                                    break;
+                                case 2:
+                                    url = '@Url.Action("OfRegistoQuebrasFaltas", "OrdemFabricoes",  new { obs = -2})';
+                                    break;
+                                case 3:
+                                    url = '@Url.Action("OfControloQualidade", "OrdemFabricoes",  new { obs = -2})';
+                                    break;
+                                case 4:
+                                    url = '@Url.Action("OfFechoPalete", "OrdemFabricoes",  new { obs = -2})';
+                                    break;
+                                case 5:
+                                    url = '@Url.Action("OfFimOperacao", "OrdemFabricoes",  new { obs = -2})';
+                                    break;
+                            }
+                            
+                            var idOrdemFabrico = document.getElementById("idOf").value;
+                            var opcoes = idOrdemFabrico;
+                            var path = url.replace("-2", opcoes);
+                            document.location = path;
+                            return false;
+                        }
+                 </script>
+             </div>
+        </div>
+    }
+
+<script type="text/javascript">
+    function activeLink() {
+        inputs = document.getElementsByTagName('input');
+        var numeroGuia = document.getElementById("numeroGuia").value;
+        if (numeroGuia == "") {
+            alert("Preenchimento obrigatório número de guia!");
+        }
+        var canFinish;
+        canFinish = true;
+        var naoconforme = "";
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs.item(i).style.backgroundColor.endsWith("red")) {
+                naoconforme= i+";"+naoconforme;
+                canFinish = false;
+            }
+        }
+       if (!canFinish) {
+           if (confirm("Existem alguns campos de control não aprovados. Pretende abrir não confomidade ?")){
+               var url = '@Url.Action("NaoConformidadeRecepcao", "Recepcaos",  new { guia=-2})';
+               var opcoes = numeroGuia + ";" + naoconforme;
+               var path = url.replace("-2", opcoes);
+               document.location = path;
+           }
+           else {
+               document.getElementById(Id).value = "";
+               document.getElementById(Id).focus();
+           }
+
+        } else {
+           var url = '@Url.Action("RecepcionaMercadoria", "Recepcaos",  new { obs = -2})';
+           var opcoes = numeroGuia;
+           var path = url.replace("-2", opcoes);
+           document.location = path;
+        }
+
+        return canFinish;
+    };
+</script>
+
+<span style="color: red; font-size: 14px;">@ViewBag.Message</span>   
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }

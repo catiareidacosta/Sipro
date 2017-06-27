@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Sipro_2017.Formaco>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dataFormacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nomeFormacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numHoras)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipoFormacao.descricao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.TextBoxFor(modelItem => item.dataFormacao, "{0:dd-MM-yyyy}", new { @readonly = true, @size = "8", @style = "border-width: 0px;" })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomeFormacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numHoras)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipoFormacao.descricao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

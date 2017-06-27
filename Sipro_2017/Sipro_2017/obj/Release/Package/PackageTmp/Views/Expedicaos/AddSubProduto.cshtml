@@ -1,0 +1,251 @@
+﻿@model Sipro_2017.produtosExpedido
+@{
+    ViewBag.Title = "AddSubProduto";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    produto produto = new Sipro_2017.produto();
+    <div class="form-horizontal">
+        <input type='text' id='erros' name='erros' value=@ViewBag.erros class="text-danger" style="border:none" readonly="readonly" />
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<script>
+    function validaRefProdutoNew(codigoProduto_id) {
+        var elsProdCodComercial = document.getElementById("produtosDesc").childElementCount;
+        var elsdescricoes = document.getElementById("id_produtosDescricao").childElementCount;
+        for (var i = 0; i < elsProdCodComercial; ++i) {
+            if (codigoProduto_id == document.getElementById("produtosDesc").options.item(i).value) {
+                for (var desc = 0; desc < elsdescricoes; ++desc) {
+                    if (codigoProduto_id == document.getElementById("id_produtosDescricao").options.item(desc).value) {
+                         document.getElementById("descricao").value = document.getElementById("id_produtosDescricao").options.item(desc).text;
+                     }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+    //GtinFabricado        
+    function gtinFabricado(codigoProduto_id) {
+        var elsProdGtinFabricado = document.getElementById("refGtinFabricado").childElementCount;
+        var refComercialproduto;
+        var refIdproduto;
+        for (var i = 0; i < elsProdGtinFabricado; ++i) {
+            var refComercialprodutoCount = document.getElementById("ofFabricado").childElementCount;
+            for (var ref = 0; ref < refComercialprodutoCount; ++ref) {
+                var index = "";
+                if (codigoProduto_id == document.getElementById("produtosGtinFabricado").options.item(ref).text) {
+                    document.getElementById("qtd").value = document.getElementById("of_QtdProduzida1").options.item(ref).text;
+                    //Lote da OF 
+                    document.getElementById("lote").value = document.getElementById("of_LOTE").options.item(document.getElementById("of_gtinFabricado").options[ref].value).text;
+                    //descriçao produto
+                    document.getElementById("descricao").value = document.getElementById("id_produtosDescricao").options.item(document.getElementById("of_Produto").options.item(
+                    document.getElementById("of_gtinFabricado").options[ref].value).text).text;
+                    //encomendaExterna
+                    var enomenda = document.getElementById("encomendaFabricado").options.item(ref).text;
+                    var numeroEncomendas = document.getElementById("encomendaExterna").childElementCount;
+                    for (var enc = 0; enc < numeroEncomendas; ++enc) {
+                        //alert("indice = " + document.getElementById("encomendaExterna").options.item(enc).text + " descricao= " + document.getElementById("encomendaExterna").options[enc].value);
+                        if (enomenda == document.getElementById("encomendaExterna").options[enc].value) {
+                            document.getElementById("encomenda").value = document.getElementById("encomendaExterna").options.item(enc).text;
+                        }
+                    }
+                    //Lote do produto
+                    //document.getElementById("lote").value = document.getElementById("loteFabricado").options.item(ref).text;
+                }
+            }
+        }
+        return true;
+    }
+        
+    function gtinRecebido(codigoProduto_id) {
+        var elsProdGtinRecebido = document.getElementById("produtosGtinRecebido").childElementCount;
+        for (var i = 0; i < elsProdGtinRecebido; ++i) {
+            //alert(codigoProduto_id + " = " + document.getElementById("produtosGtinRecebido").options.item(i).text);
+            if (codigoProduto_id == document.getElementById("produtosGtinRecebido").options.item(i).text) {
+                document.getElementById("descricao").value = document.getElementById("descricaoGtinRecebido").options[i].text;
+                document.getElementById("descricaoGtinRecebido").options[i].selected = true;
+                //document.getElementById("codcomercial").value = document.getElementById("refGtinRecebido").options.item(i).text;
+                document.getElementById("qtd").value = document.getElementById("qtdGtinRecebido").options.item(i).text;
+                document.getElementById("lote").value = document.getElementById("loteGtinRecebido").options.item(i).text;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function validaRef() {
+                var exit = false;
+                var codigoProduto_id = document.getElementById("gtinRef").value;
+              //  alert("validaRef   " + codigoProduto_id);
+                exit = validaRefProdutoNew(codigoProduto_id);
+                if (!exit) {
+                    exit = gtinFabricado(codigoProduto_id);
+                }
+                if (!exit) {
+                    exit = gtinRecebido(codigoProduto_id);
+                }
+                return false;
+            }
+
+            function DtFormt(entry) {
+                if(entry!=""){
+                    var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+                    var delim1 = entry.indexOf(delimChar);
+                    var delim2 = entry.lastIndexOf(delimChar);
+                    var mo, day, yr;
+                    day = parseInt(entry.substring(0, delim1), 10);
+                    mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+                    yr = parseInt(entry.substring(delim2 + 1), 10);
+                    entry = day + "/" + mo + "/" + yr;
+                }
+                return entry;
+            }
+
+            function validateData(elementValidade, numcoluna) {
+                document.getElementById("error").textContent = "";
+                var subProd = document.getElementById('subProduto' + numcoluna).value;
+                var subTotal = document.getElementById('subProdutoTotal' + numcoluna).value;
+                var subLote = document.getElementById('subProdutolote' + numcoluna).value;
+                if (subProd != "" && subTotal != "" && subLote != "") {
+                    addMoreRows();
+                } else {
+                    document.getElementById("error").textContent = "Preenchimento obrigatório!";
+                }
+            }
+
+
+        </script>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Guia de expedição : ")
+                <input type='text' id='numeroGuia' name='numeroGuia' value=@ViewBag.numeroGuia readonly="readonly" style="border:none">
+                <input type='text' id='guia' name='guia' value=@ViewBag.guia readonly="readonly" style="border:none" hidden="hidden">
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.Label("Gtin / EAN / REF")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.gtinRef, new { htmlAttributes = new { @class = "form-control", @id = "gtinRef", @name = "gtinRef", @onchange = "return validaRef()" } })
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.Label("Descrição")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control", @id = "descricao", @name = "descricao", @readonly="true" } })
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.Label("Lote")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.lote, new { htmlAttributes = new { @class = "form-control", @id = "lote", @name = "lote" } })
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.Label("Quantidade")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.qtd, new { htmlAttributes = new { @class = "form-control", @id = "qtd", @name = "qtd" } })
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.Label("Encomenda Externa")
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.encomenda, new { htmlAttributes = new { @class = "form-control", @id = "encomenda", @name = "encomenda" } })
+                </div>
+                <div class="col-md-10">
+                    <input type="submit" value="Validar" />
+                    <input type="button" value="Terminar" onclick="terminar()" />
+                    <script>
+                        function terminar() {
+                            var url = '@Url.Action("ExpedicaoMercadoriaEdit", "Expedicaos", new { id = -2})';
+                            var opcoes = document.getElementById("guia").value;
+                            var path = url.replace("-2", opcoes);
+                            document.location = path;
+                        } </script>
+                </div>
+            </div>
+        </div>
+    <div style="display: none;">
+        @Html.DropDownList("id_produtosDescricao", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "id_produtosDescricao", @name = "id_produtosDescricao" })
+        @Html.DropDownList("id_produtos", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "id_produtos", @name = "id_produtos" })
+        @Html.DropDownList("id_produtosCodComercial", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "produtosDesc", @name = "produtosDesc" })
+        @Html.DropDownList("id_refGtinFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "refGtinFabricado", @name = "refGtinFabricado" })
+        @Html.DropDownList("id_produtosGtinFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "produtosGtinFabricado", @name = "produtosGtinFabricado" })
+        @Html.DropDownList("id_descricaoGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "descricaoGtinRecebido", @name = "descricaoGtinRecebido" })
+        @Html.DropDownList("id_produtosGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "produtosGtinRecebido", @name = "produtosGtinRecebido" })
+        @Html.DropDownList("id_encomendaFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "encomendaFabricado", @name = "encomendaFabricado" })
+        @Html.Editor("descRef", new { htmlAttributes = new { @class = "hidden", @id = "refdescricao" } })
+        @Html.DropDownList("id_produtosDesc", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "produtosDesc", @name = "produtosDesc" })
+        @Html.DropDownList("id_qtd", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "qtdProduto", @name = "qtdProduto" })
+        @Html.DropDownList("id_lote", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "loteProduto", @name = "loteProduto" })
+        @Html.DropDownList("id_validade", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "validadeProduto", @name = "validadeProduto" })
+        @Html.DropDownList("id_encomenda", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "encomendaProduto", @name = "encomendaProduto" })
+        @Html.DropDownList("id_qtdGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "qtdGtinRecebido", @name = "qtdGtinRecebido" })
+        @Html.DropDownList("id_refGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "", @id = "refGtinRecebido", @name = "refGtinRecebido" })
+        @Html.DropDownList("id_qtdGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "qtdGtinRecebido", @name = "qtdGtinRecebido" })
+        @Html.DropDownList("id_loteGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "loteGtinRecebido", @name = "loteGtinRecebido" })
+        @Html.DropDownList("id_validadeGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "validadeGtinRecebido", @name = "validadeGtinRecebido" })
+        @Html.DropDownList("id_encomendaGtinRecebido", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "encomendaGtinRecebido", @name = "encomendaGtinRecebido" })
+        @Html.DropDownList("id_qtdFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "qtdFabricado", @name = "qtdFabricado" })
+        @Html.DropDownList("id_loteFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "loteFabricado", @name = "loteFabricado" })
+        @Html.DropDownList("id_validadeFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "validadeFabricado", @name = "validadeFabricado" })
+        @Html.DropDownList("id_encomendaFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "encomendaFabricado", name = "encomendaFabricado" })
+        @Html.DropDownList("id_OfGtinFabricado", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "ofFabricado", name = "ofFabricado" })
+        @Html.DropDownList("ofValidade", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_validade", @name = "of_validade" })
+        @Html.DropDownList("ofQtdProduzida", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_QtdProduzida", @name = "of_QtdProduzida" })
+        @Html.DropDownList("ofQtdProduzida1", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_QtdProduzida1", @name = "of_QtdProduzida1" })
+        @Html.DropDownList("ofLOTE", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_LOTE", @name = "of_LOTE" })
+        @Html.DropDownList("ofProduto", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_Produto", name = "of_Produto" })
+        @Html.DropDownList("id_OfGtinFabricadoSSCC", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "of_gtinFabricado", name = "of_gtinFabricado" })
+        @Html.DropDownList("encomendaExterna", null, "--Select One--", htmlAttributes: new { @class = "hidden", @id = "encomendaExterna", name = "encomendaExterna" })
+    </div>    
+</div>
+}
+<script language="javascript">
+    function checkDt(fld) {
+        var mo, day, yr;
+        var entry = fld.value;
+        if (entry != "" && entry != null) {
+            var reLong = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{4}\b/;
+            var reShort = /\b\d{1,2}[\/-]\d{1,2}[\/-]\d{2}\b/;
+            var valid = (reLong.test(entry)) || (reShort.test(entry));
+            if (valid) {
+                var delimChar = (entry.indexOf("/") != -1) ? "/" : "-";
+                var delim1 = entry.indexOf(delimChar);
+                var delim2 = entry.lastIndexOf(delimChar);
+                day = parseInt(entry.substring(0, delim1), 10);
+                mo = parseInt(entry.substring(delim1 + 1, delim2), 10);
+                yr = parseInt(entry.substring(delim2 + 1), 10);
+                // handle two-digit year
+                if (yr < 100) {
+                    var today = new Date();
+                    var currCent = parseInt(today.getFullYear() / 100) * 100;
+                    var threshold = (today.getFullYear() + 15) - currCent;
+                    if (yr > threshold) { yr += currCent - 100; } else { yr += currCent; }
+                }
+                fld.value = day + "/" + mo + "/" + yr;
+                appendTitle();
+                return true;
+            } else { alert("Invalid date format. Enter as dd/mm/yyyy."); }
+            return false;
+        }
+        else {
+            appendTitle();
+            return true;
+        }
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

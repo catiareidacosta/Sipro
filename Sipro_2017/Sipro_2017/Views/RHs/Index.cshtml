@@ -1,0 +1,161 @@
+﻿@model PagedList.IPagedList<Sipro_2017.RH>
+
+@using PagedList.Mvc;
+@{ ViewBag.Title = "Index";
+    RH descHr =new Sipro_2017.RH();
+    
+    }
+<h2>Recursos Humanos</h2>
+<p> @Html.ActionLink("Gravar", "Create") </p>
+
+
+@using (Html.BeginForm()){
+    <p> Pesquisa : @Html.TextBox("criterioPesquisa") <input type="submit" value="Pesquisa" /> </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => descHr.nrFuncionario)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "nrFuncionario_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "nrFuncionario_desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.nome)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "nome_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "nome_desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.dataAdmissao)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "dataAdmissao_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "dataAdmissao_desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.telefone)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "telefone_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "telefone_desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.docIdenfiticacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.fichaAptidao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.curriculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.certHabilitacoes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.registoCriminal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.temporario)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "temporario_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "temporario_desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.numeroContrato)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "numeroContrato_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "numeroContrato_desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.dataInicioContrato)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "dataInicioContrato_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "dataInicioContrato_desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.dataFimContrato)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "dataFimContrato_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "dataFimContrato_desc" })
+        </th>
+        <th>
+             @Html.DisplayName("Caducidade")
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "caducidade_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "caducidade_desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.empresa)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "empresa_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "empresa_desc" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => descHr.role)
+            @Html.ActionLink("(asc)", "Index", new { sortOrder = "role_asc" })
+            @Html.ActionLink("(des)", "Index", new { sortOrder = "role_desc" })
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nrFuncionario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataAdmissao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.docIdenfiticacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fichaAptidao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.curriculo)
+            </td>
+            <td>
+                @{ bool certHabilitacoesInserted = (item.certHabilitacoes.Equals(null)) ? false : true; }
+                @Html.CheckBoxFor(model => certHabilitacoesInserted)
+            </td>
+            <td>
+                @{ bool registoCriminalInserted = (item.registoCriminal.Equals(null)) ? false : true; }
+                @Html.CheckBoxFor(model => registoCriminalInserted)
+            </td>
+            <td>
+                @{ bool temporarioInserted = (item.temporario.Equals(null)) ? false : true; }
+                @Html.CheckBoxFor(model => temporarioInserted)
+            </td>
+            <td>
+                @{ bool numeroContratoInserted = (item.numeroContrato.Equals(null)) ? false : true; }
+                @Html.CheckBoxFor(model => numeroContratoInserted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataInicioContrato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataFimContrato)
+            </td>
+            <td>
+                @{ 
+                    DateTime datainicio = item.dataInicioContrato;
+                    DateTime datafim = item.dataFimContrato;
+                    double caducidade = datainicio.Subtract(datafim).TotalDays;
+                }
+                @Html.TextBox("caducidade", caducidade);
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empresa.tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role.tipo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Detalhe", "Details", new { id = item.id }) |
+                @Html.ActionLink("Apagar", "Delete", new { id = item.id })
+            </td>
+        </tr>
+}
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</table>

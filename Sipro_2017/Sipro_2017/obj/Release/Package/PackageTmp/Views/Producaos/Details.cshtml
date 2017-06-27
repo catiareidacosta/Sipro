@@ -1,0 +1,66 @@
+﻿@model Sipro_2017.Producao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Producao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.qtd_produzir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtd_produzir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qtd_produzida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtd_produzida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tempo_total_producao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tempo_total_producao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacoes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.concluido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.concluido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Encomenda.descricao_encomenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Encomenda.descricao_encomenda)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

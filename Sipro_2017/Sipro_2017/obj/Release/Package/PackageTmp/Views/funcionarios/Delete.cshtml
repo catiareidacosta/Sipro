@@ -1,0 +1,72 @@
+﻿@model Sipro_2017.funcionario
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>funcionario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pass_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pass_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_entrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_entrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.docQualidade.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.docQualidade.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.listagemGrupo.nome_grupo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.listagemGrupo.nome_grupo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

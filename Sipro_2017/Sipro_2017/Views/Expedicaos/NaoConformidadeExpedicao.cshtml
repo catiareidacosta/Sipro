@@ -1,0 +1,71 @@
+﻿@model Sipro_2017.naoConforRecepcao
+@{ ViewBag.Title = "CreateCamposControl"; }
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    naoConforRecepcao naoconforme = new Sipro_2017.naoConforRecepcao();
+    SiproEntities db = new SiproEntities();
+    camposControlo controlo = new Sipro_2017.camposControlo();
+       <div class="form-horizontal">
+        <h4>Recepcao</h4>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        @Html.Label("Nrº de Guia")
+                    </div>
+                    <div class="col-md-10">
+                        <span style="color: black; font-size: 14px;">@ViewBag.guia</span>   
+                        @Html.TextBox("guia_inserted",(String)ViewBag.guia, new { @class = "form-control", @id = "guia", @name="name", @type = "hidden" })
+                   </div>
+                </div>
+            </div>
+             <div>
+                 <tr>
+                     <div class="form-group">
+                         <div class="col-md-10">
+                             @Html.ListBox("listNaoConformidades", null, new { style = "width=550; height=530; top: 100; left: 100; scrollbars=yes;resizable=yes;" })  
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <div class="col-md-10">
+                             @Html.TextArea("observacoes", new { @id= "observacoes"})
+                         </div>
+                     </div>
+                 </tr>
+             </div>
+        </div>}
+<script>
+ function activeLink() {
+     observacoes = document.getElementById('observacoes').value;
+     guia = document.getElementById('guia').value;
+        if (observacoes == "") {
+            alert("Observacoes obrigatório");
+        }
+        var canFinish;
+       
+
+        canFinish = true;
+        if (confirm("Pretende receccionar o produto?")) {
+            var url = '@Url.Action("RecepcionaMercadoria", "Recepcaos",  new { obs = -2 })';
+            var path = url.replace("-2", observacoes + ";" + guia);
+            document.location = path;
+        }
+        else {
+            var url = '@Url.Action("ArquivaObs", "Recepcaos",  new { obs = -2 })';
+            var path = url.replace("-2", observacoes + ";" + guia);
+            document.location = path;
+        }
+     return true;
+ };
+</script>
+<div class="col-lg-12">
+    <button onclick="activeLink()">Registar não confomidade</button>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<span style="color: red; font-size: 14px;">@ViewBag.Message</span>   
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

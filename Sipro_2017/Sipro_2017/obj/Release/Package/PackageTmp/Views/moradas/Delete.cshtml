@@ -1,0 +1,72 @@
+﻿@model Sipro_2017.morada
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Morada</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sector)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.morada1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.morada1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoMorada.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoMorada.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Produto.codcomercial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Produto.codcomercial)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

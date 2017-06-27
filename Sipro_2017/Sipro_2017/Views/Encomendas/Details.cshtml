@@ -1,0 +1,62 @@
+﻿@model Sipro_2017.Encomenda
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+    <h4>Encomenda</h4>
+    <hr/>
+    <div class="form-group">
+            <div class="col-md-10">@Html.Label("Encomenda Cliente")</div>
+            <div class="col-md-10">@Html.DisplayFor(model => model.morada.nome)</div>
+            <div class="col-md-10">@Html.Label("Cliente / Fornecedor")</div>
+            <div class="col-md-10">@Html.DisplayFor(model => model.tipoMorada.tipo)</div>
+    </div>
+    <div class="form-group">
+            <div class="col-md-10">@Html.Label("Nr Encomenda Externa")</div>
+            <div class="col-md-10">@Html.DisplayFor(model => model.encomendaExterna)</div>
+    </div>
+    <div class="form-group">
+            <div class="col-md-10">@Html.Label("Orçamento encomenda")</div>
+            <div class="col-md-10">@Html.DisplayFor(model => model.encomenda_orcamento)</div>
+    </div>
+    <div class="form-group">
+            <table class="table">
+            <tr><th>Referencia</th><th>Descrição</th><th>Quantidade Unitária</th><th></th></tr>
+            <tr>
+                @for (var i = 0; i < Model.produto_new.Count(); i++){
+                    var codIndex = "codigoproduto" + i;
+                    var descIndex = "descProduto" + i;
+                    var qtdIndex = "qtdProduto" + i;
+                <tr>
+                    <td>@Html.DisplayFor(model => model.produto_new.ElementAt(i).codcomercial)</td>
+                    <td>@Html.DisplayFor(model => model.produto_new.ElementAt(i).descricao)</td>
+                    <td>@Html.DisplayFor(model => model.produto_new.ElementAt(i).qtd)</td>
+                </tr>
+                }
+            </table>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Label("Descrição")
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.descricao_encomenda)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Label("Ficheiro")
+        </div>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.ficheiro_encomenda)
+        </div>
+    </div>
+<div class="form-group">
+    <div class="col-md-10">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    </div>
+    

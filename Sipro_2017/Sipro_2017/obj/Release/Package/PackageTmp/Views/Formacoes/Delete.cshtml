@@ -1,0 +1,56 @@
+﻿@model Sipro_2017.Formaco
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Formaco</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dataFormacao)
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.dataFormacao, "{0:dd-MM-yyyy}", new { @readonly = true, @size = "8", @style = "border-width: 0px;" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomeFormacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomeFormacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numHoras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numHoras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoFormacao.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoFormacao.descricao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

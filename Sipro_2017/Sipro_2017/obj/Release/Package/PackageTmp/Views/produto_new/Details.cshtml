@@ -1,0 +1,98 @@
+﻿@model Sipro_2017.produto_new
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>produto_new</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codcomercial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codcomercial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qtd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.@ref)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.@ref)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NrUnidades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NrUnidades)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.validade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.validade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.refProduto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.refProduto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_guia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero_guia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Encomenda.descricao_encomenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Encomenda.descricao_encomenda)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

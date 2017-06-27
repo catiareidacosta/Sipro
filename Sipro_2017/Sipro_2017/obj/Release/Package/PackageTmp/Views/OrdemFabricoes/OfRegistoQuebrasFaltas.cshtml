@@ -1,0 +1,80 @@
+﻿@model Sipro_2017.OrdemFabrico
+@{
+    ViewBag.Title = "Quebras / Faltas";
+    produto_new gtinRecebidos = new Sipro_2017.produto_new();
+}
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Quebras / Faltas</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="center-div">
+            <div>
+                <input type="button" value="Avançar" class="btn btn-default " onclick="return forwardMe('selectTipo')" />
+                <input type="button" value="Cancelar" onclick="forwardMe('index')">
+                <script> function forwardMe(url) {document.location = '@Url.Action("OFSubMenu", "OrdemFabricoes", new { of = ViewBag.id })';} </script>
+            </div>
+        </div>
+        <script>
+            function selectTipo() {
+                var myRadio = $('input[name=opcao]');
+                var checkedValue = myRadio.filter(':checked').val();
+                var encomenda = document.getElementById("gtin").value;
+                if (encomenda == "" || encomenda == null) {
+                    alert("Código de Barras deverá ser preenchido!");
+                }
+                else {
+                    var url = "";
+                    if (checkedValue == "quebras") {
+                        url = '@Url.Action("OfRegistoQuebras", "OrdemFabricoes", new { obs = -2})';
+                        var opcoes = @ViewBag.id;
+                        var path = url.replace("-2", opcoes);
+                        document.location = path;
+                    }
+                    else if (checkedValue == "faltas") {
+                        url = '@Url.Action("OfRegistoFaltas", "OrdemFabricoes", new { obs = -2})';
+                        var opcoes = @ViewBag.id;
+                        var path = url.replace("-2", opcoes);
+                        document.location = path;
+                    }
+                }
+                return false;
+            }
+
+            function pesquisaProduto() {
+                var encomenda = document.getElementById("gtin").value;
+                var els = document.getElementById("numGtinRecebidos").childElementCount;
+                var exit = false;
+                for (var i = 0; i < els; ++i) {
+                    if (encomenda == document.getElementById("numGtinRecebidos").options.item(i).value) 
+                        exit = true;
+                }
+               return false;
+            }
+
+        </script>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Código de Barras")
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => gtinRecebidos.@ref, new { htmlAttributes = new { @class = "form-control", @id = "gtin", @name = "gtin", @onchange = "return pesquisaProduto()", @required = true } })
+                @Html.DropDownList("numGtinRecebidos", null, htmlAttributes: new { @class = "hidden", @id = "numGtinRecebidos", @name = "numGtinRecebidos" })
+                @Html.ValidationMessageFor(model => gtinRecebidos.@ref, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-10">
+                <form action="" method="post" id="options">
+                    <input type="radio" name="opcao" value="quebras" onclick="selectTipo()" /> Quebras
+                    <input type="radio" name="opcao" value="faltas"  onclick="selectTipo()" /> Faltas
+                </form>
+            </div>
+        </div>
+    </div>
+}
+<span style="color: red; font-size: 14px;">@ViewBag.Message</span>   
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }

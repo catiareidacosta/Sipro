@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Sipro_2017.produto_new>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codcomercial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qtd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.@ref)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NrUnidades)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.validade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.refProduto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numero_guia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Encomenda.descricao_encomenda)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codcomercial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qtd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.@ref)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NrUnidades)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.validade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.refProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numero_guia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Encomenda.descricao_encomenda)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

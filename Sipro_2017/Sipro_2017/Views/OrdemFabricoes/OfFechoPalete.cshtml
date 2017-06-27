@@ -1,0 +1,110 @@
+﻿@model Sipro_2017.OrdemFabrico
+@{
+    ViewBag.Title = "Fecho de Palete";
+}
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+     <div class="form-horizontal">
+            <h4>Sub Menu Ordem Fabrico</h4>
+            <hr />
+             <div class="center-div">
+                 <div class="col-lg-12">
+                     <input type="submit" value="Gravar" />
+                     <input type="button" value="Cancelar" onclick="forwardMe('index')">
+                     <script> function forwardMe(url) {document.location = '@Url.Action("OFSubMenu", "OrdemFabricoes", new { of = ViewBag.id })';} </script>
+                </div>
+             </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        <input type='text' id='idOf' name='idOf' value=@ViewBag.id readonly="readonly" style="border:none">
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-10">
+                        <p>@ViewBag.informativo</p>
+                    </div>
+                </div>
+            </div>
+         <div class="col-md-10">
+             <div class="col-md-10">
+                 @Html.Label("GTIN")
+             </div>
+             <div class="col-md-10">
+                 <input type='text' id='gtinFabricados' name='gtinFabricados' onblur="" value="@(ViewBag.gtinFabricados ?? String.Empty)" , onchange="return OnChangeEvent()" />
+                 <script type="text/javascript">
+                             function OnChangeEvent(){
+                                 codigoProduto_id = document.getElementById("gtinFabricados").value;
+                                 var els = document.getElementById("componente_id").childElementCount;
+                                 var exit = false;
+                                 for (var i = 0; i < els; ++i) {
+                                     if (codigoProduto_id == document.getElementById("componente_id").options.item(i).text) {
+                                         alert("Produto já registado!");
+                                         document.getElementById("codigocomercial").setActive();
+                                         exit = true;
+                                     }
+                                 }
+                                 return false;
+                             }
+                 </script>
+                 @Html.DropDownList("componente_id", null, htmlAttributes: new { @class = "hidden" })
+             </div>
+         </div>
+         <div class="form-group">
+             <div class="col-md-10">
+                 <div class="col-md-10">
+                     @Html.Label("Quantidade und")
+                 </div>
+                 <div class="col-md-10">
+                     @Html.EditorFor(model => model.qtdPalteteProduto, new { htmlAttributes = new { @class = "form-control", @id = "produzido", @name = "produzido", @enable = "enable" } })
+                 </div>
+             </div>
+           </div>
+        </div>
+    }
+
+<script type="text/javascript">
+    function activeLink() {
+        inputs = document.getElementsByTagName('input');
+        var numeroGuia = document.getElementById("numeroGuia").value;
+        if (numeroGuia == "") {
+            alert("Preenchimento obrigatório número de guia!");
+        }
+        var canFinish;
+        canFinish = true;
+        var naoconforme = "";
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs.item(i).style.backgroundColor.endsWith("red")) {
+                naoconforme= i+";"+naoconforme;
+                canFinish = false;
+            }
+        }
+       if (!canFinish) {
+           if (confirm("Existem alguns campos de control não aprovados. Pretende abrir não confomidade ?")){
+               var url = '@Url.Action("NaoConformidadeRecepcao", "Recepcaos",  new { guia=-2})';
+               var opcoes = numeroGuia + ";" + naoconforme;
+               var path = url.replace("-2", opcoes);
+               document.location = path;
+           }
+           else {
+               document.getElementById(Id).value = "";
+               document.getElementById(Id).focus();
+           }
+
+        } else {
+           var url = '@Url.Action("RecepcionaMercadoria", "Recepcaos",  new { obs = -2})';
+           var opcoes = numeroGuia;
+           var path = url.replace("-2", opcoes);
+           document.location = path;
+        }
+
+        return canFinish;
+    };
+</script>
+
+<span style="color: red; font-size: 14px;">@ViewBag.Message</span>   
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }

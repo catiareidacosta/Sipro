@@ -1,0 +1,250 @@
+﻿@model Sipro_2017.RH
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nrFuncionario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nrFuncionario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.custoHora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.custoHora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.documentos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.documentos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diasFerias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diasFerias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fardamentoNr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fardamentoNr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sapatos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sapatos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.calca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.polo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.polo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.casaco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.casaco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bata)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bata)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataAdmissao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataAdmissao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.morada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.morada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataNascimento)
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.dataNascimento, "{0:dd-MM-yyyy}", new { @readonly = true, @size = "8", @style = "border-width: 0px;" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nif)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nif)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.docIdenfiticacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.docIdenfiticacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fichaAptidao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fichaAptidao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.curriculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.curriculo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.certHabilitacoes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.certHabilitacoes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registoCriminal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registoCriminal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.temporario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.temporario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroContrato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroContrato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nss)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nss)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.departamento.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departamento.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empresa.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empresa.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.role.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.role.tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f377ef9ee18e4c0f9cde8fbfaf8ab116" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="SiproModel.Apuramento" Width="1.5" PointX="7.5" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.camposControlo" Width="1.5" PointX="8.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.comercial" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.componenteComposto" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.condicoesTemperatura" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.ContaCorrenteStock" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.contato" Width="1.5" PointX="5.25" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.departamento" Width="1.5" PointX="8.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.docQualidade" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.empresa" Width="1.5" PointX="11.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.estadoOrcamento" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.Formaco" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.funcionario" Width="1.5" PointX="6" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.gestaoContrato" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.listagemAcesso" Width="1.5" PointX="1.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.listagemGrupo" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.manipulacao" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.manutencao" Width="1.5" PointX="6" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.Manutenco" Width="1.5" PointX="12.5" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.maquina" Width="1.5" PointX="8.25" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.morada" Width="1.5" PointX="3" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.motivoNaoAaprovado" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.motivoOrcamento" Width="1.5" PointX="6" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.movimento" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.naoConformidadesOF" Width="1.5" PointX="9.75" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.Outsoucing" PointX="11" PointY="4.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.permissao" Width="1.5" PointX="1.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.Producao" Width="1.5" PointX="7.5" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.rastrealibidade" Width="1.5" PointX="3" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.Recepcao" Width="1.5" PointX="10.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.Report" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.RH" Width="1.5" PointX="14" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.role" Width="1.5" PointX="11.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.temporario" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.tipoDocumento" Width="1.5" PointX="1.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.tipoFormacao" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.tipoManutencao" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.tipoMorada" Width="1.5" PointX="0.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.TipoNaoConformidade" Width="1.5" PointX="7.5" PointY="43.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.userGrupo" Width="1.5" PointX="1.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SiproModel.verificacao" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__campos__2EFAF1E2" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__campos__33BFA6FF" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__id_cam__2E06CDA9" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__id_pro__32CB82C6" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__comercial__estad__190BB0C3" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__comercial__estad__19FFD4FC" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__comercial__tipo__18178C8A" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__ContaCorr__movim__76B698BF" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.morada_id" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="SiproModel.FK__Outsoucin__depar__7A8729A3" />
+        <AssociationConnector Association="SiproModel.FK__RH__departamento__22951AFD" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.doc_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__docQualida__tipo__4242D080" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__RH__empresa_id__23893F36" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Formacoes__tipoO__284DF453" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Manutenco__funci__7F4BDEC0" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Report__user_rep__695C9DA1" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.grupos_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.listagem_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.permissoes_id" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.users" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__manutenca__tipom__48EFCE0F" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__maquina__manuten__4CC05EF3" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Manutenco__maqui__7D63964E" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Manutenco__nivel__7E57BA87" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__maquina__marca__4BCC3ABA" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__morada__tipo__269AB60B" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__id_Mor__30E33A54" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__morada__31D75E8D" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__naoConfor__tipo___153B1FDF" ManuallyRouted="false" />
+        <AssociationConnector Association="SiproModel.FK__RH__role_id__21A0F6C4" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SiproModel.naoConforRecepcao" Width="1.5" PointX="10.5" PointY="17.625" />
+        <AssociationConnector Association="SiproModel.FK__naoConfor__tipon__6DEC4894" />
+        <EntityTypeShape EntityType="SiproModel.orcamento" Width="1.5" PointX="13.25" PointY="17.5" />
+        <EntityTypeShape EntityType="SiproModel.produto" Width="1.5" PointX="5.25" PointY="30.25" />
+        <EntityTypeShape EntityType="SiproModel.TipoProduto" Width="1.5" PointX="3" PointY="34.125" />
+        <AssociationConnector Association="SiproModel.FK__Apurament__produ__65CC03DF" />
+        <AssociationConnector Association="SiproModel.FK__orcamento__estad__7F6BDA51" />
+        <AssociationConnector Association="SiproModel.FK__orcamento__user___005FFE8A" />
+        <AssociationConnector Association="SiproModel.FK__orcamento__morad__015422C3" />
+        <AssociationConnector Association="SiproModel.FK__produto__morada__4EE89E87" />
+        <AssociationConnector Association="SiproModel.FK__orcamento__motiv__7D8391DF" />
+        <AssociationConnector Association="SiproModel.FK__naoConfor__ref_i__76026BA8" />
+        <AssociationConnector Association="SiproModel.FK__orcamento__morad__7E77B618" />
+        <AssociationConnector Association="SiproModel.fichaProdutoElaborado_produto" />
+        <AssociationConnector Association="SiproModel.FK__produto__compone__4FDCC2C0" />
+        <AssociationConnector Association="SiproModel.FK__produto__tipopro__4DF47A4E" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__id_pro__0AFD888E" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__produt__0BF1ACC7" />
+        <EntityTypeShape EntityType="SiproModel.FasesOrdemFabrico" Width="1.5" PointX="10.25" PointY="43" />
+        <EntityTypeShape EntityType="SiproModel.FimOperaco" Width="1.5" PointX="12.5" PointY="37.875" />
+        <EntityTypeShape EntityType="SiproModel.MotivoFalta" Width="1.5" PointX="10.25" PointY="40.875" />
+        <EntityTypeShape EntityType="SiproModel.MotivoQuebra" Width="1.5" PointX="10.25" PointY="38.75" />
+        <EntityTypeShape EntityType="SiproModel.ParagemProducao" Width="1.5" PointX="14.75" PointY="33.625" />
+        <AssociationConnector Association="SiproModel.FK__ParagemPr__motiv__19A0ADA0" />
+        <EntityTypeShape EntityType="SiproModel.naoConforExpedicao" Width="1.5" PointX="10.5" PointY="20.875" />
+        <AssociationConnector Association="SiproModel.FK__naoConfor__tipon__4A43E4FB" />
+        <EntityTypeShape EntityType="SiproModel.saidasEntrada" Width="1.5" PointX="15.375" PointY="12.75" />
+        <EntityTypeShape EntityType="SiproModel.produtosExpedido" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SiproModel.gtinRecebido" Width="1.5" PointX="16.375" PointY="4.875" />
+        <AssociationConnector Association="SiproModel.FK__naoConfor__gtin___14DBF883" />
+        <EntityTypeShape EntityType="SiproModel.gtinFabricado" Width="1.5" PointX="16.375" PointY="7.75" />
+        <EntityTypeShape EntityType="SiproModel.Encomenda" Width="1.5" PointX="18.5" PointY="23.875" />
+        <AssociationConnector Association="SiproModel.FK__Encomenda__codig__09A971A2" />
+        <AssociationConnector Association="SiproModel.FK__Encomenda__codig__7D0E9093" />
+        <AssociationConnector Association="SiproModel.FK__Encomenda__encom__0A9D95DB" />
+        <AssociationConnector Association="SiproModel.FK__Encomenda__encom__0B91BA14" />
+        <AssociationConnector Association="SiproModel.FK__Encomenda__encom__7E02B4CC" />
+        <AssociationConnector Association="SiproModel.FK__Encomenda__encom__7EF6D905" />
+        <AssociationConnector Association="SiproModel.FK__Encomenda__morad__0C85DE4D" />
+        <AssociationConnector Association="SiproModel.FK__Encomenda__morad__7FEAFD3E" />
+        <AssociationConnector Association="SiproModel.FK__Producao__encome__1D7B6025" />
+        <AssociationConnector Association="SiproModel.FK__Producao__encome__2EDAF651" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__id_num__251C81ED" />
+        <AssociationConnector Association="SiproModel.FK__Recepcao__id_num__37703C52" />
+        <EntityTypeShape EntityType="SiproModel.Expedicao" Width="1.5" PointX="15.5" PointY="22.25" />
+        <AssociationConnector Association="SiproModel.FK__Expedicao__campo__00DF2177" />
+        <AssociationConnector Association="SiproModel.FK__Expedicao__campo__0D7A0286" />
+        <AssociationConnector Association="SiproModel.FK__Expedicao__id_ca__01D345B0" />
+        <AssociationConnector Association="SiproModel.FK__Expedicao__id_ca__0E6E26BF" />
+        <AssociationConnector Association="SiproModel.FK__Expedicao__morad__02C769E9" />
+        <AssociationConnector Association="SiproModel.FK__Expedicao__morad__0F624AF8" />
+        <EntityTypeShape EntityType="SiproModel.OrdemFabrico" Width="1.5" PointX="20.75" PointY="30.5" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__encom__15DA3E5D" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__encom__2739D489" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__fases__17C286CF" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__fases__29221CFB" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__falta__16CE6296" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__falta__282DF8C2" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__quebr__19AACF41" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__quebr__2B0A656D" />
+        <AssociationConnector Association="SiproModel.FK__naoConfor__ordem__0D44F85C" />
+        <AssociationConnector Association="SiproModel.FK__naoConfor__ordem__1EA48E88" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__produ__18B6AB08" />
+        <AssociationConnector Association="SiproModel.FK__OrdemFabr__produ__2A164134" />
+        <AssociationConnector Association="SiproModel.FK__ParagemPr__OF_id__1C873BEC" />
+        <AssociationConnector Association="SiproModel.FK__ParagemPr__OF_id__2DE6D218" />
+        <EntityTypeShape EntityType="SiproModel.produto_new" Width="1.5" PointX="20.75" PointY="25.375" />
+        <AssociationConnector Association="SiproModel.FK__produto_n__id_nu__214BF109" />
+        <AssociationConnector Association="SiproModel.FK__produto_n__id_nu__339FAB6E" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
